@@ -1,0 +1,46 @@
+.contactbg {
+  background-color: rgb(249, 245, 245);
+}
+
+.container1 {
+  margin-left: 13%;
+  margin-right: 13%;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+
+.leftdivin, .rightdiv{
+  border-radius: 7px;
+}
+
+.leftdivin{
+  width: 98%;
+}
+
+.conbgimg {
+  background: url('src/assets/images/img2.png');
+  height: 300px;
+  background-size: cover;
+  color: white;
+}
+
+.conbgimg div {
+  padding-top: 7%;
+  padding-left: 10%;
+}
+
+.btn-style-one{
+  padding: 10px 30px;
+  font-weight: 600;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+  border: 2px solid #001e57;
+  background-color: white;
+  transition: 0.3s;
+}
+
+.btn-style-one:hover{
+  background-color: #001e57;
+  color: #ffffff;
+  transition: 0.3s;
+}

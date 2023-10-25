@@ -1,0 +1,12 @@
+.logo{
+	border-radius: 50%;
+	padding: 12px;
+	padding-left: 15px;
+	padding-right: 15px;
+	background-color: #25D366;
+	display: inline-block;
+	position: fixed;
+	bottom: 40px;
+	right: 45px;
+	z-index: 99;
+}

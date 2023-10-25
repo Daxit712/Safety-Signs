@@ -1,0 +1,62 @@
+.leftlistdiv {
+  border-radius: 10px;
+  background-color: #F9F9FA;
+  height: 200px;
+  box-shadow: 1px 1px 10px 1px #c1bebe;
+}
+
+.rightpricediv {
+  border-radius: 10px;
+  background-color: rgb(244, 240, 240);
+}
+
+.productimg {
+  height: 150px !important;
+  border-radius: 10px;
+  border: 1px solid #00005a;
+}
+
+.leftmain {
+  border-right: 1px solid lightgray;
+  padding-right: 50px;
+}
+
+.btn-style-one {
+  padding: 12px 0px;
+  font-weight: 600;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+  border: 2px solid #001e57;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 100px;
+}
+
+.btn-style-one:hover {
+  background-color: #001e57;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+.fa-times {
+  border: 1px solid;
+  border-radius: 100%;
+  transition: 0.2s;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.fa-times:hover {
+  box-shadow: 1px 1px 10px 1px #d1cece;
+  background-color: #00005a;
+  transition: 0.2s;
+}
+
+.fa-times:hover::before {
+  color: white;
+  transition: 0.2s;
+}

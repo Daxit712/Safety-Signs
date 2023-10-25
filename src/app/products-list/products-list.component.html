@@ -1,0 +1,87 @@
+<div class="container mt-5 mb-5">
+
+  <div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <span class="m-2 me-3 mb-0"><b>Sort By:</b></span>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" (click)="originalpro()">Featured</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link d-flex align-items-center justify-content-between" id="price-tab" data-bs-toggle="tab" data-bs-target="#price" type="button" role="tab" aria-controls="price" aria-selected="true" (click)="price()">Price <span class="ms-2"><i class="fas fa-caret-up" *ngIf="upArrow"></i><i class="fas fa-caret-down" *ngIf="downArrow"></i></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link d-flex align-items-center justify-content-between" id="name-tab" data-bs-toggle="tab" data-bs-target="#name" type="button" role="tab" aria-controls="name" aria-selected="true" (click)="name()">Name <span class="ms-2"><i class="fas fa-caret-up" *ngIf="nameUpArrow"></i><i class="fas fa-caret-down" *ngIf="nameDownArrow"></i></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link d-flex align-items-center justify-content-between" id="arrival-tab" data-bs-toggle="tab" data-bs-target="#arrival" type="button" role="tab" aria-controls="arrival" aria-selected="true" (click)="date()">New Arrivals <span class="ms-2"><i class="fas fa-caret-up" *ngIf="dateUpArrow"></i><i class="fas fa-caret-down" *ngIf="dateDownArrow"></i></span></button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <ng-container *ngTemplateOutlet="pro"></ng-container>
+      </div>
+      <div class="tab-pane fade" id="price" role="tabpanel" aria-labelledby="price-tab">
+        <ng-container *ngTemplateOutlet="pro"></ng-container>
+      </div>
+      <div class="tab-pane fade" id="name" role="tabpanel" aria-labelledby="name-tab">
+        <ng-container *ngTemplateOutlet="pro"></ng-container>
+      </div>
+      <div class="tab-pane fade" id="arrival" role="tabpanel" aria-labelledby="arrival-tab">
+        <ng-container *ngTemplateOutlet="pro"></ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="text-end">
+    <select class="ps-2 pe-2" [(ngModel)]="sorting" (change)="sortProducts()">
+      <option value="sort">Sort By</option>
+      <option value="high">Price -- Low to High</option>
+      <option value="low">Price -- High to Low</option>
+      <option value="name">Sort By Product Name</option>
+      <option value="date">Sort By Date</option>
+    </select>
+  </div> -->
+  <ng-template #pro>
+    <div class="row mt-3">
+      <div class="col-lg-3 col-12 col-md-6 p-3 mb-3 productdiv" *ngFor="let a of watchData; let i = index">
+        <div class="card" (click)="goToProductDetails(i)">
+          <img [src]="a.img" class="card-img-top bg-light" alt="Mask Image">
+          <div class="card-body">
+            <p class="card-title text-secondary">{{ a.title }}</p>
+            <p class="card-text">{{ a.details }}</p>
+            <p><b>{{ a.price }}</b> <span class="ms-3 text-secondary text-decoration-line-through">{{ a.originalprice }}</span> <span class="ms-3 text-success">{{ a.discount }}</span></p>
+            <div class="text-end">
+              <small>{{ a.date }}</small>
+            </div>
+            <div class="info2"></div>
+            <div class="info2-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- <div class="row">
+    <div class="col-lg-3 col-12 col-md-6  p-3 mb-3 productdiv" *ngFor="let mobile of mobilesData; let i =index">
+      <div class="card border border-white shadow">
+        <img [src]="mobile.mobilesImg" class="card-img-top" alt="mobile Image">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ mobile.mobilesTitle }}</h5>
+          <p class="card-text">{{ mobile.mobilesPrice }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3 col-12 col-md-6 p-3 mb-3 productdiv" *ngFor="let laptop of laptopsData">
+      <div class="card border border-white shadow">
+        <img [src]="laptop.laptopsImg" class="card-img-top" alt="laptop Image">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ laptop.laptopsTitle }}</h5>
+          <p class="card-text">{{ laptop.laptopsPrice }}</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>

@@ -1,0 +1,35 @@
+.conbgimg {
+  background: url('src/assets/images/img2.png');
+  height: 300px;
+  background-size: cover;
+  color: white;
+}
+
+.conbgimg div {
+  padding-top: 7%;
+  padding-left: 10%;
+}
+
+.accordion-button:focus {
+  box-shadow: none !important;
+}
+.accordion-button {
+  border: 2px solid #00005a !important;
+  background-color: #e4e4ee !important;
+  border-radius: 5px !important;
+}
+.accordion-button::after {
+  background-size: 17px !important;
+}
+.accordion-item {
+  margin-top: 5px;
+  border-radius: 5px !important;
+}
+
+section {
+  margin-bottom: 100px;
+}
+
+.maindiv {
+  margin-top: 100px;
+}

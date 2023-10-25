@@ -1,0 +1,270 @@
+/*! CSS Used from: https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/plugins.css */
+:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+*,*::before,*::after{box-sizing:border-box;}
+html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+header,nav{display:block;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff;}
+h1,h3,h4{margin-top:0;margin-bottom:0.5rem;}
+p{margin-top:0;margin-bottom:1rem;}
+ol,ul{margin-top:0;margin-bottom:1rem;}
+a{color:#007bff;text-decoration:none;background-color:transparent;}
+a:hover{color:#0056b3;text-decoration:underline;}
+img{vertical-align:middle;border-style:none;}
+label{display:inline-block;margin-bottom:0.5rem;}
+button{border-radius:0;}
+button:focus{outline:1px dotted;outline:5px auto -webkit-focus-ring-color;}
+input,button,select{margin:0;font-family:inherit;font-size:inherit;line-height:inherit;}
+button,input{overflow:visible;}
+button,select{text-transform:none;}
+select{word-wrap:normal;}
+button,[type="button"],[type="submit"]{-webkit-appearance:button;}
+button:not(:disabled),[type="button"]:not(:disabled),[type="submit"]:not(:disabled){cursor:pointer;}
+input[type="checkbox"]{box-sizing:border-box;padding:0;}
+h1,h3,h4,.h3{margin-bottom:0.5rem;font-weight:500;line-height:1.2;}
+h1{font-size:2.5rem;}
+h3,.h3{font-size:1.75rem;}
+h4{font-size:1.5rem;}
+.list-unstyled{padding-left:0;list-style:none;}
+.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;}
+@media (min-width:576px){
+.container{max-width:540px;}
+}
+@media (min-width:768px){
+.container{max-width:720px;}
+}
+@media (min-width:992px){
+.container{max-width:960px;}
+}
+@media (min-width:1200px){
+.container{max-width:1140px;}
+}
+.row{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-15px;margin-left:-15px;}
+.col-md-4,.col-md-6,.col-md-12,.col-lg-10,.col-lg-12{position:relative;width:100%;padding-right:15px;padding-left:15px;}
+@media (min-width:768px){
+.col-md-4{-ms-flex:0 0 33.333333%;flex:0 0 33.333333%;max-width:33.333333%;}
+.col-md-6{-ms-flex:0 0 50%;flex:0 0 50%;max-width:50%;}
+.col-md-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%;}
+}
+@media (min-width:992px){
+.col-lg-10{-ms-flex:0 0 83.333333%;flex:0 0 83.333333%;max-width:83.333333%;}
+.col-lg-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%;}
+.offset-lg-1{margin-left:8.333333%;}
+}
+.form-group{margin-bottom:1rem;}
+.collapse:not(.show){display:none;}
+.dropdown{position:relative;}
+.dropdown-toggle{white-space:nowrap;}
+.dropdown-toggle::after{display:inline-block;margin-left:0.255em;vertical-align:0.255em;content:"";border-top:0.3em solid;border-right:0.3em solid transparent;border-bottom:0;border-left:0.3em solid transparent;}
+.dropdown-toggle:empty::after{margin-left:0;}
+.dropdown-menu{position:absolute;top:100%;left:0;z-index:1000;display:none;float:left;min-width:10rem;padding:0.5rem 0;margin:0.125rem 0 0;font-size:1rem;color:#212529;text-align:left;list-style:none;background-color:#fff;background-clip:padding-box;border:1px solid rgba(0,0,0,0.15);border-radius:0.25rem;}
+.dropdown-item{display:block;width:100%;padding:0.25rem 1.5rem;clear:both;font-weight:400;color:#212529;text-align:inherit;white-space:nowrap;background-color:transparent;border:0;}
+.dropdown-item:hover,.dropdown-item:focus{color:#16181b;text-decoration:none;background-color:#f8f9fa;}
+.dropdown-item:active{color:#fff;text-decoration:none;background-color:#007bff;}
+.dropdown-item:disabled{color:#6c757d;pointer-events:none;background-color:transparent;}
+.nav-link{display:block;padding:0.5rem 1rem;}
+.nav-link:hover,.nav-link:focus{text-decoration:none;}
+.navbar{position:relative;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-align:center;align-items:center;-ms-flex-pack:justify;justify-content:space-between;padding:0.5rem 1rem;}
+.navbar-brand{display:inline-block;padding-top:0.3125rem;padding-bottom:0.3125rem;margin-right:1rem;font-size:1.25rem;line-height:inherit;white-space:nowrap;}
+.navbar-brand:hover,.navbar-brand:focus{text-decoration:none;}
+.navbar-nav{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;padding-left:0;margin-bottom:0;list-style:none;}
+.navbar-nav .nav-link{padding-right:0;padding-left:0;}
+.navbar-nav .dropdown-menu{position:static;float:none;}
+.navbar-collapse{-ms-flex-preferred-size:100%;flex-basis:100%;-ms-flex-positive:1;flex-grow:1;-ms-flex-align:center;align-items:center;}
+.navbar-toggler{padding:0.25rem 0.75rem;font-size:1.25rem;line-height:1;background-color:transparent;border:1px solid transparent;border-radius:0.25rem;}
+.navbar-toggler:hover,.navbar-toggler:focus{text-decoration:none;}
+@media (min-width:992px){
+.navbar-expand-lg{-ms-flex-flow:row nowrap;flex-flow:row nowrap;-ms-flex-pack:start;justify-content:flex-start;}
+.navbar-expand-lg .navbar-nav{-ms-flex-direction:row;flex-direction:row;}
+.navbar-expand-lg .navbar-nav .dropdown-menu{position:absolute;}
+.navbar-expand-lg .navbar-nav .nav-link{padding-right:0.5rem;padding-left:0.5rem;}
+.navbar-expand-lg .navbar-collapse{display:-ms-flexbox!important;display:flex!important;-ms-flex-preferred-size:auto;flex-basis:auto;}
+.navbar-expand-lg .navbar-toggler{display:none;}
+}
+.navbar-dark .navbar-brand{color:#fff;}
+.navbar-dark .navbar-brand:hover,.navbar-dark .navbar-brand:focus{color:#fff;}
+.navbar-dark .navbar-nav .nav-link{color:rgba(255,255,255,0.5);}
+.navbar-dark .navbar-nav .nav-link:hover,.navbar-dark .navbar-nav .nav-link:focus{color:rgba(255,255,255,0.75);}
+.navbar-dark .navbar-toggler{color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.1);}
+.media{display:-ms-flexbox;display:flex;-ms-flex-align:start;align-items:flex-start;}
+.media-body{-ms-flex:1;flex:1;}
+.fixed-top{position:fixed;top:0;right:0;left:0;z-index:1030;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.mb-5{margin-bottom:3rem!important;}
+.ml-auto{margin-left:auto!important;}
+.text-center{text-align:center!important;}
+@media print{
+*,*::before,*::after{text-shadow:none!important;box-shadow:none!important;}
+a:not(.btn){text-decoration:underline;}
+img{page-break-inside:avoid;}
+p,h3{orphans:3;widows:3;}
+h3{page-break-after:avoid;}
+body{min-width:992px!important;}
+.container{min-width:992px!important;}
+.navbar{display:none;}
+}
+.fa,.fas,.fab{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1;}
+.fa-lg{font-size:1.33333em;line-height:0.75em;vertical-align:-.0667em;}
+.fa-stack{display:inline-block;height:2em;line-height:2em;position:relative;vertical-align:middle;width:2em;}
+.fa-stack-1x,.fa-stack-2x{left:0;position:absolute;text-align:center;width:100%;}
+.fa-stack-1x{line-height:inherit;}
+.fa-stack-2x{font-size:2em;}
+.fa-angle-double-right:before{content:"\f101";}
+.fa-bars:before{content:"\f0c9";}
+.fa-circle:before{content:"\f111";}
+.fa-facebook-f:before{content:"\f39e";}
+.fa-google-plus-g:before{content:"\f0d5";}
+.fa-instagram:before{content:"\f16d";}
+.fa-linkedin-in:before{content:"\f0e1";}
+.fa-square:before{content:"\f0c8";}
+.fa-times:before{content:"\f00d";}
+.fa-twitter:before{content:"\f099";}
+.sr-only{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;}
+.fab{font-family:'Font Awesome 5 Brands';}
+.fa,.fas{font-family:'Font Awesome 5 Free';font-weight:900;}
+/*! CSS Used from: https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/styles.css */
+body,html{width:100%;height:100%;}
+body,p{color:#626262;font:400 0.875rem/1.375rem "Raleway",sans-serif;}
+.p-small{font:400 0.75rem/1.25rem "Raleway",sans-serif;}
+.li-space-lg li{margin-bottom:0.25rem;}
+.indent{padding-left:1.25rem;}
+h1{color:#393939;font:700 3rem/3.5rem "Raleway",sans-serif;}
+h3{color:#393939;font:700 1.75rem/2rem "Raleway",sans-serif;}
+h4{color:#393939;font:700 1.375rem/1.875rem "Raleway",sans-serif;}
+a{color:#626262;text-decoration:underline;}
+a:hover{color:#626262;text-decoration:underline;}
+a.turquoise{color:#00bfd8;}
+.turquoise{color:#00bfd8;}
+.btn-outline-reg{display:inline-block;padding:1.1875rem 2.125rem 1.1875rem 2.125rem;border:0.125rem solid #00bfd8;border-radius:2rem;background-color:transparent;color:#00bfd8;font:700 0.75rem/0 "Raleway",sans-serif;text-decoration:none;transition:all 0.2s;}
+.btn-outline-reg:hover{background-color:#00bfd8;color:#fff;text-decoration:none;}
+.form-group{position:relative;margin-bottom:1.25rem;}
+.label-control{position:absolute;top:0.87rem;left:1.375rem;color:#626262;opacity:1;font:400 0.875rem/1.375rem "Raleway",sans-serif;cursor:text;transition:all 0.2s ease;}
+@media screen and (-ms-high-contrast:active),screen and (-ms-high-contrast:none){
+.label-control{top:0.9375rem;}
+}
+.form-control-input:focus + .label-control{top:0.125rem;opacity:1;font-size:0.75rem;font-weight:700;}
+.form-control-input,.form-control-select{display:block;width:100%;padding-top:1.0625rem;padding-bottom:0.0625rem;padding-left:1.3125rem;border:1px solid #c4d8dc;border-radius:0.25rem;background-color:#fff;color:#626262;font:400 0.875rem/1.875rem "Raleway",sans-serif;transition:all 0.2s;-webkit-appearance:none;}
+.form-control-select{padding-top:0.5rem;padding-bottom:0.5rem;height:3rem;}
+@media screen and (-ms-high-contrast:active),screen and (-ms-high-contrast:none){
+.form-control-input{padding-top:1.25rem;padding-bottom:0.75rem;line-height:1.75rem;}
+.form-control-select{padding-top:0.875rem;padding-bottom:0.75rem;height:3.125rem;line-height:2.125rem;}
+}
+select{-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;-o-appearance:none;appearance:none;background-image:url('https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/images/down-arrow.png');background-position:96% 50%;background-repeat:no-repeat;outline:none;}
+.form-control-input:focus,.form-control-select:focus{border:1px solid #a1a1a1;outline:none;}
+.form-control-input:hover,.form-control-select:hover{border:1px solid #a1a1a1;}
+.checkbox{font:400 0.75rem/1.25rem "Raleway",sans-serif;}
+input[type='checkbox']{vertical-align:-15%;margin-right:0.375rem;}
+@media screen and (-ms-high-contrast:active),screen and (-ms-high-contrast:none){
+input[type='checkbox']{vertical-align:-9%;}
+}
+.form-control-submit-button{display:inline-block;width:100%;height:3.125rem;border:1px solid #00bfd8;border-radius:1.5rem;background-color:#00bfd8;color:#fff;font:700 0.75rem/1.75rem "Raleway",sans-serif;cursor:pointer;transition:all 0.2s;}
+.form-control-submit-button:hover{background-color:transparent;color:#00bfd8;}
+#pmsgSubmit.h3.text-center{display:block;margin-bottom:0;color:#626262;font:400 1.125rem/1rem "Raleway",sans-serif;}
+.spinner-wrapper{position:fixed;z-index:999999;top:0;right:0;bottom:0;left:0;background:#fff;}
+.spinner{position:absolute;top:50%;left:50%;width:3.75rem;height:1.25rem;margin:-0.625rem 0 0 -1.875rem;text-align:center;}
+.spinner>div{display:inline-block;width:1rem;height:1rem;border-radius:100%;background-color:#00bfd8;-webkit-animation:sk-bouncedelay 1.4s infinite ease-in-out both;animation:sk-bouncedelay 1.4s infinite ease-in-out both;}
+.spinner .bounce1{-webkit-animation-delay:-0.32s;animation-delay:-0.32s;}
+.spinner .bounce2{-webkit-animation-delay:-0.16s;animation-delay:-0.16s;}
+.navbar-custom{background-color:#fff;box-shadow:0 0.0625rem 0.375rem 0 rgba(0,0,0,0.1);font:600 0.875rem/0.875rem "Raleway",sans-serif;transition:all 0.2s;}
+.navbar-custom .navbar-brand.logo-image img{width:7.4375rem;height:2rem;}
+.navbar-custom .navbar-nav{margin-top:0.75rem;margin-bottom:0.5rem;}
+.navbar-custom .nav-item .nav-link{padding:0.625rem 0.75rem 0.625rem 0.75rem;color:#393939;text-decoration:none;transition:all 0.2s ease;}
+.navbar-custom .nav-item .nav-link:hover{color:#00bfd8;}
+.navbar-custom .dropdown:hover>.dropdown-menu{display:block;min-width:auto;animation:fadeDropdown 0.2s;}
+.navbar-custom .dropdown-toggle:focus{outline:0;}
+.navbar-custom .dropdown-menu{margin-top:0;border:none;border-radius:0.25rem;background-color:#fff;}
+.navbar-custom .dropdown-item{color:#393939;text-decoration:none;}
+.navbar-custom .dropdown-item:hover{background-color:#fff;}
+.navbar-custom .dropdown-item .item-text{font:600 0.875rem/0.875rem "Raleway",sans-serif;}
+.navbar-custom .dropdown-item:hover .item-text{color:#00bfd8;}
+.navbar-custom .dropdown-items-divide-hr{width:100%;height:1px;margin:0.75rem auto 0.725rem auto;border:none;background-color:#c4d8dc;opacity:0.2;}
+.navbar-custom .social-icons{display:none;}
+.navbar-custom .navbar-toggler{border:none;color:#393939;font-size:2rem;}
+.navbar-custom button[aria-expanded='false'] .navbar-toggler-awesome.fas.fa-times{display:none;}
+.navbar-custom button[aria-expanded='false'] .navbar-toggler-awesome.fas.fa-bars{display:inline-block;}
+.footer{padding-top:4.625rem;padding-bottom:0.5rem;}
+.footer .footer-col{margin-bottom:2.25rem;}
+.footer h4{margin-bottom:1rem;}
+.footer .list-unstyled .fas{color:#00bfd8;font-size:0.5rem;line-height:1.375rem;}
+.footer .list-unstyled .media-body{margin-left:0.625rem;}
+.footer .fa-stack{margin-bottom:0.75rem;margin-right:0.5rem;font-size:1.5rem;}
+.footer .fa-stack .fa-stack-1x{color:#fff;transition:all 0.2s ease;}
+.footer .fa-stack .fa-stack-2x{color:#00bfd8;transition:all 0.2s ease;}
+.footer .fa-stack:hover .fa-stack-1x{color:#fff;}
+.footer .fa-stack:hover .fa-stack-2x{color:#00a7bd;}
+.copyright{padding-top:1rem;padding-bottom:0.375rem;text-align:center;}
+.copyright .p-small{padding-top:1.375rem;border-top:1px solid #c4d8dc;opacity:0.7;}
+a.back-to-top{position:fixed;z-index:999;right:0.75rem;bottom:0.75rem;display:none;width:2.625rem;height:2.625rem;border-radius:1.875rem;background:#00bfd8 url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/images/up-arrow.png") no-repeat center 47%;background-size:1.125rem 1.125rem;text-indent:-9999px;}
+a:hover.back-to-top{background-color:#00a7bd;}
+.ex-header{padding-top:8rem;padding-bottom:5rem;text-align:center;}
+.ex-basic-1{padding-top:2rem;padding-bottom:0.875rem;background-color:#f7fcfd;}
+.ex-basic-1 .breadcrumbs{margin-bottom:1.125rem;}
+.ex-basic-1 .breadcrumbs .fa{margin-right:0.5rem;margin-left:0.625rem;}
+.ex-basic-2{padding-top:4.75rem;padding-bottom:4rem;}
+.ex-basic-2 h3{margin-bottom:1rem;}
+.ex-basic-2 .text-container{margin-bottom:3.625rem;}
+.ex-basic-2 .text-container.last{margin-bottom:0;}
+.ex-basic-2 .list-unstyled .fas{color:#00bfd8;font-size:0.5rem;line-height:1.375rem;}
+.ex-basic-2 .list-unstyled .media-body{margin-left:0.625rem;}
+.ex-basic-2 .btn-outline-reg{margin-top:1.75rem;}
+@media (min-width:768px){
+.ex-header{padding-top:11rem;padding-bottom:9rem;}
+}
+@media (min-width:992px){
+.navbar-custom{padding:2.125rem 1.5rem 2.125rem 2rem;box-shadow:none;background:transparent;}
+.navbar-custom .navbar-nav{margin-top:0;margin-bottom:0;}
+.navbar-custom .nav-item .nav-link{padding:0.25rem 0.75rem 0.25rem 0.75rem;color:#fff;opacity:0.8;}
+.navbar-custom .nav-item .nav-link:hover{color:#fff;opacity:1;}
+.navbar-custom .dropdown-menu{padding-top:1rem;padding-bottom:1rem;border-top:0.75rem solid rgba(0,0,0,0);border-radius:0.25rem;}
+.navbar-custom .dropdown-item{padding-top:0.25rem;padding-bottom:0.25rem;}
+.navbar-custom .dropdown-items-divide-hr{width:84%;}
+.navbar-custom .social-icons{display:block;margin-left:0.5rem;}
+.navbar-custom .fa-stack{margin-bottom:0.1875rem;margin-left:0.25rem;font-size:0.75rem;}
+.navbar-custom .fa-stack-2x{color:#00bfd8;transition:all 0.2s ease;}
+.navbar-custom .fa-stack-1x{color:#fff;transition:all 0.2s ease;}
+.navbar-custom .fa-stack:hover .fa-stack-2x{color:#fff;}
+.navbar-custom .fa-stack:hover .fa-stack-1x{color:#00bfd8;}
+.ex-header{background:url('https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/images/ex-header-background.jpg') center center no-repeat;background-size:cover;}
+.ex-header h1{width:80%;margin-right:auto;margin-left:auto;}
+.ex-basic-2{padding-bottom:5rem;}
+}
+@media (min-width:1200px){
+.navbar-custom{padding:2.125rem 5rem 2.125rem 5rem;}
+.footer .footer-col{width:90%;}
+.footer .footer-col.middle{margin-right:auto;margin-left:auto;}
+.footer .footer-col.last{margin-right:0;margin-left:auto;}
+.ex-header h1{width:60%;margin-right:auto;margin-left:auto;}
+.ex-basic-2 .form-container{margin-left:1.75rem;}
+}
+/*! CSS Used from: Embedded */
+#freecssfooter{display:block;width:100%;padding:120px 0 20px;overflow:hidden;background-color:transparent;z-index:5000;text-align:center;}
+#freecssfooter div#fcssholder div{display:none;}
+#freecssfooter div#fcssholder div:first-child{display:block;}
+#freecssfooter div#fcssholder div:first-child a{float:none;margin:0 auto;}
+/*! CSS Used from: Embedded */
+div.bsap_2365{width:100%;display:block;}
+div.bsap_2365 a{width:900px;}
+div.bsap_2365 a img{padding:0;}
+div.bsap_2365 a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0 4px 10px 0;text-align:center;text-decoration:none;overflow:hidden;}
+div.bsap_2365 img{border:0;clear:right;}
+div.bsap_2365 a{line-height:100%;}
+/*! CSS Used keyframes */
+@-webkit-keyframes sk-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);}40%{-webkit-transform:scale(1.0);}}
+@keyframes sk-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);-ms-transform:scale(0);transform:scale(0);}40%{-webkit-transform:scale(1.0);-ms-transform:scale(1.0);transform:scale(1.0);}}
+@keyframes fadeDropdown{0%{opacity:0;}100%{opacity:1;}}
+/*! CSS Used fontfaces */
+@font-face{font-family:'Font Awesome 5 Brands';font-style:normal;font-weight:normal;src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.eot");src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.eot?#iefix") format("embedded-opentype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.woff2") format("woff2"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.woff") format("woff"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.ttf") format("truetype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.svg#fontawesome") format("svg");}
+@font-face{font-family:'Font Awesome 5 Free';font-style:normal;font-weight:400;src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.eot");src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.eot?#iefix") format("embedded-opentype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.woff2") format("woff2"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.woff") format("woff"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.ttf") format("truetype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.svg#fontawesome") format("svg");}
+@font-face{font-family:'Font Awesome 5 Free';font-style:normal;font-weight:900;src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.eot");src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.woff2") format("woff2"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.woff") format("woff"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.ttf") format("truetype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.svg#fontawesome") format("svg");}
+
+
+.conbgimg {
+  background: url('src/assets/images/img2.png');
+  height: 300px;
+  background-size: cover;
+  color: white;
+}
+
+.conbgimg div {
+  padding-top: 7%;
+  padding-left: 10%;
+}
