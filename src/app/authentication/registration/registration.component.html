@@ -1,58 +1,52 @@
-<div class="title mt-2">
-  <h2 class="text-center">Registration</h2>
-</div>
-<hr class="w-75 ms-auto me-auto">
-<div class="form ms-auto me-auto">
-  <form>
-    <div class="row">
-      <div class="inputbox col-lg-6">
-        <label>First Name</label>
-        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your First Name" required>
-      </div>
-      <div class="inputbox col-lg-6">
-        <label>Last Name</label>
-        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Last Name" required>
-      </div>
-      <div class="inputbox col-lg-6 mt-3">
-        <label>Email</label>
-        <input class="mt-2 pt-3 pb-3" type="email" placeholder="Enter your Email ID" required>
-      </div>
-      <div class="inputbox col-lg-6 mt-3">
-        <label>Password</label>
-        <div class="input-group mt-2">
-          <div class="input-group-prepend mt-1">
-            <span class="input-group-text">
-              <i class="fas fa-lock"></i>
-            </span>
-          </div>
-          <input
-            [type]="passwordFieldType"
-            id="password"
-            class="form-control"
-            [(ngModel)]="password"
-            placeholder="Password"
-          />
-          <div class="input-group-append mt-1">
-            <span class="input-group-text" (click)="pass()">
-              <i [class]="passwordFieldType === 'password' ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
-            </span>
-          </div>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="inputbox col-lg-6">
+      <label>First Name</label>
+      <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your First Name" required formControlName="first_name">
+    </div>
+    <div class="inputbox col-lg-6">
+      <label>Last Name</label>
+      <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Last Name" required formControlName="last_name">
+    </div>
+    <div class="inputbox col-lg-6 mt-3">
+      <label>Email</label>
+      <input class="mt-2 pt-3 pb-3" type="email" placeholder="Enter your Email ID" required formControlName="email">
+    </div>
+    <div class="inputbox col-lg-6 mt-3">
+      <label>Password</label>
+      <div class="input-group mt-2">
+        <div class="input-group-prepend mt-1">
+          <span class="input-group-text">
+            <i class="fas fa-lock"></i>
+          </span>
+        </div>
+        <input
+          [type]="passwordFieldType"
+          id="password"
+          class="form-control"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <div class="input-group-append mt-1">
+          <span class="input-group-text" (click)="pass()">
+            <i [class]="passwordFieldType === 'password' ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </span>
         </div>
       </div>
-      <div class="inputbox col-lg-6 mt-3">
-        <label>Phone No.</label>
-        <input class="mt-2 pt-3 pb-3" type="number" placeholder="Enter your Number" required>
-      </div>
-      <div class="inputbox col-lg-6 mt-3">
-        <label>Office Address</label>
-        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Address" required>
-      </div>
-      <div class="create mt-4 text-center ms-auto me-auto">
-        <button type="submit">Register</button>
-      </div>
-      <div class="additional text-center">
-        <a routerLink="/auth/login">Already an account ?</a>
-      </div>
     </div>
-  </form>
-</div>
+    <div class="inputbox col-lg-6 mt-3">
+      <label>Phone No.</label>
+      <input class="mt-2 pt-3 pb-3" type="number" placeholder="Enter your Number" required formControlName="phone_no">
+    </div>
+    <div class="inputbox col-lg-6 mt-3">
+      <label>Office Address</label>
+      <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Address" formControlName="office_address">
+    </div>
+    <div class="create mt-4 text-center ms-auto me-auto">
+      <button type="submit">Register</button>
+    </div>
+    <div class="additional text-center">
+      <a routerLink="/auth/login">Already have an account?</a>
+    </div>
+  </div>
+</form>

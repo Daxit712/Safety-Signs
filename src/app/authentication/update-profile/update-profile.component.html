@@ -3,33 +3,30 @@
 </div>
 <hr class="w-75 ms-auto me-auto">
 <div class="form ms-auto me-auto">
-  <form>
+  <form [formGroup]="myUpdateForm" (ngSubmit)="onUpdate()">
     <div class="row">
       <div class="inputbox col-lg-6 mt-3">
         <label>First Name</label>
-        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your First Name" required>
+        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your First Name" required formControlName="first_name">
       </div>
       <div class="inputbox col-lg-6 mt-3">
         <label>Last Name</label>
-        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Last Name" required>
+        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Last Name" required formControlName="last_name">
       </div>
       <div class="inputbox col-lg-6 mt-3">
         <label>Email</label>
-        <input class="mt-2 pt-3 pb-3" type="email" placeholder="Enter your Email ID" required>
+        <input class="mt-2 pt-3 pb-3" type="email" placeholder="Enter your Email ID" required formControlName="email">
       </div>
       <div class="inputbox col-lg-6 mt-3">
         <label>Phone No.</label>
-        <input class="mt-2 pt-3 pb-3" type="Number" placeholder="Enter your NUmber" required>
+        <input class="mt-2 pt-3 pb-3" type="tel" placeholder="Enter your Number" required formControlName="phone_no">
       </div>
       <div class="inputbox col-lg-12 mt-3">
         <label>Office Address</label>
-        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Address" required>
+        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Address" required formControlName="office_address">
       </div>
       <div class="create mt-4 text-center ms-auto me-auto">
-        <button type="submit">Log In</button>
-      </div>
-      <div class="additional text-center">
-        <a routerLink="/register">Create an account ?</a>
+        <button type="submit">Update</button>
       </div>
     </div>
   </form>

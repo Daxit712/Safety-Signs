@@ -3,11 +3,11 @@
 </div>
 <hr class="w-75 ms-auto me-auto">
 <div class="form ms-auto me-auto">
-  <form>
+  <form [formGroup]="myLoginForm" (ngSubmit)="onLogin()">
     <div class="row">
       <div class="inputbox col-lg-12 mt-3">
         <label>Email</label>
-        <input class="mt-2 pt-3 pb-3" type="email" placeholder="Enter your Email ID" required>
+        <input class="mt-2 pt-3 pb-3" type="email" placeholder="Enter your Email ID" required formControlName="email">
       </div>
       <div class="inputbox col-lg-12 mt-3">
         <label>Password</label>
@@ -23,6 +23,7 @@
             class="form-control"
             [(ngModel)]="password"
             placeholder="Password"
+            formControlName="password"
           />
           <div class="input-group-append mt-1">
             <span class="input-group-text" (click)="pass()">

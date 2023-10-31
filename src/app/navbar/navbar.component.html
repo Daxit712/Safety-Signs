@@ -39,7 +39,11 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-light me-3" type="submit">Search</button>
 
-        <button class="btn btn-outline-light" routerLink="/auth/login" type="submit">LogIn</button>
+        <button *ngIf="!loggedIn" class="btn btn-outline-light" routerLink="/auth/login" type="submit">LogIn</button>
+
+        <button *ngIf="loggedIn" class="btn btn-outline-light" routerLink="/" type="submit" (click)="logout()">Log Out</button>
+
+        <button *ngIf="update" class="btn btn-outline-light" routerLink="/auth/update" type="submit">Update Profile</button>
 
         <a class="" routerLink="/cart"><i class="fas fa-shopping-cart ms-3 text-white p-3"></i></a>
       </form>
