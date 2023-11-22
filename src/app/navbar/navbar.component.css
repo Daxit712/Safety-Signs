@@ -16,3 +16,30 @@
   background: white;
   color: #00005a;
 }
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.dropdown .dropdown-menu.show {
+  display: block;
+}
+
+
+  /* Responsiveness:Start */
+  @media screen and (max-width: 425px) {
+    .loginbtn {
+      margin-top: 5%;
+    }
+  }
+  /* Responsiveness:End */

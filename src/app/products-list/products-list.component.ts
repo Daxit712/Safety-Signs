@@ -1,73 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent {
+export class ProductsListComponent implements OnInit {
 
-  watchData : any[] =[
-    {
-      img : "assets/images/watch.png",
-      title : "VAN HEUSEN",
-      details: "Analog Watch - For Women",
-      price : "₹1000",
-      originalprice: "₹2999",
-      discount: "50% off",
-      date: '2023-10-06T14:32:29+05:30'
-    },
-    {
-      img : "assets/images/watch.png",
-      title : "LOIS CARON",
-      details: "Analog Watch - For Women",
-      price : "₹1000",
-      originalprice: "₹2999",
-      discount: "50% off",
-      date: '2023-10-08T14:32:29+05:30'
-    },
-    {
-      img : "assets/images/watch.png",
-      title : "SONATA",
-      details: "Analog Watch - For Women",
-      price : "₹2000",
-      originalprice: "₹2999",
-      discount: "50% off",
-      date: '2022-10-06T14:32:29+05:30'
-    },
-    {
-      img : "assets/images/watch.png",
-      title : "PETER ENGLAND",
-      details: "Analog Watch - For Women",
-      price : "₹2200",
-      originalprice: "₹2999",
-      discount: "50% off",
-      date: '2023-08-06T14:32:29+05:30'
-    },
-    {
-      img : "assets/images/watch.png",
-      title : "SONATA",
-      details: "Analog Watch - For Women",
-      price : "₹9000",
-      originalprice: "₹2999",
-      discount: "50% off",
-      date: '2023-10-23T14:32:29+05:30'
-    },
-    {
-      img : "assets/images/watch.png",
-      title : "PETER ENGLAND",
-      details: "Analog Watch - For Women",
-      price : "₹2050",
-      originalprice: "₹2999",
-      discount: "50% off",
-      date: '2021-10-06T14:32:29+05:30'
-    }
-  ]
-
-  constructor(private router: Router) { }
-
-  original: any[] = [...this.watchData];
+  // original: any[] = [...this.watchData];
 
   // sorting: string = 'sort';
 
@@ -103,21 +45,39 @@ export class ProductsListComponent {
   dateUpArrow = false;
   dateDownArrow = true;
 
+  productList: any[] = [];
+
+  original: any[] = [];
+
+  constructor(private authService: AuthService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.authService.getProductList().subscribe(
+      (data: any) => {
+        this.productList = data.data;
+        this.original = [...this.productList];
+        console.log('productList', this.productList);
+      },
+      (error) => {
+        console.error('Failed to retrieve user data:', error);
+      }
+    );
+  }
 
   originalpro() {
-    this.watchData = [...this.original]
+    this.productList = [...this.original]
   }
   price() {
     if (this.psortingOrder === 'highToLow') {
-      this.watchData.sort((a, b) =>
-        parseFloat(a.price.substr(1)) - parseFloat(b.price.substr(1))
+      this.productList.sort((a, b) =>
+        parseFloat(a.sell_price) - parseFloat(b.sell_price)
       );
       this.psortingOrder = 'lowToHigh';
       this.downArrow = false;
       this.upArrow = true;
     } else {
-      this.watchData.sort((a, b) =>
-        parseFloat(b.price.substr(1)) - parseFloat(a.price.substr(1))
+      this.productList.sort((a, b) =>
+        parseFloat(b.sell_price) - parseFloat(a.sell_price)
       );
       this.psortingOrder = 'highToLow';
       this.downArrow = true;
@@ -126,12 +86,12 @@ export class ProductsListComponent {
   }
   name() {
     if (this.nsortingOrder === 'highToLow') {
-      this.watchData.sort((a, b) => a.title.localeCompare(b.title));
+      this.productList.sort((a, b) => a.product_name.localeCompare(b.product_name));
       this.nsortingOrder = 'lowToHigh';
       this.nameDownArrow = false;
       this.nameUpArrow = true;
     } else {
-      this.watchData.sort((a, b) => b.title.localeCompare(a.title));
+      this.productList.sort((a, b) => b.product_name.localeCompare(a.product_name));
       this.nsortingOrder = 'highToLow';
       this.nameDownArrow = true;
       this.nameUpArrow = false;
@@ -139,9 +99,9 @@ export class ProductsListComponent {
   }
   date() {
     if (this.asortingOrder === 'highToLow') {
-      this.watchData.sort((a, b) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
+      this.productList.sort((a, b) => {
+        const dateA = new Date(a.created_at);
+        const dateB = new Date(b.created_at);
 
         return dateA.getTime() - dateB.getTime();
       });
@@ -149,12 +109,9 @@ export class ProductsListComponent {
       this.dateDownArrow = false;
       this.dateUpArrow = true;
     } else {
-      this.watchData.sort((a, b) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-
-        console.log(dateA.getTime());
-
+      this.productList.sort((a, b) => {
+        const dateA = new Date(a.created_at);
+        const dateB = new Date(b.created_at);
 
         return dateB.getTime() - dateA.getTime();
       });
@@ -164,77 +121,11 @@ export class ProductsListComponent {
     }
   }
 
-
-  // mobilesData : any[] =[
-  //   {
-  //     mobilesImg : "assets/mobile1.jpg",
-  //     mobilesTitle : "1M™ Health Care Particulate Respirator and Surgical Mask 1860, N95",
-  //     mobilesPrice : "From Rs.1000"
-  //   },
-  //   {
-  //     mobilesImg : "assets/mobile1.jpg",
-  //     mobilesTitle : "2M™ Health Care Particulate Respirator and Surgical Mask 1860, N95",
-  //     mobilesPrice : "From Rs.2000"
-  //   },
-  //   {
-  //     mobilesImg : "assets/mobile1.jpg",
-  //     mobilesTitle : "3M™ Health Care Particulate Respirator and Surgical Mask 1860, N95",
-  //     mobilesPrice : "From Rs.3000"
-  //   },
-  //   {
-  //     mobilesImg : "assets/mobile1.jpg",
-  //     mobilesTitle : "4M™ Health Care Particulate Respirator and Surgical Mask 1860, N95",
-  //     mobilesPrice : "From Rs.4000"
-  //   },
-  //   {
-  //     mobilesImg : "assets/mobile1.jpg",
-  //     mobilesTitle : "5M™ Health Care Particulate Respirator and Surgical Mask 1860, N95",
-  //     mobilesPrice : "From Rs.5000"
-  //   },
-  //   {
-  //     mobilesImg : "assets/mobile1.jpg",
-  //     mobilesTitle : "M6™ Health Care Particulate Respirator and Surgical Mask 1860, N95",
-  //     mobilesPrice : "From Rs.6000"
-  //   }
-  // ]
-
-
-  // laptopsData : any[] =[
-  //   {
-  //     laptopsImg : "assets/laptop.jpg",
-  //     laptopsTitle : "1M™ Health Care Particulate Respirator and Surgical Mask 1860, N95",
-  //     laptopsPrice : "From Rs.1000"
-  //   },
-  //   {
-  //     laptopsImg : "assets/laptop.jpg",
-  //     laptopsTitle : "2M™ Health Care Particulate Respirator and Surgical Mask 1860, N95",
-  //     laptopsPrice : "From Rs.2000"
-  //   },
-  //   {
-  //     laptopsImg : "assets/laptop.jpg",
-  //     laptopsTitle : "3M™ Health Care Particulate Respirator and Surgical Mask 1860, N95",
-  //     laptopsPrice : "From Rs.3000"
-  //   },
-  //   {
-  //     laptopsImg : "assets/laptop.jpg",
-  //     laptopsTitle : "4M™ Health Care Particulate Respirator and Surgical Mask 1860, N95",
-  //     laptopsPrice : "From Rs.4000"
-  //   },
-  //   {
-  //     laptopsImg : "assets/laptop.jpg",
-  //     laptopsTitle : "5M™ Health Care Particulate Respirator and Surgical laptop 1860, N95",
-  //     laptopsPrice : "From Rs.5000"
-  //   },
-  //   {
-  //     laptopsImg : "assets/laptop.jpg",
-  //     laptopsTitle : "6M™ Health Care Particulate Respirator and Surgical laptop 1860, N95",
-  //     laptopsPrice : "From Rs.6000"
-  //   }
-  // ]
-
-  goToProductDetails(productId: number) {
+  goToProductDetails(productId: any) {
     console.log("gotoproductdetails")
     this.router.navigate(['/detail', productId]);
   }
+
+
 
 }

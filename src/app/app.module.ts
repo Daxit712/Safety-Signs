@@ -11,6 +11,7 @@ import { RegistrationComponent } from './authentication/registration/registratio
 import { ChangePasswordComponent } from './authentication/change-password/change-password.component';
 import { UpdateProfileComponent } from './authentication/update-profile/update-profile.component';
 import { ForgetPasswordComponent } from './authentication/forget-password/forget-password.component';
+import { ResetComponent } from './authentication/reset/reset.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -30,7 +31,11 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 
-import { SlickCarouselModule } from 'node_modules/ngx-slick-carousel'
+import { SlickCarouselModule } from 'node_modules/ngx-slick-carousel';
+import { HomeComponent } from './home/home.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+import { StarRatingModule } from 'angular-star-rating';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +55,11 @@ import { SlickCarouselModule } from 'node_modules/ngx-slick-carousel'
     OurClientsComponent,
     CartComponent,
     ProductsListComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ResetComponent,
+    HomeComponent,
+    UploadFileComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +73,7 @@ import { SlickCarouselModule } from 'node_modules/ngx-slick-carousel'
     FormsModule,
     ReactiveFormsModule,
     SlickCarouselModule,
+    StarRatingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

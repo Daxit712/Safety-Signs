@@ -251,10 +251,6 @@ div.bsap_2365 a{line-height:100%;}
 @-webkit-keyframes sk-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);}40%{-webkit-transform:scale(1.0);}}
 @keyframes sk-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);-ms-transform:scale(0);transform:scale(0);}40%{-webkit-transform:scale(1.0);-ms-transform:scale(1.0);transform:scale(1.0);}}
 @keyframes fadeDropdown{0%{opacity:0;}100%{opacity:1;}}
-/*! CSS Used fontfaces */
-@font-face{font-family:'Font Awesome 5 Brands';font-style:normal;font-weight:normal;src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.eot");src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.eot?#iefix") format("embedded-opentype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.woff2") format("woff2"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.woff") format("woff"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.ttf") format("truetype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-brands-400.svg#fontawesome") format("svg");}
-@font-face{font-family:'Font Awesome 5 Free';font-style:normal;font-weight:400;src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.eot");src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.eot?#iefix") format("embedded-opentype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.woff2") format("woff2"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.woff") format("woff"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.ttf") format("truetype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-regular-400.svg#fontawesome") format("svg");}
-@font-face{font-family:'Font Awesome 5 Free';font-style:normal;font-weight:900;src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.eot");src:url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.woff2") format("woff2"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.woff") format("woff"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.ttf") format("truetype"),url("https://www.free-css.com/assets/files/free-css-templates/preview/page257/evolo/assets/css/fonts/fa-solid-900.svg#fontawesome") format("svg");}
 
 
 .conbgimg {
@@ -268,3 +264,39 @@ div.bsap_2365 a{line-height:100%;}
   padding-top: 7%;
   padding-left: 10%;
 }
+
+
+/* Responsiveness:Start */
+@media screen and (max-width: 425px) {
+  .conbgimg {
+    height: 200px;
+  }
+
+  .conbgimg div {
+    padding-top: 13%;
+    padding-left: 0%;
+    text-align: center;
+  }
+
+  .policymaindiv {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
+  .footer {
+    padding-top: 0;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
+  .ex-basic-2 {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 780px) {
+}
+/* Responsiveness:End */

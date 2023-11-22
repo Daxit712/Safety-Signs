@@ -33,3 +33,26 @@ section {
 .maindiv {
   margin-top: 100px;
 }
+
+
+/* Responsiveness:Start */
+@media screen and (max-width: 425px) {
+  .maindiv {
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+
+  .conbgimg {
+    height: 200px;
+  }
+
+  .conbgimg div {
+    padding-top: 13%;
+    padding-left: 0%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 780px) {
+}
+/* Responsiveness:End */

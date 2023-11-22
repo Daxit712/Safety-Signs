@@ -1,78 +1,72 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit {
 
-  // details: any = [
-  //   {
-  //     id: 0,
-  //     text: 'helo1',
-  //     text1: 'helo1',
-  //     text2: 'helo1',
-  //     text3: 'helo1',
-  //   },
-  //   {
-  //     id: 1,
-  //     text: 'helo2',
-  //     text1: 'helo2',
-  //     text2: 'helo2',
-  //     text3: 'helo2',
-  //   }
-  // ];
+  data: any = 1;
+  id: any;
+  productDetail: any;
+  rating = 0;
+  stocks: any;
+  addedToCart: boolean = false;
+  selectedVariant: any;
+  selectedVariant1: any;
 
-  // id: any;
-  // selectedDetail: any;
+  offerbtn: any;
 
-  // constructor(private route: ActivatedRoute){
-  // }
+  myOfferForm!: FormGroup;
 
-  // ngOnInit(): void {
-  //   this.route.params.subscribe(params => {
-  //     this.id = params['productId'];
-  //     this.findProductDetail();
-  //   });
-  // }
+  ratingForm!: FormGroup;
 
-  // findProductDetail() {
-  //   this.selectedDetail = this.details.find((item: any) => item.id == this.id);
-  //   if (this.selectedDetail.length === 0) {
-  //     this.selectedDetail = { text: 'Product not found' };
-  //   }
-  // }
+  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router) {
+  }
 
-  data: number = 0;
+  ngOnInit(): void {
+    localStorage.removeItem('bookNow');
+
+    this.route.params.subscribe(params => {
+      this.id = +params['id'];
+      this.authService.getProductDetail(this.id).subscribe(detail => {
+        this.productDetail = detail.data;
+        this.stocks = this.productDetail.variants[0];
+        this.selectedVariant = this.productDetail.variants[0];
+        console.log('this.stocks', this.stocks);
+        console.log('this.productDetail', this.productDetail);
+        console.log('this.selectedVariant', this.selectedVariant);
+      })
+    });
+
+    this.myOfferForm = new FormGroup({
+      amount: new FormControl('')
+    });
+
+    this.ratingForm = new FormGroup({
+      reviewInput: new FormControl(''),
+      ratingInput: new FormControl(''),
+    });
+
+  }
 
   increment() {
-    this.data = this.data + 1;
+    if(this.data < this.selectedVariant.stocks) {
+      this.data = this.data + 1;
+    }
   }
+
   decrement() {
-    if (this.data === 0) {
+    if (this.data === 1) {
       return;
     }
     this.data = this.data - 1;
   }
 
-  slides = [
-    {img: "assets/images/img1.jpg"},
-    {img: "assets/images/img2.png"},
-    {img: "assets/images/watch.png"},
-    {img: "assets/images/img1.jpg"},
-    {img: "assets/images/img2.png"},
-    {img: "assets/images/watch.png"},
-  ];
-
-  modalslides = [
-    {img: "assets/images/img1.jpg"},
-    {img: "assets/images/img2.png"},
-    {img: "assets/images/watch.png"},
-    {img: "assets/images/img1.jpg"},
-    {img: "assets/images/img2.png"},
-    {img: "assets/images/watch.png"},
-  ];
   slideConfig = {"slidesToShow": 4, "slidesToScroll": 1, "arrows": true, "dots": true, "infinite": true,};
 
   slideConfig1 = {"slidesToShow": 4, "slidesToScroll": 1, "arrows": true, "dots": true, "infinite": true,};
@@ -100,5 +94,91 @@ export class ProductDetailsComponent {
     const nextButton = carouselBody.querySelector('.slick-next');
     nextButton.click();
   }
+
+  goToCartPage(selectedVariantId: any) {
+    if (this.addedToCart) {
+      this.router.navigate(['/cart', selectedVariantId]);
+    } else {
+      this.authService.addToCart(selectedVariantId, this.data).subscribe(
+        (response) => {
+          console.log(response.message);
+          alert('Add to cart Successfully');
+          this.addedToCart = true;
+          setTimeout(() => {
+            this.addedToCart = false;
+          }, 2000);
+        },
+        (error) => {
+          console.log(error);
+          this.router.navigate(['/auth/login']);
+        }
+      );
+    }
+  }
+
+  selectVariant(variant: any) {
+    console.log('variant', variant);
+
+    this.selectedVariant = variant;
+  }
+
+  goToCheckOut(productId: any) {
+
+    this.authService.addToCart(productId, this.data).subscribe(
+      (response) => {
+        console.log('response.message', response.message);
+        alert('Add to cart Successfully');
+        this.addedToCart = true;
+        const bookNow: any = {
+          quantity: this.data,
+          variantId: productId,
+          variant: this.selectedVariant
+        }
+        localStorage.setItem('bookNow', JSON.stringify(bookNow));
+        this.router.navigate(['/checkout']);
+      },
+      (error) => {
+        console.log(error);
+        this.router.navigate(['/auth/login']);
+      }
+    );
+  }
+
+  onOfferSubmit() {
+    const amount = this.myOfferForm.get('amount')?.value;
+
+    this.authService.offer(this.selectedVariant.id, amount).subscribe((response: any) => {
+      console.log('Offer:', response);
+      alert('Offer Send Successful!')
+    },
+    (error) => {
+      console.log(error);
+      this.router.navigate(['/auth/login']);
+    }
+    );
+  }
+
+  onRatingSubmit() {
+    const review = this.ratingForm.get('reviewInput')?.value;
+    const rating = this.ratingForm.get('ratingInput')?.value;
+
+    // Find the first rating_and_review entry with rating_availability true
+    const orderId = this.selectedVariant?.rating_and_review.find((item: any) => item.rating_availability);
+
+    if (orderId) {
+      const orderItemId = orderId.order_item_id;
+      console.log('orderItemId', orderItemId);
+      console.log('review', typeof(review));
+      console.log('rating', typeof(rating));
+
+      this.authService.reviewRating(orderItemId, review, rating).subscribe((response: any) => {
+        console.log('Add ratings:', response);
+        alert('Add ratings Successful!');
+      });
+    } else {
+      console.error('Order Item ID not available');
+    }
+  }
+
 
 }

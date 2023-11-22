@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 
@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   passwordFieldType: string = 'password';
   password: string = '';
+  email: string = '';
 
   loginemail: any = '';
   loginpassword: any = '';
@@ -26,36 +27,46 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.myLoginForm = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.pattern(/^\S*$/)]),
+      password: new FormControl('', [Validators.required, Validators.pattern(/^\S*$/)]),
     });
   }
 
   onLogin() {
+
+    if(this.email == '') {
+      alert('Please enter email');
+      return;
+    }
+
+    if(this.password == '') {
+      alert('Please enter password');
+      return;
+    }
+
     if (this.myLoginForm.valid) {
       const email = this.myLoginForm.get('email')?.value;
       const password = this.myLoginForm.get('password')?.value;
 
-      this.authService.login(email, password).subscribe(
-        (response) => {
-          // Handle the response here, typically storing tokens in local storage or a service.
-          const accessToken = response.access;
-          const refreshToken = response.refresh;
+        this.authService.login(email, password).subscribe(
+          (response: any) => {
+            if (response) {
+              alert('Login Successful');
 
-          console.log('Access Token:', accessToken);
-          console.log('Refresh Token:', refreshToken);
+              this.router.navigate(['/productlist']);
+            }
+          },
+          (error: any) => {
+            console.log('Login error:', error);
+            alert('Please enter proper email or password!')
+          }
 
-          // Store tokens in local storage
-          this.authService.storeTokens(accessToken, refreshToken);
+        );
 
-          this.router.navigate(['/']);
-          // Redirect or perform any other actions after successful login
-        },
-        (error) => {
-          console.log('Login error:', error);
-          // Handle login error, e.g., display an error message on the form.
-        }
-      );
+        this.authService.login
+    }
+    else {
+      alert('Please enter proper email and password!')
     }
   }
 

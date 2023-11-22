@@ -1,0 +1,33 @@
+.leftdetaildiv, .rightdetaildiv {
+  padding: 4%;
+  box-shadow: 5px 5px 10px 1px #888888;
+  border-radius: 15px;
+}
+
+.rightdetaildiv {
+  padding: 2%;
+  height: 100%;
+}
+
+.productdiv {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 4% 2%;
+}
+
+.paybtn {
+  border: 2px solid #00005a;
+  background-color: white;
+  transition: 0.3s;
+  padding: 0 5%;
+  border-radius: 20px;
+}
+
+.paybtn:hover {
+  background-color: #00005a;
+  color: white;
+}
+
+.imgdiv {
+  border-right-style: dashed;
+}

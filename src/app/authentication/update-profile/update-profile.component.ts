@@ -21,9 +21,9 @@ export class UpdateProfileComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
-      this.authService.getUserData().subscribe(
+      this.authService.userData$.subscribe(
         (user) => {
-          this.userData = user?.data;
+          this.userData = user;
           this.initializeForm();
         },
         (error) => {
@@ -46,14 +46,49 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   onUpdate(): void {
+
+    const firstname = this.myUpdateForm.get('first_name')?.value;
+    const lastname = this.myUpdateForm.get('last_name')?.value;
+    const email = this.myUpdateForm.get('email')?.value;
+    const phone = this.myUpdateForm.get('phone_no')?.value;
+    const address = this.myUpdateForm.get('office_address')?.value;
+
+    if (!firstname) {
+      alert('Please enter first name.');
+      return;
+    }
+
+    if (!lastname) {
+      alert('Please enter last name.');
+      return;
+    }
+
+    if (!email) {
+      alert('Please enter email.');
+      return;
+    }
+
+    if (!phone) {
+      alert('Please enter phone number.');
+      return;
+    }
+
+    if (!address) {
+      alert('Please enter office address.');
+      return;
+    }
+
     if (this.myUpdateForm.valid) {
       const updatedData = this.myUpdateForm.value;
       this.authService.updateUserDetails(updatedData).subscribe(
         (response) => {
           console.log('User updated successfully:', response);
+          this.authService.userDataSubject.next(response);
+          alert('User Details Updated Successful');
         },
         (error) => {
           console.error('User update error:', error);
+          alert('Please enter proper details!');
         }
       );
     }

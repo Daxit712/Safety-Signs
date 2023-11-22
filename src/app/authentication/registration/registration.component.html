@@ -1,3 +1,7 @@
+<div class="title mt-2">
+  <h2 class="text-center">Registration</h2>
+</div>
+
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div class="row">
     <div class="inputbox col-lg-6">
@@ -36,7 +40,7 @@
     </div>
     <div class="inputbox col-lg-6 mt-3">
       <label>Phone No.</label>
-      <input class="mt-2 pt-3 pb-3" type="number" placeholder="Enter your Number" required formControlName="phone_no">
+      <input class="mt-2 pt-3 pb-3" type="tel" placeholder="Enter your Number" required formControlName="phone_no">
     </div>
     <div class="inputbox col-lg-6 mt-3">
       <label>Office Address</label>

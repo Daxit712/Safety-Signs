@@ -14,6 +14,10 @@ import { OurClientsComponent } from './our-clients/our-clients.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ResetComponent } from './authentication/reset/reset.component';
+import { HomeComponent } from './home/home.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -24,16 +28,21 @@ const routes: Routes = [
       { path: 'change', component: ChangePasswordComponent },
       { path: 'update', component: UpdateProfileComponent },
       { path: 'forget', component: ForgetPasswordComponent },
+      { path: 'reset', component: ResetComponent },
     ]
   },
-  { path: '', component: ProductsListComponent },
+  { path: '', component: HomeComponent },
+  { path: 'productlist', component: ProductsListComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'policy', component: PolicyComponent },
   { path: 'client', component: OurClientsComponent },
+  { path: 'cart/:id', component: CartComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'detail', component: ProductDetailsComponent },
+  { path: 'detail/:id', component: ProductDetailsComponent },
+  { path: 'upload', component: UploadFileComponent },
+  { path: 'checkout', component: CheckoutComponent },
 ];
 
 @NgModule({

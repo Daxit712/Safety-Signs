@@ -4,6 +4,7 @@
 
 .card {
   transition: 0.2s;
+  width: 80%;
 }
 
 .card .info2 {
@@ -73,3 +74,47 @@
 .nav-link.active {
   border-top: 3px solid #00005a !important;
 }
+
+.sortbytxtoutul {
+  display: none;
+}
+.sortbytxtinul {
+  display: block;
+}
+
+.card-img-top {
+  height: 30vh;
+}
+
+
+  /* Responsiveness:Start */
+  @media screen and (max-width: 425px) {
+    .sortbytxtinul {
+      display: none;
+    }
+    .sortbytxtoutul {
+      display: block;
+    }
+    .navTab {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+    .navTab::-webkit-scrollbar {
+      width: 0;
+    }
+
+    .navTab::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    .navTab::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+
+    .navTab::-webkit-scrollbar-thumb:hover {
+      background-color: transparent;
+    }
+  }
+  /* Responsiveness:End */

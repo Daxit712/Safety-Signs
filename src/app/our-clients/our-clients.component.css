@@ -503,3 +503,18 @@
     padding-top: 7%;
     padding-left: 10%;
   }
+
+
+/* Responsiveness:Start */
+@media screen and (max-width: 425px) {
+  .conbgimg {
+    height: 200px;
+  }
+
+  .conbgimg div {
+    padding-top: 13%;
+    padding-left: 0%;
+    text-align: center;
+  }
+}
+/* Responsiveness:End */

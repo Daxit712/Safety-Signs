@@ -76,7 +76,6 @@ button {
   background: none;
   border: 2px solid #000;
 }
-
 /* Responsiveness:Start */
 @media screen and (max-width: 780px) {
 }

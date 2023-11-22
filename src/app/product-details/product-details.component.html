@@ -11,68 +11,55 @@
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-lg-5">
-        <!-- <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-              aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-              aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-              aria-label="Slide 3"></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="assets/images/watch.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="assets/images/img2.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="assets/images/img1.jpg" class="d-block w-100" alt="...">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div> -->
+      <div class="col-lg-5 col-md-12 col-12">
+
+        <!-- carousel in test file -->
+
         <div>
-          <img id="largeImage" src="assets/images/img1.jpg" alt="" class="largimg">
+          <img id="largeImage" [src]="selectedVariant?.product?.product_image" alt="" class="largimg" loading="lazy">
         </div>
-        <div class="carousel-container" (mouseover)="handleMouseover($event)">
+        <!-- <div class="carousel-container carouselContainer ms-auto me-auto ms-lg-auto me-lg-auto" (mouseover)="handleMouseover($event)">
           <ngx-slick-carousel class="carousel mt-2" #slickModal="slick-carousel" [config]="slideConfig">
             <div ngxSlickItem *ngFor="let slide of slides" class="slide ms-2 me-2">
               <img src="{{ slide.img }}" alt="" class="carouselimg">
             </div>
           </ngx-slick-carousel>
-        </div>
+        </div> -->
       </div>
 
-      <div class="col-lg-6 ms-5">
-        <h2>Watches</h2>
+      <div class="col-lg-6 col-md-12 col-12 ms-lg-5 ps-lg-0 pe-lg-0 ps-4 pe-4" *ngIf="selectedVariant">
+        <h2>{{ productDetail?.product_name }}</h2>
         <div>
           <span class="text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
               class="fas fa-star-half-alt"></i><i class="far fa-star"></i></span>
-          <span class="ms-2">4.5</span>
-          <span class="ms-4"><i class="fas fa-shopping-bag me-2"></i>100 orders</span>
+          <span class="ms-2">{{selectedVariant?.rating_and_review[1]?.avg_ratting}}</span>
+          <span class="ms-4"><i class="fas fa-shopping-bag me-2"></i>{{ selectedVariant?.stocks }}</span>
           <span class="ms-3 text-success">In Stock</span>
         </div>
         <div class="mt-3">
-          <h5 class="d-inline-block"><b>₹1799.00</b></h5> <span
-            class="text-decoration-line-through text-secondary ms-3">₹3599.00 </span> <span
-            class="text-secondary ms-2">(Incl. of all taxes)</span>
+          <h5 class="d-inline-block"><b>₹{{ selectedVariant.sell_price }}</b></h5> <span
+            class="text-decoration-line-through text-secondary ms-3">₹{{ selectedVariant.MRP }}</span> <span
+            class="text-success ms-2"><b>{{ selectedVariant.discount }}%</b></span>
+        </div>
+        <div class="mt-3">
+          <p><b>Size: </b>{{ productDetail?.attributes.size?.join(', ') }}</p>
+        </div>
+
+        <div>
+          <p><b>Variant: </b>
+            <button class="variant-label ms-3 variantbtn ps-2 pe-2" *ngFor="let variant of productDetail?.variants" [class.selected]="variant === selectedVariant" (click)="selectVariant(variant)">
+              {{ variant.label }}
+            </button>
+          </p>
+        </div>
+
+        <div class="mt-4" *ngIf="selectedVariant?.stocks == 0">
+          <h5 class="text-danger">Out of stock*</h5>
         </div>
 
         <hr>
 
-        <div class="col-md-4 col-6 mb-4">
+        <div class="col-md-4 col-6 mb-4" *ngIf="selectedVariant?.stocks !== 0">
           <label class="mb-2 d-block">Quantity</label>
           <div class="input-group mb-3" style="width: 170px;">
             <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1"
@@ -89,41 +76,46 @@
 
         <div class="mt-5 cartbuybtn">
           <div>
-            <button class="w-75 p-2"><i class="fas fa-shopping-cart me-2"></i>ADD TO CART</button>
+            <button class="w-75 p-2" [disabled]="selectedVariant?.stocks == 0" (click)="goToCartPage(selectedVariant?.id)">
+              <i class="fas fa-shopping-cart me-2"></i>{{ addedToCart ? 'GO TO CART' : 'ADD TO CART' }}
+            </button>
           </div>
           <div class="mt-4">
-            <button class="w-75 p-2"><i class="fas fa-bolt me-2"></i>BUY IT NOW</button>
+            <button class="w-75 p-2" [disabled]="selectedVariant?.stocks == 0" (click)="goToCheckOut(selectedVariant.id)"><i class="fas fa-bolt me-2"></i>BUY IT NOW</button>
+          </div>
+          <div class="mt-4">
+            <!-- Button trigger modal -->
+            <button type="button" [disabled]="selectedVariant?.stocks == 0" class="w-75 p-2" data-bs-toggle="modal" data-bs-target="#offerModal">
+              Make Your Offer
+            </button>
           </div>
         </div>
 
         <div class="mt-5 border tabdiv p-4">
-          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <ul class="nav nav-pills mb-3 navTab" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
                 type="button" role="tab" aria-controls="pills-home" aria-selected="true">Details</button>
             </li>
             <li class="nav-item ms-4" role="presentation">
               <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                type="button" role="tab" aria-controls="pills-profile" aria-selected="false">warranty</button>
+                type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Info.</button>
             </li>
             <li class="nav-item ms-4" role="presentation">
               <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-                type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Info.</button>
+                type="button" role="tab" aria-controls="pills-contact" aria-selected="false">warranty</button>
             </li>
           </ul>
           <div class="tab-content mt-5" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit vero incidunt libero quo nam,
-              perferendis corporis similique sed nisi sunt nulla atque velit laboriosam fuga explicabo nobis, ipsum
-              blanditiis doloremque!</div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Lorem
-              ipsum dolor sit amet consectetur adipisicing elit. Suscipit vero incidunt libero quo nam, perferendis
-              corporis similique sed nisi sunt nulla atque velit laboriosam fuga explicabo nobis, ipsum blanditiis
-              doloremque!</div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">Lorem
-              ipsum dolor sit amet consectetur adipisicing elit. Suscipit vero incidunt libero quo nam, perferendis
-              corporis similique sed nisi sunt nulla atque velit laboriosam fuga explicabo nobis, ipsum blanditiis
-              doloremque!</div>
+              <p>{{ productDetail?.description }}</p>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <p><span class="text-primary">Cash on Delivery available: </span> <b>{{ productDetail?.is_cod ? 'Yes' : 'No' }}</b></p>
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem similique asperiores, itaque quas nam non tenetur molestiae, reprehenderit architecto vel sit modi, quaerat perspiciatis. Minus explicabo animi placeat ut ad.
+            </div>
           </div>
         </div>
 
@@ -131,16 +123,24 @@
           <h3>Ratings & Reviews</h3>
           <div class="mt-4">
             <p><span class="me-2 text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i></span>263
-              Reviews</p>
+                  class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i></span>{{ selectedVariant?.rating_and_review[1]?.avg_ratting }}</p>
           </div>
 
           <div class="mt-4 border tabdiv p-4 pt-3 pb-3">
-            <p><span class="bg-success text-white p-2 pt-1 pb-1">5 <i class="fas fa-star"></i></span></p>
-            <p>Nice design and colour camer is at its peak as far as now</p>
-            <button type="button" (click)="modalOpen()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="border-0 bg-transparent"><img src="assets/images/watch.png" alt="" height="50px" width="50px"></button>
-            <p class="text-secondary mb-0">date</p>
+            <p><span class="bg-success text-white p-2 pt-1 pb-1">{{ selectedVariant?.rating_and_review[0]?.ratting }} <i class="fas fa-star"></i></span></p>
+            <p><b>{{ selectedVariant?.rating_and_review[0]?.review }}</b></p>
+            <!-- <button type="button" (click)="modalOpen()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="border-0 bg-transparent"><img src="assets/images/watch.png" alt="" height="50px" width="50px"></button> -->
+            <div class="text-end">
+              <p class="text-secondary mb-0"></p>
+            </div>
           </div>
+
+          <div class="mt-4 text-end">
+            <button type="button" class="offerbtn w-50 p-2" data-bs-toggle="modal" data-bs-target="#ratingModal">
+              Add Ratings / Reviews
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -149,8 +149,8 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Rating Image Modal -->
+<!-- <div class="modal fade carouselmodel" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
@@ -167,5 +167,76 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<!-- Offer Modal -->
+<div class="modal fade" id="offerModal" tabindex="-1" aria-labelledby="offerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="offerModalLabel">Make Your Offer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myOfferForm" (ngSubmit)="onOfferSubmit()">
+          <div class="row">
+            <div class="inputbox">
+              <label><b>Enter Amount:</b></label>
+              <input class="mt-2 pt-3 pb-3 ms-4" type="text" placeholder="Enter Amount" required formControlName="amount">
+            </div>
+            <div class="create mt-4 text-center ms-auto me-auto modal-footer">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- Rating Modal -->
+<div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ratingModalLabel">Add Ratings / Reviews</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <form [formGroup]="ratingForm" (ngSubmit)="onRatingSubmit()">
+                  <div class="row">
+                    <div class="col-lg-5">
+                      <label><b>Add your Ratings:</b></label>
+                    </div>
+                    <div class="col-lg-6">
+                      <star-rating-control
+                      [rating]="rating"
+                      formControlName="ratingInput"
+                    ></star-rating-control>
+                    </div>
+                  </div>
+
+                  <div class="mt-4">
+                    <label for=""><b>Add your Review:</b></label><textarea cols="50" rows="5" placeholder="Enter your Review here" formControlName="reviewInput"></textarea>
+                  </div>
+                  <!-- <pre>{{ form.value | json }}</pre> -->
+                  <div class="mt-3 text-end">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+      </div>
+    </div>
+  </div>
+</div>

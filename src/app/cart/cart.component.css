@@ -1,7 +1,7 @@
 .leftlistdiv {
   border-radius: 10px;
   background-color: #F9F9FA;
-  height: 200px;
+  height: 220px;
   box-shadow: 1px 1px 10px 1px #c1bebe;
 }
 
@@ -14,6 +14,7 @@
   height: 150px !important;
   border-radius: 10px;
   border: 1px solid #00005a;
+  width: 87%;
 }
 
 .leftmain {
@@ -60,3 +61,26 @@
   color: white;
   transition: 0.2s;
 }
+
+.updatebtn {
+  border: 2px solid #00005a;
+  background-color: white;
+  transition: 0.3s;
+  padding: 0 5%;
+}
+
+.updatebtn:hover {
+  background-color: #00005a;
+  color: white;
+}
+
+
+/* Responsiveness:Start */
+  @media screen and (max-width: 425px) {
+    .leftmain {
+      width: 100%;
+      padding-right: 4%;
+      padding-left: 4%;
+    }
+  }
+  /* Responsiveness:End */

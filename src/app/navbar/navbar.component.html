@@ -1,24 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbg p-3">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Safety Signs</a>
-    <button class="navbar-toggler" (click)="opentogle()" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" routerLink="/">Safety Signs</a>
+    <button class="navbar-toggler" (click)="open()" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarNav" [ngClass]="{show: navopen}">
       <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" aria-current="page" routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/detail">Details</a>
+          <a class="nav-link" aria-current="page" routerLink="/productlist">Products</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">All Collections</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Beware of Dog sign</a>
-        </li>
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" (click)="opendrop()" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             More
           </a>
@@ -33,20 +27,36 @@
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
-      <form class="d-flex me-4">
+      <!-- <form class="d-flex me-4">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-light me-3" type="submit">Search</button>
+      </form> -->
 
-        <button *ngIf="!loggedIn" class="btn btn-outline-light" routerLink="/auth/login" type="submit">LogIn</button>
+      <button *ngIf="!loggedIn" class="btn btn-outline-light loginbtn" routerLink="/auth/login" type="submit">LogIn</button>
 
-        <button *ngIf="loggedIn" class="btn btn-outline-light" routerLink="/" type="submit" (click)="logout()">Log Out</button>
+      <div *ngIf="loggedIn" class="dropdown ms-lg-4 mt-lg-0 mt-3 open">
+        <button class="btn text-white dropdown-toggle mt-lg-0 mt-1 border" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-user-circle me-2"></i><span class="text-white" *ngIf="loggedIn">{{user?.first_name}} {{user?.last_name}}</span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <button *ngIf="update" class="btn btn-outline-light text-dark text-start w-100" routerLink="/auth/update" type="submit">Update Profile</button>
+          </li>
+          <li>
+            <button *ngIf="update" class="btn btn-outline-light text-dark text-start w-100" routerLink="/auth/change" type="submit">Change</button>
+          </li>
+          <li>
+            <button *ngIf="loggedIn" class="btn btn-outline-light text-dark text-start w-100" routerLink="/" type="submit" (click)="logout()">Log Out</button>
+          </li>
+          <li>
+            <button *ngIf="loggedIn" class="btn btn-outline-light text-dark text-start w-100" routerLink="/upload" type="submit">Upload File</button>
+          </li>
+        </ul>
+        <a class="ms-5 ms-lg-0" routerLink="/cart"><i class="fas fa-shopping-cart ms-lg-3 text-white p-2"></i></a>
+      </div>
 
-        <button *ngIf="update" class="btn btn-outline-light" routerLink="/auth/update" type="submit">Update Profile</button>
-
-        <a class="" routerLink="/cart"><i class="fas fa-shopping-cart ms-3 text-white p-3"></i></a>
-      </form>
     </div>
   </div>
 </nav>

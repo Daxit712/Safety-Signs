@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, HostBinding, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -6,12 +6,60 @@ import { AuthService } from '../auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+
+  user: any;
+
+  constructor(private authService: AuthService){
+  }
+
+  ngOnInit(): void {
+    this.authService.userData$.subscribe(
+      (user) => {
+        this.user = user;
+      },
+      (error) => {
+        console.error('Failed to retrieve user data:', error);
+      }
+    );
+  }
+
+  // @HostBinding('class.open') isDropdownOpen = false;
+
+  // @HostBinding('attr.id') id = 'open1';
+  // @HostBinding() isToggle = false;
+
+  // @HostListener('click') toggleOpen() {
+  //   this.isDropdownOpen = !this.isDropdownOpen;
+  // }
+
+  // @HostListener('click') toggleOpen1() {
+  //   this.isToggle = !this.isToggle;
+  // }
+
+  // @HostListener('click') onClick() {
+  //   this.isDropdownOpen = !this.isDropdownOpen;
+  //   this.toggleDropdown();
+  // }
+
+  // @ViewChild('navbarCollapse') navbarCollapse!: ElementRef;
+
+  // toggleDropdown() {
+  //   const isCollapsed = this.navbarCollapse.nativeElement.classList.contains('show');
+
+  //   if (isCollapsed) {
+  //     this.renderer.removeClass(this.navbarCollapse.nativeElement, 'show');
+  //   } else {
+  //     this.renderer.addClass(this.navbarCollapse.nativeElement, 'show');
+  //   }
+  // }
+
+  // navopen = false;
 
   navopen = false;
-  navopen1 = false;
 
-  constructor(private auth: AuthService){
+  open() {
+    this.navopen = !this.navopen
   }
 
   get loggedIn(): any {
@@ -26,16 +74,8 @@ export class NavbarComponent {
     return !!accessToken;
   }
 
-  opendrop() {
-    this.navopen = !this.navopen
-  }
-
-  opentogle() {
-    this.navopen1 = !this.navopen1
-  }
-
   logout() {
-    this.auth.clearTokens();
+    this.authService.clearTokens();
   }
 
 }

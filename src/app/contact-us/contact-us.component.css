@@ -44,3 +44,48 @@
   color: #ffffff;
   transition: 0.3s;
 }
+
+
+/* Responsiveness:Start */
+@media screen and (max-width: 425px) {
+  .container1 {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 10%;
+  }
+
+  .conbgimg {
+    height: 200px;
+  }
+
+  .rightdiv {
+    margin-top: 15%;
+  }
+
+  .conbgimg div {
+    padding-top: 13%;
+    padding-left: 0%;
+    text-align: center;
+  }
+
+  .map iframe {
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .container1 {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 10%;
+  }
+
+  .rightdiv {
+    margin-top: 10%;
+  }
+
+  .map iframe {
+    height: 400px;
+  }
+}
+/* Responsiveness:End */
