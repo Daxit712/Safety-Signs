@@ -10,32 +10,53 @@
   <div class="contactbg">
     <div class="container1">
       <div class="row">
-        <div class="col-lg-8 col-12 bg-white">
+        <div class="col-lg-7 col-12 bg-white p-0">
           <div class="leftdivin p-4">
             <h5>Send Us An Email</h5>
             <p class="mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur dolorem, dignissimos autem nesciunt porro, voluptatum est harum necessitatibus dolorum voluptatem quam quibusdam non exercitationem beatae ea temporibus laborum ab hic?</p>
 
             <div class="mt-5">
-              <form action="">
+              <form [formGroup]="myContactForm" (ngSubmit)="onContactSubmit()">
                 <div class="row">
-                  <div class="col-lg-6">
-                    <input type="text" class="p-2 ps-3 w-100" placeholder="Name">
+                  <div class="col-lg-6 col-md-6">
+                    <input type="text" class="p-2 ps-3 w-100" placeholder="Name" required formControlName="name">
+                    <div *ngIf="myContactForm.get('name')?.invalid && myContactForm.get('name')?.touched" class="text-danger small">
+                      Name is required.
+                    </div>
                   </div>
-                  <div class="col-lg-6">
-                    <input type="text" class="p-2 ps-3 w-100" placeholder="Email">
+                  <div class="col-lg-6 col-md-6 mt-4 mt-lg-0 mt-md-0">
+                    <input type="text" class="p-2 ps-3 w-100" placeholder="Email" required formControlName="email">
+
+                    <div *ngIf="myContactForm.get('email')?.invalid && myContactForm.get('email')?.touched" class="text-danger small">
+                      <div *ngIf="myContactForm.get('email')?.hasError('email')">
+                        Please enter a valid email address.
+                      </div>
+                      <div *ngIf="!myContactForm.get('email')?.hasError('email') && !myContactForm.get('email')?.value.includes('@gmail')">
+                        Email is required.
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-lg-6 mt-4">
-                    <input type="text" class="p-2 ps-3 w-100" placeholder="Phone">
+                  <div class="col-lg-6 col-md-6 mt-4">
+                    <input type="text" class="p-2 ps-3 w-100" placeholder="Subject" required formControlName="subject">
+                    <div *ngIf="myContactForm.get('subject')?.invalid && myContactForm.get('subject')?.touched" class="text-danger small">
+                      Subject is required.
+                    </div>
                   </div>
-                  <div class="col-lg-6 mt-4">
-                    <input type="text" class="p-2 ps-3 w-100" placeholder="Subject">
+                  <div class="col-lg-6 col-md-6 mt-4">
+                    <input type="text" class="p-2 ps-3 w-100" placeholder="Phone" required formControlName="phone">
+                    <div *ngIf="myContactForm.get('phone')?.invalid && myContactForm.get('phone')?.touched" class="text-danger small">
+                      Phone No. is required.
+                    </div>
                   </div>
                   <div class="col-lg-12 mt-4">
-                    <textarea class="w-100 p-2 ps-3" name="" id="" cols="30" rows="7" placeholder="Your Message"></textarea>
+                    <textarea class="w-100 p-2 ps-3" name="" id="" cols="30" rows="7" placeholder="Your Message" required formControlName="message"></textarea>
+                    <div *ngIf="myContactForm.get('message')?.invalid && myContactForm.get('message')?.touched" class="text-danger small">
+                      Message Field is required.
+                    </div>
                   </div>
                 </div>
                 <div class="mt-4">
-                  <button class="btn-style-one">Send Message</button>
+                  <button class="btn-style-one" type="submit">Send Message</button>
                 </div>
               </form>
             </div>
@@ -71,4 +92,10 @@
       </div>
     </div>
   </div>
+</section>
+
+<section id="whatsappicon">
+  <a href="https://api.whatsapp.com/send?phone=917434022280&text=Hello%2C%20I%20contacted%20you%[…]web.app%20https%3A%2F%2Fsafety-signs-4c28c.web.app%2Fcontact"><div class="logo">
+    <i class="fab fa-whatsapp fa-2x text-white"></i>
+  </div></a>
 </section>

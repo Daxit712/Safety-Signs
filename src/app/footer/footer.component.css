@@ -8,11 +8,23 @@
   padding: 5% 0 2.3% 0;
 }
 
+.footercontent {
+  width: 75%;
+}
 
-@media screen and (max-width: 425px) {
+
+@media screen and (max-width: 430px) {
   .footerbg {
     text-align: center;
     padding-top: 10%;
+  }
+
+  .footerdiv {
+    text-align: center;
+  }
+
+  .footercontent {
+    width: 100%;
   }
 }
 

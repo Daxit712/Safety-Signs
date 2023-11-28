@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class FaqComponent {
 
+  navopen = true;
+
+  open() {
+    this.navopen = !this.navopen
+  }
+
 }

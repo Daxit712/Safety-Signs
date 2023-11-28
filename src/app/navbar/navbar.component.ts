@@ -63,13 +63,11 @@ export class NavbarComponent implements OnInit {
   }
 
   get loggedIn(): any {
-    // Check if the access token is present in local storage to determine if the user is logged in.
     const accessToken = sessionStorage.getItem('access_token');
     return !!accessToken;
   }
 
   get update(): any {
-    // Check if the access token is present in local storage to determine if the user is logged in.
     const accessToken = sessionStorage.getItem('access_token');
     return !!accessToken;
   }

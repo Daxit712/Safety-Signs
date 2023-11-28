@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class ForgetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForgotForm = new FormGroup({
-      email: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
     });
   }
 

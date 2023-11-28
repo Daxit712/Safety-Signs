@@ -13,7 +13,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   id: any;
-  cartList: any;
+  cartList: any[] = [];
   variantIdDetail: any;
   razorDetails: any;
 
@@ -24,6 +24,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   orderData: any[] = [];
   productId: any;
   prodcutTotalAmount: any;
+  quantity: any;
 
 
   ngOnInit(): void {
@@ -56,14 +57,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.authService.razorpay(this.orderItemIds, this.totalAmount).subscribe(razordetail => {
           this.razorDetails = razordetail;
           console.log('this.razorDetail from check', this.razorDetails);
+
+          const data = bookingData.variant;
+          this.orderData.push(data);
+          this.productId = bookingData.ids;
+          this.prodcutTotalAmount = this.totalAmount;
+          console.log('this.orderData', this.orderData);
+          console.log('this.prodcutTotalAmount', this.prodcutTotalAmount);
         });
       });
-
-      const data = bookingData.variant;
-      this.orderData.push(data);
-      this.productId = bookingData.ids;
-      this.prodcutTotalAmount = bookingData.variant.sell_price;
-      console.log('this.orderData', this.orderData);
     }
     else if (placeOrderData) {
       this.orderItemIds = placeOrderData.ids;
@@ -80,6 +82,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       console.log('this.orderData', this.orderData);
       console.log('this.prodcutTotalAmount', this.prodcutTotalAmount);
     }
+
+    this.ProdcutFunction();
+  }
+
+  ProdcutFunction() {
+    this.authService.getCartList().subscribe(list => {
+      this.cartList = list.data;
+      console.log('this.cartList', this.cartList);
+    })
   }
 
   payWithRazorpay() {
@@ -109,7 +120,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.authService.createOrder(this.orderItemIds, this.totalAmount).subscribe((data: any) => {
           console.log(data);
           alert('Order created Successfully');
-          this.router.navigate(['/productlist'])
+          this.router.navigate(['/products'])
         })
       }
     };

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 
@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
     this.myForm = new FormGroup({
       first_name: new FormControl(''),
       last_name: new FormControl(''),
-      email: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl(''),
       phone_no: new FormControl(''),
       office_address: new FormControl(''),
@@ -33,6 +33,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
+
+    if (this.myForm.invalid) {
+      alert('Please Enter Valid fields.');
+      return;
+    }
+
     const userData = this.myForm.value;
 
     this.authService.registerUser(userData).subscribe(

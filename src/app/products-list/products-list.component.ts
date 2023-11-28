@@ -9,29 +9,6 @@ import { AuthService } from '../auth.service';
 })
 export class ProductsListComponent implements OnInit {
 
-  // original: any[] = [...this.watchData];
-
-  // sorting: string = 'sort';
-
-  // sortProducts() {
-  //   if (this.sorting === 'low') {
-  //     this.watchData.sort((a, b) => parseFloat(b.price.substr(1)) - parseFloat(a.price.substr(1)));
-  //   } else if (this.sorting === 'high') {
-  //     this.watchData.sort((a, b) => parseFloat(a.price.substr(1)) - parseFloat(b.price.substr(1)));
-  //   } else if (this.sorting === 'name') {
-  //     this.watchData.sort((a, b) => a.title.localeCompare(b.title));
-  //   } else if (this.sorting === 'date') {
-  //     this.watchData.sort((a, b) => {
-  //       const dateA = new Date(a.date);
-  //       const dateB = new Date(b.date);
-
-  //       return dateA.getTime() - dateB.getTime();
-  //     });
-  //   } else if (this.sorting === 'sort') {
-  //     this.watchData = [...this.original]
-  //   }
-  // }
-
   psortingOrder: 'lowToHigh' | 'highToLow' = 'lowToHigh';
   nsortingOrder: 'lowToHigh' | 'highToLow' = 'lowToHigh';
   asortingOrder: 'lowToHigh' | 'highToLow' = 'lowToHigh';
@@ -123,7 +100,7 @@ export class ProductsListComponent implements OnInit {
 
   goToProductDetails(productId: any) {
     console.log("gotoproductdetails")
-    this.router.navigate(['/detail', productId]);
+    this.router.navigate(['product/details', productId]);
   }
 
 

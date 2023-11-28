@@ -21,6 +21,7 @@
   transition: 0.3s;
   padding: 0 5%;
   border-radius: 20px;
+  width: 50%;
 }
 
 .paybtn:hover {
@@ -31,3 +32,54 @@
 .imgdiv {
   border-right-style: dashed;
 }
+
+
+/* Responsiveness:Start */
+@media screen and (max-width: 430px) {
+  section {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 15%;
+  }
+
+  .leftdetaildiv {
+    padding: 8% !important;
+  }
+
+  .imgdiv {
+    border-right-style: none;
+  }
+
+  .paybtn {
+    width: 100%;
+  }
+
+  .rightdetaildiv {
+    margin-bottom: 15%;
+    padding: 5%;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  section {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 15%;
+  }
+
+  .rightdetaildiv {
+    margin-bottom: 15%;
+    padding: 5%;
+  }
+
+  .leftdetaildiv {
+    padding: 8% !important;
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .rightdetaildiv {
+    padding: 2%;
+  }
+}
+/* Responsiveness:End */

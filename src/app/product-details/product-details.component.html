@@ -11,7 +11,7 @@
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-lg-5 col-md-12 col-12">
+      <div class="col-lg-5 col-md-5 col-12">
 
         <!-- carousel in test file -->
 
@@ -27,12 +27,12 @@
         </div> -->
       </div>
 
-      <div class="col-lg-6 col-md-12 col-12 ms-lg-5 ps-lg-0 pe-lg-0 ps-4 pe-4" *ngIf="selectedVariant">
+      <div class="col-lg-6 col-md-7 col-12 ms-lg-5 ps-lg-0 pe-lg-0 ps-4 pe-4" *ngIf="selectedVariant">
         <h2>{{ productDetail?.product_name }}</h2>
         <div>
           <span class="text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
               class="fas fa-star-half-alt"></i><i class="far fa-star"></i></span>
-          <span class="ms-2">{{selectedVariant?.rating_and_review[1]?.avg_ratting}}</span>
+          <span class="ms-2" *ngFor="let review of selectedVariant?.rating_and_review">{{review?.avg_ratting}}</span>
           <span class="ms-4"><i class="fas fa-shopping-bag me-2"></i>{{ selectedVariant?.stocks }}</span>
           <span class="ms-3 text-success">In Stock</span>
         </div>
@@ -74,18 +74,18 @@
           </div>
         </div>
 
-        <div class="mt-5 cartbuybtn">
-          <div>
-            <button class="w-75 p-2" [disabled]="selectedVariant?.stocks == 0" (click)="goToCartPage(selectedVariant?.id)">
+        <div class="mt-lg-5 cartbuybtn">
+          <div class="cartbtn">
+            <button class="p-2" [disabled]="selectedVariant?.stocks == 0" (click)="goToCartPage(selectedVariant?.id)">
               <i class="fas fa-shopping-cart me-2"></i>{{ addedToCart ? 'GO TO CART' : 'ADD TO CART' }}
             </button>
           </div>
-          <div class="mt-4">
-            <button class="w-75 p-2" [disabled]="selectedVariant?.stocks == 0" (click)="goToCheckOut(selectedVariant.id)"><i class="fas fa-bolt me-2"></i>BUY IT NOW</button>
+          <div class="mt-4 cartbtn">
+            <button class="p-2" [disabled]="selectedVariant?.stocks == 0" (click)="goToCheckOut(selectedVariant.id)"><i class="fas fa-bolt me-2"></i>BUY IT NOW</button>
           </div>
-          <div class="mt-4">
+          <div class="mt-4 makebtn">
             <!-- Button trigger modal -->
-            <button type="button" [disabled]="selectedVariant?.stocks == 0" class="w-75 p-2" data-bs-toggle="modal" data-bs-target="#offerModal">
+            <button type="button" [disabled]="selectedVariant?.stocks == 0" class="p-2" data-bs-toggle="modal" data-bs-target="#offerModal">
               Make Your Offer
             </button>
           </div>
@@ -123,24 +123,27 @@
           <h3>Ratings & Reviews</h3>
           <div class="mt-4">
             <p><span class="me-2 text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i></span>{{ selectedVariant?.rating_and_review[1]?.avg_ratting }}</p>
+                  class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i></span> <span *ngFor="let review of selectedVariant?.rating_and_review">{{ review?.avg_ratting }}</span></p>
           </div>
 
-          <div class="mt-4 border tabdiv p-4 pt-3 pb-3">
-            <p><span class="bg-success text-white p-2 pt-1 pb-1">{{ selectedVariant?.rating_and_review[0]?.ratting }} <i class="fas fa-star"></i></span></p>
-            <p><b>{{ selectedVariant?.rating_and_review[0]?.review }}</b></p>
-            <!-- <button type="button" (click)="modalOpen()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="border-0 bg-transparent"><img src="assets/images/watch.png" alt="" height="50px" width="50px"></button> -->
-            <div class="text-end">
-              <p class="text-secondary mb-0"></p>
-            </div>
+          <div class="mt-4 tabdiv pt-3 pb-3">
+            <ng-container *ngFor="let review of selectedVariant?.rating_and_review">
+              <div *ngIf="review.review && review.ratting" class="border p-4 mt-4">
+                <p><span class="bg-success text-white p-2 pt-1 pb-1">{{ review.ratting }} <i class="fas fa-star"></i></span></p>
+                <p><b>{{ review.review }}</b></p>
+                <!-- <div class="text-end">
+                  <p class="text-secondary mb-0"></p>
+                </div> -->
+              </div>
+            </ng-container>
           </div>
 
-          <div class="mt-4 text-end">
-            <button type="button" class="offerbtn w-50 p-2" data-bs-toggle="modal" data-bs-target="#ratingModal">
-              Add Ratings / Reviews
-            </button>
-          </div>
+        </div>
 
+        <div class="mt-4 text-end" *ngIf="loggedIn">
+          <button type="button" class="offerbtn p-2" data-bs-toggle="modal" data-bs-target="#ratingModal">
+            Add Ratings / Reviews
+          </button>
         </div>
       </div>
     </div>
@@ -185,8 +188,8 @@
               <input class="mt-2 pt-3 pb-3 ms-4" type="text" placeholder="Enter Amount" required formControlName="amount">
             </div>
             <div class="create mt-4 text-center ms-auto me-auto modal-footer">
-              <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <!-- <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+              <button type="submit" class="offerbtn p-2">Submit</button>
             </div>
           </div>
         </form>
@@ -226,7 +229,7 @@
                   </div>
                   <!-- <pre>{{ form.value | json }}</pre> -->
                   <div class="mt-3 text-end">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="offerbtn p-2">Save</button>
                   </div>
                 </form>
               </div>

@@ -18,31 +18,28 @@ import { ResetComponent } from './authentication/reset/reset.component';
 import { HomeComponent } from './home/home.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderedListComponent } from './ordered-list/ordered-list.component';
 
 const routes: Routes = [
-  {
-    path: 'auth', component: AuthenticationComponent, children: [
-      { path: '', pathMatch: 'full', redirectTo: 'login' },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegistrationComponent },
-      { path: 'change', component: ChangePasswordComponent },
-      { path: 'update', component: UpdateProfileComponent },
-      { path: 'forget', component: ForgetPasswordComponent },
-      { path: 'reset', component: ResetComponent },
-    ]
-  },
   { path: '', component: HomeComponent },
-  { path: 'productlist', component: ProductsListComponent },
-  { path: 'about', component: AboutUsComponent },
-  { path: 'contact', component: ContactUsComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegistrationComponent },
+  { path: 'change-password', component: ChangePasswordComponent },
+  { path: 'profile/update', component: UpdateProfileComponent },
+  { path: 'forget-password', component: ForgetPasswordComponent },
+  { path: 'reset-password', component: ResetComponent },
+  { path: 'products', component: ProductsListComponent },
+  { path: 'about-us', component: AboutUsComponent },
+  { path: 'contact-us', component: ContactUsComponent },
   { path: 'faq', component: FaqComponent },
-  { path: 'policy', component: PolicyComponent },
-  { path: 'client', component: OurClientsComponent },
+  { path: 'privacy-policy', component: PolicyComponent },
+  { path: 'clients', component: OurClientsComponent },
   { path: 'cart/:id', component: CartComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'detail/:id', component: ProductDetailsComponent },
+  { path: 'product/details/:id', component: ProductDetailsComponent },
   { path: 'upload', component: UploadFileComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'ordereds', component: OrderedListComponent },
 ];
 
 @NgModule({

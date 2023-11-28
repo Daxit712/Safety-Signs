@@ -10,7 +10,7 @@
           <a class="nav-link" aria-current="page" routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/productlist">Products</a>
+          <a class="nav-link" aria-current="page" routerLink="/products">Products</a>
         </li>
         <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" (click)="opendrop()" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,7 +34,7 @@
         <button class="btn btn-outline-light me-3" type="submit">Search</button>
       </form> -->
 
-      <button *ngIf="!loggedIn" class="btn btn-outline-light loginbtn" routerLink="/auth/login" type="submit">LogIn</button>
+      <button *ngIf="!loggedIn" class="btn btn-outline-light loginbtn" routerLink="/login" type="submit">LogIn</button>
 
       <div *ngIf="loggedIn" class="dropdown ms-lg-4 mt-lg-0 mt-3 open">
         <button class="btn text-white dropdown-toggle mt-lg-0 mt-1 border" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,19 +42,23 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li>
-            <button *ngIf="update" class="btn btn-outline-light text-dark text-start w-100" routerLink="/auth/update" type="submit">Update Profile</button>
+            <button *ngIf="update" class="btn btn-outline-light text-dark text-start w-100" routerLink="profile/update" type="submit">Update Profile</button>
           </li>
           <li>
-            <button *ngIf="update" class="btn btn-outline-light text-dark text-start w-100" routerLink="/auth/change" type="submit">Change</button>
+            <button *ngIf="update" class="btn btn-outline-light text-dark text-start w-100" routerLink="/change-password" type="submit">Change Password</button>
           </li>
           <li>
-            <button *ngIf="loggedIn" class="btn btn-outline-light text-dark text-start w-100" routerLink="/" type="submit" (click)="logout()">Log Out</button>
+            <button class="btn btn-outline-light text-dark text-start w-100" routerLink="/upload" type="submit">Upload File</button>
           </li>
           <li>
-            <button *ngIf="loggedIn" class="btn btn-outline-light text-dark text-start w-100" routerLink="/upload" type="submit">Upload File</button>
+            <button class="btn btn-outline-light text-dark text-start w-100" routerLink="/ordereds" type="submit">Your Order</button>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <button class="btn btn-outline-light text-dark text-start w-100" routerLink="/" type="submit" (click)="logout()">Log Out</button>
           </li>
         </ul>
-        <a class="ms-5 ms-lg-0" routerLink="/cart"><i class="fas fa-shopping-cart ms-lg-3 text-white p-2"></i></a>
+        <a class="ms-3 ms-lg-0" routerLink="/cart"><i class="fas fa-shopping-cart ms-lg-3 text-white p-2"></i></a>
       </div>
 
     </div>

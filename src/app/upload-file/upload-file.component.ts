@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 export class UploadFileComponent  implements OnInit {
 
   path: any;
+  filesList: any;
 
   myUploadForm!: FormGroup;
 
@@ -24,24 +25,30 @@ export class UploadFileComponent  implements OnInit {
   ngOnInit(): void {
     this.myUploadForm = new FormGroup({
       title: new FormControl(''),
-      // document: new FormControl(''),
     });
+
+    this.authService.uploadDocList().subscribe((res: any) => {
+      this.filesList = res.data;
+      console.log(this.filesList);
+    })
   }
 
   onDocSubmit() {
     const title = this.myUploadForm.get('title')?.value;
-    // const document = this.myUploadForm.get('document')?.value;
 
     this.authService.uploadDoc(title, this.path).subscribe((response: any) => {
       console.log('Upload success:', response);
       alert('Upload successfully');
-      // if (response.data && response.data.length > 0) {
-      //   const firstName = response.data[0].first_name;
-      //   const email = response.data[0].email;
-      //   console.log('First Name:', firstName);
-      //   console.log('Email:', email);
-      // }
-    });
+
+      this.authService.uploadDocList().subscribe((res: any) => {
+        this.filesList = res.data;
+        console.log(this.filesList);
+      })
+    },
+    (error) => {
+      alert('Somethig went wrong!');
+    }
+    );
   }
 
 }

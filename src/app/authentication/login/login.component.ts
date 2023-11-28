@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
             if (response) {
               alert('Login Successful');
 
-              this.router.navigate(['/productlist']);
+              this.router.navigate(['/products']);
             }
           },
           (error: any) => {

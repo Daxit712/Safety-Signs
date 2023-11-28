@@ -1,4 +1,4 @@
-<section>
+<!-- <section>
   <div class="carddiv">
     <div class="container">
       <div class="card">
@@ -23,4 +23,93 @@
       </div>
     </div>
   </div>
+</section> -->
+
+
+<section class="mt-5">
+  <div class="container">
+    <div class="row tableindiv">
+      <div class="col-lg-6 col-5">
+        <h2>Documents</h2>
+      </div>
+      <div class="col-lg-6 col-7 text-end">
+        <button type="button" class="btn-style-one" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Upload New File
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="mt-5 tablediv">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Title</th>
+            <th scope="col">Files Name</th>
+            <th scope="col" class="text-center">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filesList; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item?.title}}</td>
+            <td>{{item?.uploaded_file}}</td>
+            <td class="text-center text-success fw-bold">Uploaded</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">File Upload</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="drop_box">
+          <header class="text-center">
+            <h4>Select File here</h4>
+          </header>
+          <div class="mt-4">
+            <form [formGroup]="myUploadForm" (ngSubmit)="onDocSubmit()">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-3">
+                    <div>
+                      <label for=""><b>Title:</b></label>
+                    </div>
+                    <div class="mt-3">
+                      <label for=""><b>File:</b></label>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-6">
+                    <div>
+                      <input type="text" placeholder="Enter Title" required formControlName="title">
+                    </div>
+                    <div class="mt-3">
+                      <input type="file" (change)="upload($event)">
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="mt-4 text-center">
+                  <button type="submit" class="submitbtn">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

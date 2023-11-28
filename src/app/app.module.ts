@@ -36,6 +36,7 @@ import { HomeComponent } from './home/home.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderedListComponent } from './ordered-list/ordered-list.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     HomeComponent,
     UploadFileComponent,
     CheckoutComponent,
+    OrderedListComponent,
   ],
   imports: [
     BrowserModule,

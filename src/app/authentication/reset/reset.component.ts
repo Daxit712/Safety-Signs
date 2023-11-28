@@ -53,7 +53,7 @@ export class ResetComponent implements OnInit {
           (response) => {
             this.confirmMessage = response.message;
             alert('Password reset successfully')
-            this.router.navigate(['/auth/login']);
+            this.router.navigate(['login']);
           },
           (error) => {
             this.confirmMessage = 'Something went wrong';

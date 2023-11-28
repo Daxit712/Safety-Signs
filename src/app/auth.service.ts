@@ -17,14 +17,14 @@ export class AuthService {
     }
   }
 
-  mainUrl = 'http://safety-signs.ap-south-1.elasticbeanstalk.com/api/';
+  mainUrl = 'https://safetyforyou.in/api/';
 
   loginUrl = this.mainUrl + 'token/';
   registerUrl = this.mainUrl + 'users/registration/';
   updateUrl = this.mainUrl + 'users/user/detail/';
   forgotUrl = this.mainUrl + 'users/forgot/password/';
   resetPasswordUrl = this.mainUrl + 'users/forgot/password/';
-  changePasswordUrl = this.mainUrl + 'users/reset/password/';
+  changePasswordUrl = this.mainUrl + 'users/change/password/';
 
   productListUrl = this.mainUrl + 'products/';
   productDetailUrl = this.mainUrl + 'products/';
@@ -32,6 +32,8 @@ export class AuthService {
 
   addToCartUrl = this.mainUrl + 'orders/order_item/create/';
   cartListUrl = this.mainUrl + 'orders/order_item/';
+
+  orderedListUrl = this.mainUrl + 'orders/'
 
   offerUrl = this.mainUrl + 'orders/offer/';
 
@@ -43,6 +45,9 @@ export class AuthService {
   reviewUrl = this.mainUrl + 'orders/review_and_ratting/';
 
   uploadDocUrl = this.mainUrl + 'products/upload_documents/';
+  uploadDocListUrl = this.mainUrl + 'products/upload_documents/';
+
+  contactUsUrl = this.mainUrl + 'users/contact_us/';
 
   userDataSubject = new BehaviorSubject<any>(null);
   userData$ = this.userDataSubject.asObservable();
@@ -296,25 +301,7 @@ export class AuthService {
   //   return this.http.put(url, data, { headers });
   // }
 
-  // removeProduct(id: any, action: 'removed' | 'quantity' | null) {
-  //   const url = `${this.removeProductUrl}${id}/`;
-
-  //   // Conditionally include 'removed' or 'quantity' in the data object
-  //   const data: any = {};
-  //   if (action === 'removed') {
-  //     data['removed'] = true;
-  //   } else if (action === 'quantity') {
-  //     data['quantity'] = true;
-  //   }
-
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
-  //   });
-
-  //   return this.http.put(url, data, { headers });
-  // }
-
-  removeProduct(id: any, action: 'removed' | 'quantity' | null, quantity?: number) {
+  removeProduct(id: any, action: 'removed' | 'quantity' | null, quantity?: any) {
     const url = `${this.removeProductUrl}${id}/`;
 
     // Conditionally include 'removed' or 'quantity' in the data object
@@ -332,8 +319,6 @@ export class AuthService {
     return this.http.put(url, data, { headers });
   }
 
-
-
   uploadDoc(title: any, uploaded_file:any) {
     const url = this.uploadDocUrl;
     const formData = new FormData();
@@ -348,5 +333,36 @@ export class AuthService {
     return this.http.post(url, formData, { headers });
   }
 
+  orderdList() {
+    const url = this.orderedListUrl; // Use the URL for getting user details
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
+    });
+
+    return this.http.get(url, { headers });
+  }
+
+  contactUs(name: any, email:any, subject:any, message:any, phone:any) {
+    const url = this.contactUsUrl;
+    const formData = new FormData();
+
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('subject', subject);
+    formData.append('message', message);
+    formData.append('phone', phone);
+
+    return this.http.post(url, formData);
+  }
+
+  uploadDocList() {
+    const url = this.uploadDocListUrl;
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
+    });
+
+    return this.http.get(url, { headers });
+  }
 
 }

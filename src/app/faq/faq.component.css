@@ -36,7 +36,7 @@ section {
 
 
 /* Responsiveness:Start */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
   .maindiv {
     margin-left: 4%;
     margin-right: 4%;
@@ -53,6 +53,14 @@ section {
   }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 820px) {
+  .maindiv {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .conbgimg {
+    height: 250px;
+  }
 }
 /* Responsiveness:End */

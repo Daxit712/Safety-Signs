@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -39,7 +39,7 @@ export class UpdateProfileComponent implements OnInit {
     this.myUpdateForm = new FormGroup({
       first_name: new FormControl(this.userData.first_name),
       last_name: new FormControl(this.userData.last_name),
-      email: new FormControl(this.userData.email),
+      email: new FormControl(this.userData.email, [Validators.required, Validators.email]),
       phone_no: new FormControl(this.userData.phone_no),
       office_address: new FormControl(this.userData.office_address)
     });

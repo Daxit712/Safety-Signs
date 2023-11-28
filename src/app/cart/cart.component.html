@@ -3,10 +3,13 @@
     <div class="row">
 
       <div class="text-center mt-5" *ngIf="cartEmpty">
-        <h1>Your Cart Is Empty</h1>
+        <h2 class="mt-5 mb-5">Your Cart Is Empty...!</h2>
+        <div class="mb-5">
+          <img src="assets/images/cart.png" alt="" class="cartImg">
+        </div>
       </div>
 
-      <div class="col-lg-8 col-md-7 col-12 leftmain" *ngIf="!cartEmpty">
+      <div class="col-lg-8 col-md-8 col-12 leftmain" *ngIf="!cartEmpty">
         <ng-container *ngFor="let item of cartList; let i = index">
           <div class="leftlistdiv mt-5" *ngIf="item?.variant_label">
             <div class="row p-3 pt-4 pb-4">
@@ -14,25 +17,33 @@
                 <img [src]="item.variant_label?.product.product_image" alt="" class="productimg">
               </div>
 
-              <div class="col-lg-4 col-md-3 col-3">
+              <div class="col-lg-4 col-md-5 col-5">
                 <p>{{ item.variant_label?.product.product_name }}</p>
                 <p><b>₹{{ item.variant_label?.sell_price }}</b><span class="text-decoration-line-through ms-3">₹{{ item.variant_label?.MRP }}</span></p>
                 <hr>
 
-                <div class="col-md-4 col-6 col-lg-12 mb-4">
+                <div class="col-md-12 col-lg-12 col-12 mb-lg-4">
                   <label class="mb-2 d-block">Quantity</label>
                   <div class="input-group mb-3">
-                    <button class="btn btn-white border border-secondary" type="button" id="button-addon1"
-                      data-mdb-ripple-color="dark" (click)="decrement(item)">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <h5 id="counting" class="d-inline-block mx-3 my-2">{{ quantity[item.id] }}</h5>
-                    <button class="btn btn-white border border-secondary" type="button" id="button-addon2"
-                      data-mdb-ripple-color="dark" (click)="increment(item)">
-                      <i class="fas fa-plus"></i>
-                    </button>
+                    <div>
+                      <button class="btn btn-white border border-secondary" type="button" id="button-addon1"
+                        data-mdb-ripple-color="dark" (click)="decrement(item)">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                    </div>
 
-                    <button type="button" (click)="onOkClicked(item)" class="ms-auto updatebtn">Update</button>
+                    <div class="quantitydiv">
+                      <h5 id="counting" class="my-2">{{ quantity[item.id] }}</h5>
+                    </div>
+
+                    <div>
+                      <button class="btn btn-white border border-secondary" type="button" id="button-addon2"
+                        data-mdb-ripple-color="dark" (click)="increment(item)">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </div>
+
+                    <!-- <button type="button" (click)="onOkClicked(item)" class="ms-auto updatebtn">Update</button> -->
 
                   </div>
                 </div>
@@ -53,19 +64,19 @@
                 </div> -->
               </div>
 
-              <div class="col-lg-3 col-md-3 col-3 ms-auto me-3 text-end">
-                <button class="bg-white border-0" (click)="removeProduct(item?.id)"><i class="fas fa-times ms-auto"></i></button>
+              <div class="col-lg-3 col-md-2 col-2 ms-auto me-lg-3 text-end">
+                <button class="bg-transparent border-0" (click)="removeProduct(item?.id)"><i class="fas fa-times ms-auto"></i></button>
               </div>
             </div>
           </div>
         </ng-container>
       </div>
 
-      <div class="col-lg-4 col-md-5 col-12 ps-lg-5 ps-md-4 ps-3 pe-3 mt-5 mb-5" *ngIf="!cartEmpty">
+      <div class="col-lg-4 col-md-4 col-12 ps-lg-5 pe-md-2 ps-3 pe-3 mt-5 mb-5" *ngIf="!cartEmpty">
         <ng-container>
           <div class="rightpricediv p-3">
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-6 col-md-8 col-6">
                 <div *ngFor="let item of cartList;">
                   <p *ngIf="quantity[item?.id]">{{ item.variant_label?.product.product_name }} x<span>{{ quantity[item?.id] }}</span></p>
                 </div>
@@ -73,10 +84,10 @@
                 <p>Delivery Charges</p>
                 <p>Subtotal</p>
                 <hr>
-                <h5>Total Cost</h5>
+                <h6>Total Cost</h6>
               </div>
 
-              <div class="col-lg-6 text-end">
+              <div class="col-lg-6 col-md-4 col-6 text-end">
                 <div *ngFor="let item of cartList;">
                   <p>{{ item.total }}</p>
                 </div>
@@ -85,7 +96,7 @@
                 <p>₹{{ totalPrice1 }}</p>
                 <hr>
                 <div>
-                  <h5>₹{{ totalPrice1 }}</h5>
+                  <h6>₹{{ totalPrice1 }}</h6>
                 </div>
               </div>
             </div>

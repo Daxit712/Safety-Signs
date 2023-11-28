@@ -1,33 +1,64 @@
-<div class="title mt-2">
-  <h2 class="text-center">Update Profile</h2>
-</div>
-<hr class="w-75 ms-auto me-auto">
-<div class="form ms-auto me-auto">
-  <form [formGroup]="myUpdateForm" (ngSubmit)="onUpdate()">
-    <div class="row">
-      <div class="inputbox col-lg-6 mt-3">
-        <label>First Name</label>
-        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your First Name" required formControlName="first_name">
+<section>
+  <div class="row content">
+    <div class="left col-lg-3 col-md-4">
+      <img src="https://i.postimg.cc/8CCmX23W/icon.png" alt="icon">
+      <h1>SAFETY <br>SIGNS</h1>
+    </div>
+
+    <div class="right col-lg-8 col-md-7 col-12">
+      <div class="title mt-2">
+        <h2 class="text-center">Update Profile</h2>
       </div>
-      <div class="inputbox col-lg-6 mt-3">
-        <label>Last Name</label>
-        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Last Name" required formControlName="last_name">
-      </div>
-      <div class="inputbox col-lg-6 mt-3">
-        <label>Email</label>
-        <input class="mt-2 pt-3 pb-3" type="email" placeholder="Enter your Email ID" required formControlName="email">
-      </div>
-      <div class="inputbox col-lg-6 mt-3">
-        <label>Phone No.</label>
-        <input class="mt-2 pt-3 pb-3" type="tel" placeholder="Enter your Number" required formControlName="phone_no">
-      </div>
-      <div class="inputbox col-lg-12 mt-3">
-        <label>Office Address</label>
-        <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Address" required formControlName="office_address">
-      </div>
-      <div class="create mt-4 text-center ms-auto me-auto">
-        <button type="submit">Update</button>
+      <hr class="w-75 ms-auto me-auto">
+      <div class="form ms-auto me-auto">
+        <form [formGroup]="myUpdateForm" (ngSubmit)="onUpdate()">
+          <div class="row">
+            <div class="inputbox col-lg-6 mt-3">
+              <label>First Name</label>
+              <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your First Name" required formControlName="first_name">
+              <div *ngIf="myUpdateForm.get('first_name')?.invalid && myUpdateForm.get('first_name')?.touched" class="text-danger small">
+                First Name is required.
+              </div>
+            </div>
+            <div class="inputbox col-lg-6 mt-3">
+              <label>Last Name</label>
+              <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Last Name" required formControlName="last_name">
+              <div *ngIf="myUpdateForm.get('last_name')?.invalid && myUpdateForm.get('last_name')?.touched" class="text-danger small">
+                last Name is required.
+              </div>
+            </div>
+            <div class="inputbox col-lg-6 mt-3">
+              <label>Email</label>
+              <input class="mt-2 pt-3 pb-3" type="email" placeholder="Enter your Email ID" required formControlName="email">
+              <div *ngIf="myUpdateForm.get('email')?.invalid && myUpdateForm.get('email')?.touched" class="text-danger small">
+                <div *ngIf="myUpdateForm.get('email')?.hasError('email')">
+                  Please enter a valid email address.
+                </div>
+                <div *ngIf="!myUpdateForm.get('email')?.hasError('email') && !myUpdateForm.get('email')?.value.includes('@gmail')">
+                  Email is required.
+                </div>
+              </div>
+            </div>
+            <div class="inputbox col-lg-6 mt-3">
+              <label>Phone No.</label>
+              <input class="mt-2 pt-3 pb-3" type="tel" placeholder="Enter your Number" required formControlName="phone_no">
+              <div *ngIf="myUpdateForm.get('phone_no')?.invalid && myUpdateForm.get('phone_no')?.touched" class="text-danger small">
+                Phone Number is required.
+              </div>
+            </div>
+            <div class="inputbox col-lg-12 mt-3">
+              <label>Office Address</label>
+              <input class="mt-2 pt-3 pb-3" type="text" placeholder="Enter your Address" required formControlName="office_address">
+              <div *ngIf="myUpdateForm.get('office_address')?.invalid && myUpdateForm.get('office_address')?.touched" class="text-danger small">
+              Office Address is required.
+            </div>
+            </div>
+            <div class="create mt-4 text-center ms-auto me-auto">
+              <button type="submit">Update</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-  </form>
-</div>
+  </div>
+</section>

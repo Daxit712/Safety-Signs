@@ -11,19 +11,6 @@ export class CartComponent implements OnInit{
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router) {}
 
-  // cartList: any;
-  // variantId: any;
-  // data: any = 0;
-  // stocks: any;
-  // subTotal: any;
-  // totalPrice: any;
-  // quantity: any;
-  // sellPrice: any;
-  // cartProduct: any;
-  // cartVariantList: any;
-  // cartVariantList1: any;
-  // final: any;
-
   cartList: any[] = [];
   cartList1: any;
   totalPrice: any;
@@ -43,26 +30,6 @@ export class CartComponent implements OnInit{
   removed: any = true;
 
   ngOnInit(): void {
-    // this.route.params.subscribe(params => {
-    //   this.variantId = +params['id'];
-    //   this.authService.getCartList().subscribe(detail => {
-    //     this.cartList = detail.data;
-    //     this.cartVariantList = this.cartList.map((a: any) => a.variant_label)
-    //     // this.cartVariantList = detail.data[0].variant_label;
-    //     // this.cartVariantList = detail.data[0].variant_label.id;
-    //     // this.cartVariantList1 = detail.data[0].variant_label.MRP;
-    //     this.cartProduct = this.cartVariantList.find((a: any) => a?.id == this.variantId )
-    //     // this.quantity = this.cartProduct.stocks;
-    //     // if(this.cartVariantList == this.variantId) {
-    //     //   this.final = this.cartVariantList1
-    //     // }
-    //     console.log('this.cartDetail', this.cartList);
-    //     console.log('this.yyyy', this.cartVariantList);
-    //     console.log('this.final', this.cartProduct);
-    //     console.log('this.quantity', this.quantity);
-
-    //   })
-    // })
 
     this.ProdcutFunction();
   }
@@ -91,19 +58,45 @@ export class CartComponent implements OnInit{
       console.log('this.cartList', this.cartList);
       console.log('this.totalPrice', this.totalPrice1);
       console.log('this.productId', this.productId1);
-      // console.log('this.quantity', this.quantity);
     })
   }
 
   increment(item: any) {
     if (this.quantity[item.id] < item.variant_label.stocks) {
       this.quantity[item.id]++;
+
+      const action = 'quantity';
+      const updatedQuantity = this.quantity[item.id];
+      this.authService.removeProduct(item.id, action, updatedQuantity).subscribe((response: any) => {
+        alert('Quantity updated successfully!');
+        this.ProdcutFunction();
+      });
     }
   }
 
   decrement(item: any) {
     if (this.quantity[item.id] > 1) {
       this.quantity[item.id]--;
+
+      const action = 'quantity';
+      const updatedQuantity = this.quantity[item.id];
+      this.authService.removeProduct(item.id, action, updatedQuantity).subscribe((response: any) => {
+        alert('Quantity updated successfully!');
+        this.ProdcutFunction();
+      });
+    }
+    else {
+      const action = this.removed ? 'removed' : 'quantity';
+
+      this.authService.removeProduct(item.id, action).subscribe((a: any) => {
+        if (action === 'removed') {
+          alert('Your item has been removed successfully!');
+        } else if (action === 'quantity') {
+          alert('Quantity updated successfully!');
+        }
+
+        this.ProdcutFunction();
+      });
     }
   }
 
@@ -129,22 +122,13 @@ export class CartComponent implements OnInit{
   }
 
   // onOkClicked(item: any) {
-  //   const action = 'quantity'; // Assuming you want to update quantity when OK is clicked
-  //   this.authService.removeProduct(item, action).subscribe((response: any) => {
-  //     // Handle the response or perform any additional actions if needed
+  //   const action = 'quantity';
+  //   const updatedQuantity = this.quantity[item.id];
+  //   this.authService.removeProduct(item.id, action, updatedQuantity).subscribe((response: any) => {
   //     alert('Quantity updated successfully!');
   //     this.ProdcutFunction();
   //   });
   // }
-
-  onOkClicked(item: any) {
-    const action = 'quantity';
-    const updatedQuantity = this.quantity[item.id];
-    this.authService.removeProduct(item.id, action, updatedQuantity).subscribe((response: any) => {
-      alert('Quantity updated successfully!');
-      this.ProdcutFunction();
-    });
-  }
 
 
 
@@ -152,7 +136,8 @@ export class CartComponent implements OnInit{
     const placeOrder: any = {
       ids: this.productId1,
       total: this.totalPrice1,
-      variants: this.cartVariantList
+      variants: this.cartVariantList,
+      quantities: this.quantity,
     }
     localStorage.setItem('placeOrder', JSON.stringify(placeOrder));
     this.router.navigate(['checkout']);

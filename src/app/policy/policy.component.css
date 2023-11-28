@@ -267,7 +267,7 @@ div.bsap_2365 a{line-height:100%;}
 
 
 /* Responsiveness:Start */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
   .conbgimg {
     height: 200px;
   }
@@ -281,6 +281,14 @@ div.bsap_2365 a{line-height:100%;}
   .policymaindiv {
     padding-left: 3%;
     padding-right: 3%;
+  }
+
+  .policytxt {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
   }
 
   .footer {
@@ -297,6 +305,14 @@ div.bsap_2365 a{line-height:100%;}
   }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 820px) {
+  .conbgimg {
+    height: 250px;
+  }
+
+  .policymaindiv {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }
 /* Responsiveness:End */

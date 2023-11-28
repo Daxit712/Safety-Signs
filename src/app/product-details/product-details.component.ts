@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-product-details',
@@ -110,7 +110,7 @@ export class ProductDetailsComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/login']);
         }
       );
     }
@@ -139,7 +139,7 @@ export class ProductDetailsComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/login']);
       }
     );
   }
@@ -153,7 +153,7 @@ export class ProductDetailsComponent implements OnInit {
     },
     (error) => {
       console.log(error);
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['/login']);
     }
     );
   }
@@ -161,8 +161,6 @@ export class ProductDetailsComponent implements OnInit {
   onRatingSubmit() {
     const review = this.ratingForm.get('reviewInput')?.value;
     const rating = this.ratingForm.get('ratingInput')?.value;
-
-    // Find the first rating_and_review entry with rating_availability true
     const orderId = this.selectedVariant?.rating_and_review.find((item: any) => item.rating_availability);
 
     if (orderId) {
@@ -174,10 +172,21 @@ export class ProductDetailsComponent implements OnInit {
       this.authService.reviewRating(orderItemId, review, rating).subscribe((response: any) => {
         console.log('Add ratings:', response);
         alert('Add ratings Successful!');
-      });
+      },
+      (error) => {
+        alert('User can not add multiple reviews');
+
+      }
+      );
     } else {
       console.error('Order Item ID not available');
+      alert('User have to login first!');
     }
+  }
+
+  get loggedIn(): any {
+    const accessToken = sessionStorage.getItem('access_token');
+    return !!accessToken;
   }
 
 
