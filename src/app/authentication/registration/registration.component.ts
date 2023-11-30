@@ -53,26 +53,20 @@ export class RegistrationComponent implements OnInit {
           this.authService.login(email, password).subscribe(
             (response: any) => {
               if (response) {
-                this.router.navigate(['/productlist']);
+                this.router.navigate(['/products']);
               }
             },
             (error: any) => {
               console.log('Login error:', error);
-              alert('Something went wrong!')
+              alert(error)
             }
 
           );
         }
-        // if (response.data && response.data.length > 0) {
-        //   const firstName = response.data[0].first_name;
-        //   const email = response.data[0].email;
-        //   console.log('First Name:', firstName);
-        //   console.log('Email:', email);
-        // }
       },
       (error: any) => {
         console.log('registration error:', error);
-        alert('User is already registered!')
+        alert(error.error.message)
       }
     );
   }

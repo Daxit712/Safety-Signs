@@ -12,9 +12,13 @@ export class OrderedListComponent implements OnInit {
 
   orderedList: any;
 
+  orderEmpty: any;
+
   ngOnInit(): void {
     this.authService.orderdList().subscribe((list: any) => {
       this.orderedList = list.data;
+
+      this.orderEmpty = this.orderedList.length === 0;
 
       this.orderedList.sort((a: any, b: any) => {
         const dateA = new Date(a.order_item[0]?.variant_label.created_at);

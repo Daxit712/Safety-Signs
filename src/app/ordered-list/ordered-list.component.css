@@ -29,6 +29,13 @@
   font-size: 1.2rem !important;
 }
 
+.cartImg {
+  height: 150px;
+  width: 150px;
+
+  filter: drop-shadow(5px 5px 10px #e5e3e3);
+}
+
 
 /* Responsiveness:Start */
 @media screen and (max-width: 430px) {

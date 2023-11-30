@@ -4,7 +4,7 @@
 
 .card {
   transition: 0.2s;
-  width: 80%;
+  width: 80% !important;
 }
 
 .card .info2 {
@@ -133,7 +133,7 @@
 
   }
 
-  @media screen and (max-width: 1030px) {
+  @media screen and (max-width: 1290px) {
     .card {
       width: 100% !important;
     }

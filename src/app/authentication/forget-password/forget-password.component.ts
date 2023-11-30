@@ -32,6 +32,8 @@ export class ForgetPasswordComponent implements OnInit {
         this.emailSentMessage = response.message;
         alert('Email has been sent!');
 
+        this.myForgotForm.reset();
+
       },
       (error) => {
         this.emailSentMessage = 'User does not exist';

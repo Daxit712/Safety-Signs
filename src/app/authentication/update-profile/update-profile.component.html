@@ -1,7 +1,7 @@
 <section>
   <div class="row content">
     <div class="left col-lg-3 col-md-4">
-      <img src="https://i.postimg.cc/8CCmX23W/icon.png" alt="icon">
+      <img src="assets/images/ss1.png" alt="icon">
       <h1>SAFETY <br>SIGNS</h1>
     </div>
 
@@ -43,7 +43,12 @@
               <label>Phone No.</label>
               <input class="mt-2 pt-3 pb-3" type="tel" placeholder="Enter your Number" required formControlName="phone_no">
               <div *ngIf="myUpdateForm.get('phone_no')?.invalid && myUpdateForm.get('phone_no')?.touched" class="text-danger small">
-                Phone Number is required.
+                <div *ngIf="myUpdateForm.get('phone_no')?.hasError('phone_no')">
+                  Please enter a valid phone number.
+                </div>
+                <div *ngIf="!myUpdateForm.get('phone_no')?.hasError('phone_no') && !myUpdateForm.get('phone_no')?.value.includes('+91')">
+                  +91 is required.
+                </div>
               </div>
             </div>
             <div class="inputbox col-lg-12 mt-3">

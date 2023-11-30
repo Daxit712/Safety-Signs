@@ -72,6 +72,9 @@ export class ChangePasswordComponent implements OnInit {
             console.log(response.message);
             alert('Password Change Successfully');
 
+            this.confirmMessage = '';
+            this.myChangeForm.reset();
+
           },
           (error) => {
             console.log(error);
@@ -86,6 +89,4 @@ export class ChangePasswordComponent implements OnInit {
       this.confirmMessage = 'New and confirm passwords do not match.*';
     }
   }
-
-
 }

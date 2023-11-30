@@ -26,11 +26,20 @@
 
 <section>
   <div class="container">
-    <h2 class="text-center mt-lg-5">Your Orders!</h2>
-    <hr class="w-25 ms-auto me-auto">
+    <div *ngIf="!orderEmpty">
+      <h2 class="text-center mt-lg-5">Your Orders!</h2>
+      <hr class="w-25 ms-auto me-auto" >
+    </div>
     <div class="row mt-lg-4 orderlistdiv">
-      <div class="col-lg-7 col-12 order-2 order-lg-1" *ngIf="orderedList">
 
+      <div class="text-center" *ngIf="orderEmpty">
+        <h2 class="mt-5 mb-5">You haven't ordered any item yet. So please order an item first...!</h2>
+        <div class="mb-5">
+          <img src="assets/images/cart.png" alt="" class="cartImg">
+        </div>
+      </div>
+
+      <div class="col-lg-7 col-12 order-2 order-lg-1" *ngIf="!orderEmpty">
         <div *ngFor="let order of orderedList" class="mt-5">
           <div class="row orderCard" *ngFor="let item of order?.order_item">
             <div class="col-lg-4 col-md-4 col-12">
@@ -49,7 +58,7 @@
 
       </div>
 
-      <div class="col-lg-4 col-12 order-1 order-lg-2 mt-2 mt-lg-5 ms-auto userdetail" *ngIf="orderedList">
+      <div class="col-lg-4 col-12 order-1 order-lg-2 mt-2 mt-lg-5 ms-auto userdetail" *ngIf="orderedList && !orderEmpty">
         <p>Name: <b>{{ orderedList[0]?.user?.first_name }} {{ orderedList[0]?.user?.last_name }}</b></p>
         <p class="card-text">Email: <b>{{ orderedList[0]?.user?.email }}</b></p>
         <hr class="mt-4">

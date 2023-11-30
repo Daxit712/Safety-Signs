@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-product-details',
@@ -17,19 +17,41 @@ export class ProductDetailsComponent implements OnInit {
   stocks: any;
   addedToCart: boolean = false;
   selectedVariant: any;
-  selectedVariant1: any;
+  ratingAvailability: any;
 
   offerbtn: any;
 
   myOfferForm!: FormGroup;
 
   ratingForm!: FormGroup;
+  userId: any;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router) {
+  ratingId: any;
+
+  avgRating: any;
+
+  allReviews: any
+
+  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
   }
+
+  bindingsForm!: FormGroup;
 
   ngOnInit(): void {
     localStorage.removeItem('bookNow');
+
+    this.authService.userData$.subscribe(
+      (user) => {
+        this.userId = user?.id;
+        console.log('this.userData', this.userId);
+
+      },
+      (error) => {
+        console.error('Failed to retrieve user data:', error);
+      }
+    );
+
+    this.setupForm();
 
     this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -37,9 +59,23 @@ export class ProductDetailsComponent implements OnInit {
         this.productDetail = detail.data;
         this.stocks = this.productDetail.variants[0];
         this.selectedVariant = this.productDetail.variants[0];
+
+        this.allReviews = this.productDetail.variants[0];
+
+        this.ratingAvailability = this.productDetail.variants[0].rating_and_review.find((a:any) => a.rating_availability);
+
+        this.avgRating = this.productDetail.variants[0].rating_and_review.find((a:any) => a.avg_ratting)?.avg_ratting || 0;
+
+        this.ratingId = this.productDetail.variants[0].rating_and_review.find((a:any) => a.user_id == this.userId);
+
         console.log('this.stocks', this.stocks);
         console.log('this.productDetail', this.productDetail);
         console.log('this.selectedVariant', this.selectedVariant);
+        console.log('this.selectedVariant1', this.ratingAvailability);
+        console.log('this.ratingId', this.ratingId);
+        console.log('this.avgRating', this.avgRating);
+        console.log('this.allReviews', this.allReviews);
+
       })
     });
 
@@ -52,6 +88,14 @@ export class ProductDetailsComponent implements OnInit {
       ratingInput: new FormControl(''),
     });
 
+  }
+
+
+  setupForm() {
+    this.bindingsForm = this.fb.group({
+      id: ['10'],
+      rating: [this.avgRating],
+    });
   }
 
   increment() {
@@ -95,6 +139,11 @@ export class ProductDetailsComponent implements OnInit {
     nextButton.click();
   }
 
+  get loggedIn(): any {
+    const accessToken = sessionStorage.getItem('access_token');
+    return !!accessToken;
+  }
+
   goToCartPage(selectedVariantId: any) {
     if (this.addedToCart) {
       this.router.navigate(['/cart', selectedVariantId]);
@@ -107,6 +156,8 @@ export class ProductDetailsComponent implements OnInit {
           setTimeout(() => {
             this.addedToCart = false;
           }, 2000);
+
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         },
         (error) => {
           console.log(error);
@@ -136,6 +187,8 @@ export class ProductDetailsComponent implements OnInit {
         }
         localStorage.setItem('bookNow', JSON.stringify(bookNow));
         this.router.navigate(['/checkout']);
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       },
       (error) => {
         console.log(error);
@@ -149,7 +202,17 @@ export class ProductDetailsComponent implements OnInit {
 
     this.authService.offer(this.selectedVariant.id, amount).subscribe((response: any) => {
       console.log('Offer:', response);
-      alert('Offer Send Successful!')
+      alert('Offer Send Successful!');
+
+      this.myOfferForm.reset();
+
+      const modal = document.getElementById('offerModal');
+      if (modal) {
+        const modalClosebtn = modal.querySelector('[data-bs-dismiss="modal"]');
+        if (modalClosebtn) {
+          (modalClosebtn as any).click();
+        }
+      }
     },
     (error) => {
       console.log(error);
@@ -172,21 +235,51 @@ export class ProductDetailsComponent implements OnInit {
       this.authService.reviewRating(orderItemId, review, rating).subscribe((response: any) => {
         console.log('Add ratings:', response);
         alert('Add ratings Successful!');
+
+        this.authService.getProductDetail(this.id).subscribe(detail => {
+          this.productDetail = detail.data;
+          this.selectedVariant = this.productDetail.variants[0];
+
+          this.ratingId = this.productDetail.variants[0].rating_and_review.find((a:any) => a.user_id == this.userId);
+        })
+
+        this.ratingForm.reset();
+
+        const modal = document.getElementById('ratingModal');
+        if (modal) {
+          const modalClosebtn = modal.querySelector('[data-bs-dismiss="modal"]');
+          if (modalClosebtn) {
+            (modalClosebtn as any).click();
+          }
+        }
       },
       (error) => {
         alert('User can not add multiple reviews');
+        this.ratingForm.reset();
+
+        const modal = document.getElementById('ratingModal');
+        if (modal) {
+          const modalClosebtn = modal.querySelector('[data-bs-dismiss="modal"]');
+          if (modalClosebtn) {
+            (modalClosebtn as any).click();
+          }
+        }
 
       }
       );
     } else {
       console.error('Order Item ID not available');
       alert('User have to login first!');
-    }
-  }
+      this.ratingForm.reset();
 
-  get loggedIn(): any {
-    const accessToken = sessionStorage.getItem('access_token');
-    return !!accessToken;
+      const modal = document.getElementById('ratingModal');
+      if (modal) {
+        const modalClosebtn = modal.querySelector('[data-bs-dismiss="modal"]');
+        if (modalClosebtn) {
+          (modalClosebtn as any).click();
+        }
+      }
+    }
   }
 
 

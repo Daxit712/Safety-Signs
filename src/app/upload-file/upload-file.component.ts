@@ -19,7 +19,6 @@ export class UploadFileComponent  implements OnInit {
   upload($event: any) {
     this.path = $event.target.files[0];
     console.log('this.filename', this.path);
-
   }
 
   ngOnInit(): void {
@@ -39,6 +38,21 @@ export class UploadFileComponent  implements OnInit {
     this.authService.uploadDoc(title, this.path).subscribe((response: any) => {
       console.log('Upload success:', response);
       alert('Upload successfully');
+
+      const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+      if (fileInput) {
+        fileInput.value = '';
+      }
+
+      this.myUploadForm.reset();
+
+      const modal = document.getElementById('exampleModal');
+      if (modal) {
+        const modalClosebtn = modal.querySelector('[data-bs-dismiss="modal"]');
+        if (modalClosebtn) {
+          (modalClosebtn as any).click();
+        }
+      }
 
       this.authService.uploadDocList().subscribe((res: any) => {
         this.filesList = res.data;

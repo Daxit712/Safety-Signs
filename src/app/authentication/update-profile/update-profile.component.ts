@@ -40,9 +40,11 @@ export class UpdateProfileComponent implements OnInit {
       first_name: new FormControl(this.userData.first_name),
       last_name: new FormControl(this.userData.last_name),
       email: new FormControl(this.userData.email, [Validators.required, Validators.email]),
-      phone_no: new FormControl(this.userData.phone_no),
+      phone_no: new FormControl(this.userData.phone_no, [Validators.required, Validators.pattern(/^[+]{1}(?:[0-9\-\(\)\/\.]\s?){6, 15}[0-9]{1}$/)]),
       office_address: new FormControl(this.userData.office_address)
     });
+
+
   }
 
   onUpdate(): void {

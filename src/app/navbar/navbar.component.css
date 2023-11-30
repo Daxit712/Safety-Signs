@@ -35,6 +35,12 @@
   display: block;
 }
 
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
 
   /* Responsiveness:Start */
   @media screen and (max-width: 425px) {

@@ -34,6 +34,8 @@
         <button class="btn btn-outline-light me-3" type="submit">Search</button>
       </form> -->
 
+      <button *ngIf="!loggedIn" class="btn btn-outline-light loginbtn me-lg-4" routerLink="/register" type="submit">SignUp</button>
+
       <button *ngIf="!loggedIn" class="btn btn-outline-light loginbtn" routerLink="/login" type="submit">LogIn</button>
 
       <div *ngIf="loggedIn" class="dropdown ms-lg-4 mt-lg-0 mt-3 open">
