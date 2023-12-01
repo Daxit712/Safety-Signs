@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from '../services/product.service';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CartComponent implements OnInit{
 
-  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private productService: ProductService, private orderService: OrderService, private route: ActivatedRoute, private router: Router) {}
 
   cartList: any[] = [];
   cartList1: any;
@@ -35,7 +37,7 @@ export class CartComponent implements OnInit{
   }
 
   ProdcutFunction() {
-    this.authService.getCartList().subscribe(list => {
+    this.orderService.getCartList().subscribe(list => {
       this.cartList = list.data;
 
       this.totalPrice = this.cartList.filter((a: any) => a.total_price);
@@ -56,7 +58,7 @@ export class CartComponent implements OnInit{
       this.cartEmpty = this.cartList.length === 1;
 
       console.log('this.cartList', this.cartList);
-      console.log('this.totalPrice', this.totalPrice1);
+      console.log('this.totalPrice1', this.totalPrice1);
       console.log('this.productId', this.productId1);
     })
   }
@@ -67,7 +69,7 @@ export class CartComponent implements OnInit{
 
       const action = 'quantity';
       const updatedQuantity = this.quantity[item.id];
-      this.authService.removeProduct(item.id, action, updatedQuantity).subscribe((response: any) => {
+      this.productService.removeProduct(item.id, action, updatedQuantity).subscribe((response: any) => {
         alert('Quantity updated successfully!');
         this.ProdcutFunction();
       });
@@ -80,7 +82,7 @@ export class CartComponent implements OnInit{
 
       const action = 'quantity';
       const updatedQuantity = this.quantity[item.id];
-      this.authService.removeProduct(item.id, action, updatedQuantity).subscribe((response: any) => {
+      this.productService.removeProduct(item.id, action, updatedQuantity).subscribe((response: any) => {
         alert('Quantity updated successfully!');
         this.ProdcutFunction();
       });
@@ -88,7 +90,7 @@ export class CartComponent implements OnInit{
     else {
       const action = this.removed ? 'removed' : 'quantity';
 
-      this.authService.removeProduct(item.id, action).subscribe((a: any) => {
+      this.productService.removeProduct(item.id, action).subscribe((a: any) => {
         if (action === 'removed') {
           alert('Your item has been removed successfully!');
         } else if (action === 'quantity') {
@@ -110,7 +112,7 @@ export class CartComponent implements OnInit{
   removeProduct(productId: any) {
     const action = this.removed ? 'removed' : 'quantity';
 
-    this.authService.removeProduct(productId, action).subscribe((a: any) => {
+    this.productService.removeProduct(productId, action).subscribe((a: any) => {
       if (action === 'removed') {
         alert('Your item has been removed successfully!');
       } else if (action === 'quantity') {

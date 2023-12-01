@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-products-list',
@@ -26,10 +26,10 @@ export class ProductsListComponent implements OnInit {
 
   original: any[] = [];
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
-    this.authService.getProductList().subscribe(
+    this.productService.getProductList().subscribe(
       (data: any) => {
         this.productList = data.data;
         this.original = [...this.productList];

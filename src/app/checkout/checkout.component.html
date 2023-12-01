@@ -9,40 +9,101 @@
         <hr>
 
         <div>
-          <ng-container *ngFor="let item of cartList">
-            <div *ngIf="item?.variant_label" class="mb-4">
-              <div class="row mt-5 productdiv">
-                <div class="col-lg-4 col-md-4 imgdiv">
-                  <img [src]="item.variant_label?.product.product_image" alt="" class="w-100">
-                </div>
+          <!-- <ng-container *ngFor="let item of orderData">
+            <ng-container *ngFor="let item of item.variants">
+              <div *ngIf="item?.product" class="mb-4">
+                <div class="row mt-5 productdiv">
+                  <div class="col-lg-4 col-md-4 imgdiv">
+                    <img [src]="item.product.product_image" alt="" class="w-100">
+                  </div>
 
-                <div class="col-lg-8 col-md-8 ps-4 mt-4 mt-lg-0">
-                  <h3>{{ item.variant_label?.product.product_name }}</h3>
-                  <h5 class="mt-4"><b>₹{{ item.variant_label?.sell_price }}</b><span class="text-decoration-line-through ms-3">₹{{ item.variant_label?.MRP }}</span></h5>
-                  <hr class="w-50">
-                  <p>Quantity: <b>{{ item.quantity }}</b></p>
+                  <div class="col-lg-8 col-md-8 ps-4 mt-4 mt-lg-0">
+                    <h3>{{ item.product.product_name }}</h3>
+                    <h5 class="mt-4"><b>₹{{ item.sell_price }}</b><span class="text-decoration-line-through ms-3">₹{{ item.MRP }}</span></h5>
+                    <hr class="w-50">
+                  </div>
                 </div>
+              </div>
+            </ng-container>
+            <div *ngIf="item.quantities && item.ids">
+              <p *ngFor="let key of item.quantities | keyvalue">
+                Quantity: <b>{{ key.value }}</b>
+              </p>
+            </div>
+          </ng-container> -->
 
+          <div *ngIf="bookingData">
+            <ng-container *ngFor="let item of orderData">
+              <div *ngIf="item?.product" class="mb-4">
+                <div class="row mt-5 productdiv">
+                  <div class="col-lg-4 col-md-4 imgdiv">
+                    <img [src]="item.product.product_image" alt="" class="w-100">
+                  </div>
+
+                  <div class="col-lg-8 col-md-8 ps-4 mt-4 mt-lg-0">
+                    <h3>{{ item.product.product_name }}</h3>
+                    <h5 class="mt-4"><b>₹{{ item.sell_price }}</b><span class="text-decoration-line-through ms-3">₹{{ item.MRP }}</span></h5>
+                    <hr class="w-50">
+                    <div *ngFor="let item of quantity">
+                      <p>Quantity: <b>{{ item.quantity }}</b></p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </ng-container>
+
+            <hr>
+
+            <div class="mt-4">
+              <div class="row">
+                <div class="col-lg-6 col-6">
+                  <h3>Total Cost:</h3>
+                </div>
+                <div class="col-lg-6 col-6 text-end">
+                  <h3>₹{{prodcutTotalAmount}}</h3>
+                </div>
               </div>
             </div>
-          </ng-container>
+          </div>
 
-          <hr>
+          <div *ngIf="placeOrderData">
+            <ng-container *ngFor="let item of cartList">
+              <div *ngIf="item?.variant_label" class="mb-4">
+                <div class="row mt-5 productdiv">
+                  <div class="col-lg-4 col-md-4 imgdiv">
+                    <img [src]="item.variant_label?.product.product_image" alt="" class="w-100">
+                  </div>
 
-          <div class="mt-4">
-            <div class="row">
-              <div class="col-lg-6 col-6">
-                <h3>Total Cost:</h3>
+                  <div class="col-lg-8 col-md-8 ps-4 mt-4 mt-lg-0">
+                    <h3>{{ item.variant_label?.product.product_name }}</h3>
+                    <h5 class="mt-4"><b>₹{{ item.variant_label?.sell_price }}</b><span class="text-decoration-line-through ms-3">₹{{ item.variant_label?.MRP }}</span></h5>
+                    <hr class="w-50">
+                    <div>
+                      <p>Quantities: <b>{{ item?.quantity }}</b></p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-lg-6 col-6 text-end">
-                <h3>₹{{prodcutTotalAmount}}</h3>
+            </ng-container>
+
+            <hr>
+
+            <div class="mt-4">
+              <div class="row">
+                <div class="col-lg-6 col-6">
+                  <h3>Total Cost:</h3>
+                </div>
+                <div class="col-lg-6 col-6 text-end">
+                  <h3>₹{{totalPrice1}}</h3>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="text-end mt-5">
-          <button id="rzp-button1" (click)="payWithRazorpay()" class="paybtn p-2">
+          <button id="rzp-button1" (click)="payWithRazorpay()" class="paybtn p-2" [disabled]="paynow">
             Pay Now
           </button>
         </div>

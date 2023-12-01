@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-ordered-list',
@@ -8,14 +8,14 @@ import { AuthService } from '../auth.service';
 })
 export class OrderedListComponent implements OnInit {
 
-  constructor(private authService: AuthService) {}
+  constructor(private orderService: OrderService) {}
 
   orderedList: any;
 
   orderEmpty: any;
 
   ngOnInit(): void {
-    this.authService.orderdList().subscribe((list: any) => {
+    this.orderService.orderdList().subscribe((list: any) => {
       this.orderedList = list.data;
 
       this.orderEmpty = this.orderedList.length === 0;

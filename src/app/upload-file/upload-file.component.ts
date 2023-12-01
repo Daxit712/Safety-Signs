@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { DocService } from '../services/doc.service';
 
 @Component({
   selector: 'app-upload-file',
@@ -14,7 +14,7 @@ export class UploadFileComponent  implements OnInit {
 
   myUploadForm!: FormGroup;
 
-  constructor(private authService: AuthService) {}
+  constructor(private docService: DocService) {}
 
   upload($event: any) {
     this.path = $event.target.files[0];
@@ -26,7 +26,7 @@ export class UploadFileComponent  implements OnInit {
       title: new FormControl(''),
     });
 
-    this.authService.uploadDocList().subscribe((res: any) => {
+    this.docService.uploadDocList().subscribe((res: any) => {
       this.filesList = res.data;
       console.log(this.filesList);
     })
@@ -35,7 +35,7 @@ export class UploadFileComponent  implements OnInit {
   onDocSubmit() {
     const title = this.myUploadForm.get('title')?.value;
 
-    this.authService.uploadDoc(title, this.path).subscribe((response: any) => {
+    this.docService.uploadDoc(title, this.path).subscribe((response: any) => {
       console.log('Upload success:', response);
       alert('Upload successfully');
 
@@ -54,7 +54,7 @@ export class UploadFileComponent  implements OnInit {
         }
       }
 
-      this.authService.uploadDocList().subscribe((res: any) => {
+      this.docService.uploadDocList().subscribe((res: any) => {
         this.filesList = res.data;
         console.log(this.filesList);
       })

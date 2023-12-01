@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -35,7 +35,7 @@ export class RegistrationComponent implements OnInit {
   onSubmit() {
 
     if (this.myForm.invalid) {
-      alert('Please Enter Valid fields.');
+      alert('Please Enter Required fields.');
       return;
     }
 

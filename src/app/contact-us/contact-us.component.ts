@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ContactService } from '../services/contact.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ContactUsComponent implements OnInit {
 
-  constructor(private authService: AuthService) {}
+  constructor(private contactService: ContactService) {}
 
   myContactForm!: FormGroup;
 
@@ -36,7 +36,7 @@ export class ContactUsComponent implements OnInit {
       const phone = this.myContactForm.get('phone')?.value;
       const message = this.myContactForm.get('message')?.value;
 
-      this.authService.contactUs(name, email, subject, phone, message).subscribe((response: any) => {
+      this.contactService.contactUs(name, email, subject, phone, message).subscribe((response: any) => {
         console.log('Upload success:', response);
         alert('Email sent successfully');
 

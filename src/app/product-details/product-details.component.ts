@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ProductService } from '../services/product.service';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-product-details',
@@ -32,7 +34,7 @@ export class ProductDetailsComponent implements OnInit {
 
   allReviews: any
 
-  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
+  constructor(private authService: AuthService, private productService: ProductService, private orderService: OrderService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
   }
 
   bindingsForm!: FormGroup;
@@ -55,7 +57,7 @@ export class ProductDetailsComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.id = +params['id'];
-      this.authService.getProductDetail(this.id).subscribe(detail => {
+      this.productService.getProductDetail(this.id).subscribe(detail => {
         this.productDetail = detail.data;
         this.stocks = this.productDetail.variants[0];
         this.selectedVariant = this.productDetail.variants[0];
@@ -95,6 +97,7 @@ export class ProductDetailsComponent implements OnInit {
     this.bindingsForm = this.fb.group({
       id: ['10'],
       rating: [this.avgRating],
+      readOnly: [true],
     });
   }
 
@@ -148,7 +151,7 @@ export class ProductDetailsComponent implements OnInit {
     if (this.addedToCart) {
       this.router.navigate(['/cart', selectedVariantId]);
     } else {
-      this.authService.addToCart(selectedVariantId, this.data).subscribe(
+      this.orderService.addToCart(selectedVariantId, this.data).subscribe(
         (response) => {
           console.log(response.message);
           alert('Add to cart Successfully');
@@ -175,7 +178,7 @@ export class ProductDetailsComponent implements OnInit {
 
   goToCheckOut(productId: any) {
 
-    this.authService.addToCart(productId, this.data).subscribe(
+    this.orderService.addToCart(productId, this.data).subscribe(
       (response) => {
         console.log('response.message', response.message);
         alert('Add to cart Successfully');
@@ -200,7 +203,7 @@ export class ProductDetailsComponent implements OnInit {
   onOfferSubmit() {
     const amount = this.myOfferForm.get('amount')?.value;
 
-    this.authService.offer(this.selectedVariant.id, amount).subscribe((response: any) => {
+    this.productService.offer(this.selectedVariant.id, amount).subscribe((response: any) => {
       console.log('Offer:', response);
       alert('Offer Send Successful!');
 
@@ -232,11 +235,11 @@ export class ProductDetailsComponent implements OnInit {
       console.log('review', typeof(review));
       console.log('rating', typeof(rating));
 
-      this.authService.reviewRating(orderItemId, review, rating).subscribe((response: any) => {
+      this.productService.reviewRating(orderItemId, review, rating).subscribe((response: any) => {
         console.log('Add ratings:', response);
         alert('Add ratings Successful!');
 
-        this.authService.getProductDetail(this.id).subscribe(detail => {
+        this.productService.getProductDetail(this.id).subscribe(detail => {
           this.productDetail = detail.data;
           this.selectedVariant = this.productDetail.variants[0];
 

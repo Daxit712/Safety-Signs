@@ -33,7 +33,7 @@
 
           <div>
             <star-rating [showHalfStars]="true"
-                [rating]="bindingsForm.get('rating')?.value" class="d-inline-block">
+                [rating]="bindingsForm.get('rating')?.value" [readOnly]="bindingsForm.get('readOnly')?.value" class="d-inline-block">
               </star-rating>
           </div>
 
@@ -118,7 +118,7 @@
             </li>
             <li class="nav-item ms-4" role="presentation">
               <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-                type="button" role="tab" aria-controls="pills-contact" aria-selected="false">warranty</button>
+                type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Warranty</button>
             </li>
           </ul>
           <div class="tab-content mt-5" id="pills-tabContent">
@@ -142,7 +142,7 @@
 
             <div class="col-lg-2 col-md-4 col-4 mt-1">
               <star-rating [showHalfStars]="true"
-                [rating]="bindingsForm.get('rating')?.value">
+                [rating]="bindingsForm.get('rating')?.value" [readOnly]="bindingsForm.get('readOnly')?.value">
               </star-rating>
             </div>
 
