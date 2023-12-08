@@ -7,10 +7,22 @@ import { Component } from '@angular/core';
 })
 export class FaqComponent {
 
-  navopen = true;
+  tabopen1 = true;
+  tabopen2 = true;
+  tabopen3 = true;
 
-  open() {
-    this.navopen = !this.navopen
+  open(i: any) {
+    switch (i) {
+      case 1:
+        this.tabopen1 = !this.tabopen1;
+        break;
+      case 2:
+        this.tabopen2 = !this.tabopen2;
+        break;
+      case 3:
+        this.tabopen3 = !this.tabopen3;
+        break;
+    }
   }
 
 }

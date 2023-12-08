@@ -8,7 +8,7 @@ import { OrderService } from '../services/order.service';
 })
 export class OrderedListComponent implements OnInit {
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService) { }
 
   orderedList: any;
 
@@ -23,6 +23,18 @@ export class OrderedListComponent implements OnInit {
       this.orderedList.sort((a: any, b: any) => {
         const dateA = new Date(a.order_item[0]?.variant_label.created_at);
         const dateB = new Date(b.order_item[0]?.variant_label.created_at);
+
+        const isValidDateA = !isNaN(dateA.getTime());
+        const isValidDateB = !isNaN(dateB.getTime());
+
+        if (!isValidDateA && !isValidDateB) {
+          return 0;
+        } else if (!isValidDateA) {
+          return 1;
+        } else if (!isValidDateB) {
+          return -1;
+        }
+
         return dateB.getTime() - dateA.getTime();
       });
     });

@@ -1,29 +1,3 @@
-<!-- <div *ngIf="orderedList">
-  <div *ngFor="let order of orderedList">
-    <div class="card">
-      <p>{{ order.user.first_name }} {{ order.user.last_name }}</p>
-      <p class="card-text">{{ order.user.email }}</p>
-
-      <div class="card-body">
-
-        <ul>
-          <li *ngFor="let item of order.order_item">
-            <img [src]="item.variant_label.product.product_image">
-            <p>{{ item.variant_label.product.product_name }}</p>
-            <p>Quantity: {{ item.quantity }}</p>
-            <p>Sell Price: {{ item.variant_label.sell_price }}</p>
-            <p>MRP: {{ item.variant_label.MRP }}</p>
-            <p>Total: {{ item.total }}</p>
-          </li>
-        </ul>
-
-        <p>Total Order Price: {{ order.total }}</p>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
 <section>
   <div class="container">
     <div *ngIf="!orderEmpty">

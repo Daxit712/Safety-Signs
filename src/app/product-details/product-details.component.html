@@ -1,13 +1,3 @@
-<!-- <div class="container mt-5 mb-5">
-  <h2>Product Details</h2>
-  <ul>
-    <li>
-      {{ selectedDetail.text }}
-    </li>
-  </ul>
-</div> -->
-
-
 <section>
   <div class="container">
     <div class="row">
@@ -99,9 +89,8 @@
             <button class="p-2" [disabled]="selectedVariant?.stocks == 0" (click)="goToCheckOut(selectedVariant.id)"><i class="fas fa-bolt me-2"></i>BUY IT NOW</button>
           </div>
           <div class="mt-4 makebtn">
-            <!-- Button trigger modal -->
             <button type="button" [disabled]="selectedVariant?.stocks == 0" class="p-2" data-bs-toggle="modal" data-bs-target="#offerModal">
-              Make Your Offer
+              <i class="fas fa-tags me-1"></i> Make Your Offer
             </button>
           </div>
         </div>
