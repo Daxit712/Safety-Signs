@@ -56,10 +56,26 @@ export class NavbarComponent implements OnInit {
 
   // navopen = false;
 
+  isScrolled: boolean = false;
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    this.isScrolled = window.scrollY > 0;
+  }
+
   navopen = false;
 
   open() {
     this.navopen = !this.navopen
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleClick(event: Event) {
+    if (!(event.target as HTMLElement).closest('app-navbar')) {
+      if (this.navopen) {
+        this.navopen = false;
+      }
+    }
   }
 
   get loggedIn(): any {
@@ -74,6 +90,10 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.clearTokens();
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
 }

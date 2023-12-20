@@ -1,11 +1,19 @@
 <section>
   <div class="container">
-    <div class="row">
+    <div class="row mt-0 mt-md-0 mt-lg-4">
 
-      <div class="text-center mt-5" *ngIf="cartEmpty">
-        <h2 class="mt-5 mb-5">Your Cart Is Empty...!</h2>
-        <div class="mb-5">
+      <div class="text-center mt-5 mb-5" *ngIf="cartEmpty">
+        <div class="mt-5">
           <img src="assets/images/cart.png" alt="" class="cartImg">
+        </div>
+
+        <div class="mt-4">
+          <h4>Hey, it feels so light...!</h4>
+          <p>There is nothing in your bag, Let's add some items.</p>
+        </div>
+
+        <div class="mt-5">
+          <button class="btn-style-one" routerLink="/products">Shop Now</button>
         </div>
       </div>
 
@@ -19,7 +27,7 @@
 
               <div class="col-lg-4 col-md-5 col-5">
                 <p>{{ item.variant_label?.product.product_name }}</p>
-                <p><b>₹{{ item.variant_label?.sell_price }}</b><span class="text-decoration-line-through ms-3">₹{{ item.variant_label?.MRP }}</span></p>
+                <p><b>₹{{ item.variant_label?.sell_price }}</b> <span class="text-secondary ms-3">MRP</span><span class="text-decoration-line-through ms-1 text-secondary">₹{{ item.variant_label?.MRP }}</span></p>
                 <hr>
 
                 <div class="col-md-12 col-lg-12 col-12 mb-lg-4">
@@ -33,7 +41,7 @@
                     </div>
 
                     <div class="quantitydiv">
-                      <h5 id="counting" class="my-2">{{ quantity[item.id] }}</h5>
+                      <h5 id="counting" class="ms-1 mt-2 my-lg-2 my-md-2">{{ quantity[item.id] }}</h5>
                     </div>
 
                     <div>
@@ -80,26 +88,52 @@
                 <div *ngFor="let item of cartList;">
                   <p *ngIf="quantity[item?.id]">{{ item.variant_label?.product.product_name }} x<span>{{ quantity[item?.id] }}</span></p>
                 </div>
-                <p>Taxes</p>
-                <p>Delivery Charges</p>
-                <p>Subtotal</p>
-                <hr>
-                <h6>Total Cost</h6>
               </div>
-
               <div class="col-lg-6 col-md-4 col-6 text-end">
                 <div *ngFor="let item of cartList;">
                   <p>{{ item.total }}</p>
                 </div>
-                <p>00</p>
-                <p>00</p>
-                <p>₹{{ totalPrice1 }}</p>
-                <hr>
-                <div>
-                  <h6>₹{{ totalPrice1 }}</h6>
-                </div>
               </div>
             </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-8 col-6">
+                <p>Taxes</p>
+              </div>
+              <div class="col-lg-6 col-md-4 col-6 text-end">
+                <p>00</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-8 col-6">
+                <p>Delivery Charges</p>
+              </div>
+              <div class="col-lg-6 col-md-4 col-6 text-end">
+                <p>00</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-8 col-6">
+                <p>Subtotal</p>
+              </div>
+              <div class="col-lg-6 col-md-4 col-6 text-end">
+                <p>₹{{ totalPrice1 }}</p>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-8 col-6">
+                <h6>Total Cost</h6>
+              </div>
+              <div class="col-lg-6 col-md-4 col-6 text-end">
+                <h6>₹{{ totalPrice1 }}</h6>
+              </div>
+            </div>
+
             <div class="mt-4">
               <button class="btn-style-one w-100" (click)="redirectToCheckOut()">Place Order</button>
             </div>

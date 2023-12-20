@@ -5,7 +5,7 @@
 
         <!-- carousel in test file -->
 
-        <div>
+        <div class="largeImagediv">
           <img id="largeImage" [src]="selectedVariant?.product?.product_image" alt="" class="largimg" loading="lazy">
         </div>
         <!-- <div class="carousel-container carouselContainer ms-auto me-auto ms-lg-auto me-lg-auto" (mouseover)="handleMouseover($event)">
@@ -18,8 +18,8 @@
       </div>
 
       <div class="col-lg-6 col-md-7 col-12 ms-lg-5 ps-lg-0 pe-lg-0 ps-4 pe-4 mt-4 mt-lg-0 mt-md-0" *ngIf="selectedVariant">
-        <h2>{{ productDetail?.product_name }}</h2>
-        <div class="mt-lg-3 d-inline-flex">
+        <h3>{{ productDetail?.product_name }}</h3>
+        <div class="mt-lg-3 d-inline-flex flex-wrap">
 
           <div>
             <star-rating [showHalfStars]="true"
@@ -38,13 +38,14 @@
           </div>
 
           <div>
-            <span class="ms-3 text-success">In Stock</span>
+            <span class="ms-2">In Stock</span>
           </div>
         </div>
-        <div class="mt-3">
-          <h5 class="d-inline-block"><b>₹{{ selectedVariant.sell_price }}</b></h5> <span
-            class="text-decoration-line-through text-secondary ms-3">₹{{ selectedVariant.MRP }}</span> <span
-            class="text-success ms-2"><b>{{ selectedVariant.discount }}%</b></span>
+
+        <div class="mt-3" [class.text-decoration-line-through]="selectedVariant?.stocks == 0">
+          <h5 class="d-inline-block" [class.text-decoration-line-through]="selectedVariant?.stocks == 0"><b>₹{{ selectedVariant.sell_price }}</b></h5> <span class="text-secondary ms-3">MRP</span><span
+            class="text-decoration-line-through text-secondary ms-1">₹{{ selectedVariant.MRP }}</span> <span
+            class="text-success ms-2"><b>({{ selectedVariant.discount }}% OFF)</b></span>
         </div>
         <div class="mt-3" *ngIf="productDetail?.attributes.size">
           <p><b>Size: </b>{{ productDetail?.attributes.size?.join(', ') }}</p>
@@ -64,22 +65,29 @@
 
         <hr>
 
-        <div class="col-md-4 col-6 mb-4" *ngIf="selectedVariant?.stocks !== 0">
-          <label class="mb-2 d-block">Quantity</label>
-          <div class="input-group mb-3" style="width: 170px;">
-            <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1"
-              data-mdb-ripple-color="dark" (click)="decrement()">
-              <i class="fas fa-minus"></i>
-            </button>
-            <h5 id="counting" class="d-inline-block mx-3 my-2">{{data}}</h5>
-            <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2"
-              data-mdb-ripple-color="dark" (click)="increment()">
-              <i class="fas fa-plus"></i>
-            </button>
+        <div class="col-md-4 col-12 col-lg-12 mb-4" *ngIf="selectedVariant?.stocks !== 0">
+          <div class="row">
+            <div class="col-lg-2 col-3 mt-2">
+              <label>Quantity: </label>
+            </div>
+
+            <div class="col-lg-10 col-9">
+              <div class="input-group mb-3">
+                <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1"
+                  data-mdb-ripple-color="dark" (click)="decrement()">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <h5 id="counting" class="d-inline-block mx-3 my-2">{{data}}</h5>
+                <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2"
+                  data-mdb-ripple-color="dark" (click)="increment()">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="mt-lg-5 cartbuybtn">
+        <div class="mt-lg-4 cartbuybtn">
           <div class="cartbtn">
             <button class="p-2" [disabled]="selectedVariant?.stocks == 0" (click)="goToCartPage(selectedVariant?.id)">
               <i class="fas fa-shopping-cart me-2"></i>{{ addedToCart ? 'GO TO CART' : 'ADD TO CART' }}
@@ -123,7 +131,7 @@
           </div>
         </div>
 
-        <div class="mt-5 border maintabdiv p-4">
+        <div class="mt-5 border maintabdiv p-3 p-lg-4 p-md-4">
           <div class="row">
             <div class="col-lg-6 col-md-12 col-12">
               <h3>Ratings & Reviews</h3>
@@ -147,7 +155,7 @@
           <div class="mt-4 tabdiv pt-3 pb-3">
             <ng-container *ngFor="let review of productDetail?.variants">
               <ng-container *ngFor="let review of review?.rating_and_review">
-                <div *ngIf="review.review && review.ratting" class="ratinginerdiv p-4 mt-4">
+                <div *ngIf="review.review && review.ratting" class="ratinginerdiv p-3 p-md-4 p-lg-4 mt-4">
                   <div>
                     <h6><i class="fas fa-user-circle me-2"></i> {{ review.first_name }} {{ review.last_name }}:</h6>
                   </div>

@@ -143,37 +143,41 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     };
 
     options.handler = (response: any, error: any) => {
-    options.response = response;
-    console.log('response', response);
+      options.response = response;
+      console.log('response', response);
 
-    if (error) {
-      this.router.navigate(['/']);
-    } else {
-      this.orderService
-        .verifyPaymentSignature(response)
-        .subscribe((response: any) => {
-          this.rezorpayRespone = response.data;
-          console.log('response.data', this.rezorpayRespone);
-        });
+      if (error) {
+        this.router.navigate(['/']);
+      } else {
+        this.orderService
+          .verifyPaymentSignature(response)
+          .subscribe((response: any) => {
+            this.rezorpayRespone = response.data;
+            console.log('response.data', this.rezorpayRespone);
+          });
 
-      this.orderService.createOrder(this.orderItemIds, this.totalAmount).subscribe((data: any) => {
-        console.log(data);
-        alert('Order created Successfully');
-        this.router.navigate(['/ordereds'])
-      })
-    }
-  };
+        this.orderService.createOrder(this.orderItemIds, this.totalAmount).subscribe((data: any) => {
+          console.log(data);
+          alert('Order created Successfully');
+          this.router.navigate(['/ordereds'])
+        })
+      }
+    };
 
     options.modal.ondismiss = () => {
-    alert('cancelled')
-    this.router.navigate(['/checkout'])
+      this.router.navigate(['/checkout'])
+    }
+
+    const rzp = new this.orderService.nativeWindow.Razorpay(options);
+    rzp.open()
   }
 
-  const rzp = new this.orderService.nativeWindow.Razorpay(options);
-    rzp.open()
-}
+  ngOnDestroy(): void {
+    localStorage.clear();
+  }
 
-ngOnDestroy(): void {
-  localStorage.clear();
-}
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
 }

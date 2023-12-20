@@ -48,9 +48,9 @@
       <div class="col-lg-3 col-6 col-md-4 p-lg-3 p-md-3 mb-3 productdiv" *ngFor="let product of productList">
         <div class="card" (click)="goToProductDetails(product.id)">
           <img [src]="product?.product_image" class="card-img-top bg-light" alt="product.product_image">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.product_name }}</h5>
-            <p class="mt-4"><b>₹{{ product.sell_price }}</b> <span class="ms-md-3 ms-2 text-secondary text-decoration-line-through">₹{{ product.mrp_price }}</span> <span class="ms-lg-3 ms-md-3 ms-2 text-success">{{ product.discount }}%</span></p>
+          <div class="card-body mt-1">
+            <p class="card-title">{{ product.product_name }}</p>
+            <p><b>₹{{ product.sell_price }}</b> <span class="ms-md-3 ms-lg-2 ms-2 text-secondary text-decoration-line-through mrp-discount">₹{{ product.mrp_price }}</span> <span class="ms-lg-2 ms-md-3 ms-2 text-success mrp-discount">({{ product.discount }}% OFF)</span></p>
             <div class="info2"></div>
             <div class="info2-1"></div>
           </div>

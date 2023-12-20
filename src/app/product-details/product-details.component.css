@@ -13,13 +13,13 @@ section {
 }
 
 .cartbuybtn div button {
-  border: 2px solid #00005a;
+  border: 2px solid #0077b6;
   background-color: white;
   transition: 0.3s;
 }
 
 .cartbuybtn div button:not(:disabled):hover {
-  background-color: #00005a;
+  background-color: #0077b6;
   color: white;
 }
 
@@ -29,7 +29,7 @@ section {
 }
 
 .offerbtn:not(:disabled):hover {
-  background-color: #00005a;
+  background-color: #0077b6;
   color: white;
 }
 
@@ -39,23 +39,23 @@ section {
 }
 
 .variantbtn {
-  border: 1px solid #00005a;
+  border: 1px solid #0077b6;
   background-color: white;
   transition: 0.3s;
 }
 
 .variantbtn:hover {
-  background-color: #00005a;
+  background-color: #0077b6;
   color: white;
 }
 
 .selected {
-  background-color: #00005a;
+  background-color: #0077b6;
   color: white;
 }
 
 .offerbtn {
-  border: 2px solid #00005a;
+  border: 2px solid #0077b6;
   background-color: white;
   transition: 0.3s;
   width: 50%;
@@ -69,7 +69,7 @@ section {
 }
 
 .nav-link.active {
-  background-color: #00005a;
+  background-color: #0077b6;
 }
 
 .tabdiv {
@@ -98,8 +98,19 @@ section {
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid lightgray;
+  transition: 0.3s all ease-in-out;
 
   filter: drop-shadow(5px 5px 10px #d4d2d2);
+}
+
+.largeImagediv {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 1px 1px 10px 1px #c1bebe;
+}
+
+.largeImagediv:hover .largimg {
+  transform: scale(1.1);
 }
 
 .carouselimg {
@@ -129,8 +140,13 @@ section {
   height: inherit !important;
 }
 
+.cartbtn{
+  display: inline-block;
+  width: 38.5%;
+}
+
 .cartbtn button{
-  width: 75%;
+  width: 95%;
 }
 
 .makebtn button{
@@ -193,6 +209,16 @@ section {
 
     .makebtn button{
       width: 100%;
+    }
+
+    .offerbtn {
+      width: 100% !important;
+    }
+
+    .starbox {
+      padding: 3px 12px;
+      border-radius: 50px;
+      font-size: 12px;
     }
   }
 

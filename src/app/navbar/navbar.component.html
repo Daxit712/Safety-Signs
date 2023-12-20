@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark navbg p-3">
+<nav class="navbar navbar-expand-lg navbar-dark navbg p-2 p-lg-3 p-md-3 ps-4 pe-4" [class.rounded]="isScrolled">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Safety Signs</a>
     <button class="navbar-toggler" (click)="open()" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,30 +34,30 @@
         <button class="btn btn-outline-light me-3" type="submit">Search</button>
       </form> -->
 
-      <button *ngIf="!loggedIn" class="btn btn-outline-light loginbtn me-lg-4" routerLink="/register" type="submit">SignUp</button>
+      <button *ngIf="!loggedIn" class="btn btn-outline-light loginbtn me-4" routerLink="/register" type="submit">SignUp</button>
 
-      <button *ngIf="!loggedIn" class="btn btn-outline-light loginbtn" routerLink="/login" type="submit">LogIn</button>
+      <button *ngIf="!loggedIn" class="btn btn-outline-light loginbtn" routerLink="/login" type="submit"><i class="fas fa-sign-in-alt"></i> LogIn</button>
 
-      <div *ngIf="loggedIn" class="dropdown ms-lg-4 mt-lg-0 mt-3 open">
+      <div *ngIf="loggedIn" class="dropdown ms-lg-4 mt-lg-0 mt-2 mt-md-3 open">
         <button class="btn text-white dropdown-toggle mt-lg-0 mt-1 border" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fas fa-user-circle me-2"></i><span class="text-white" *ngIf="loggedIn">{{user?.first_name}} {{user?.last_name}}</span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li>
-            <button *ngIf="update" class="btn btn-outline-light text-dark text-start w-100" routerLink="profile/update" type="submit">Update Profile</button>
+            <button *ngIf="update" class="btn btn-outline-light text-dark text-start w-100" routerLink="profile/update" type="submit"><i class="fas fa-user"></i> Update Profile</button>
           </li>
           <li>
-            <button *ngIf="update" class="btn btn-outline-light text-dark text-start w-100" routerLink="/change-password" type="submit">Change Password</button>
+            <button *ngIf="update" class="btn btn-outline-light text-dark text-start w-100" routerLink="/change-password" type="submit"><i class="fas fa-key"></i> Change Password</button>
           </li>
           <li>
-            <button class="btn btn-outline-light text-dark text-start w-100" routerLink="/upload" type="submit">Upload File</button>
+            <button class="btn btn-outline-light text-dark text-start w-100" routerLink="/upload" type="submit"><i class="fas fa-upload"></i> Upload File</button>
           </li>
           <li>
-            <button class="btn btn-outline-light text-dark text-start w-100" routerLink="/ordereds" type="submit">Your Order</button>
+            <button class="btn btn-outline-light text-dark text-start w-100" routerLink="/ordereds" type="submit"><i class="fas fa-list"></i> Your Order</button>
           </li>
           <li><hr class="dropdown-divider"></li>
           <li>
-            <button class="btn btn-outline-light text-dark text-start w-100" routerLink="/" type="submit" (click)="logout()">Log Out</button>
+            <button class="btn btn-outline-light text-dark text-start w-100" routerLink="/" type="submit" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Log Out</button>
           </li>
         </ul>
         <a class="ms-3 ms-lg-0" routerLink="/cart"><i class="fas fa-shopping-cart ms-lg-3 text-white p-2"></i></a>

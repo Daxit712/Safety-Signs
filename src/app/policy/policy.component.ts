@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class PolicyComponent {
 
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
 }

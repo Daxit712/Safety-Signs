@@ -48,14 +48,14 @@
 	}
 	100%{
 		width: 100%;
-		background-color: #00005a;
+		background-color: #0077b6;
 	}
 }
 @keyframes card1
 {
 	0% {
 		width: 100%;
-    background-color: #00005a;
+    background-color: #0077b6;
 	}
 	100%{
     width: 0%;
@@ -68,11 +68,11 @@
 }
 
 .nav-item button {
-  color: #00005a;
+  color: #0077b6;
 }
 
 .nav-link.active {
-  border-top: 3px solid #00005a !important;
+  border-top: 3px solid #0077b6 !important;
 }
 
 .sortbytxtoutul {
@@ -83,7 +83,16 @@
 }
 
 .card-img-top {
-  height: 30vh;
+  height: 240px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.mrp-discount {
+  font-size: 0.85rem;
 }
 
 
@@ -91,6 +100,10 @@
   @media screen and (max-width: 430px) {
     .card {
       width: 100% !important;
+    }
+
+    .card-img-top {
+      height: 27vh;
     }
 
     .sortbytxtinul {

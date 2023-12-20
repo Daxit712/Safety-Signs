@@ -1,7 +1,8 @@
 .footerbg {
-  background-color: #00005a;
+  background-color: #0077b6;
   /* background-color: #32327A; */
   color: white;
+  position: relative;
 }
 
 .footerdiv {
@@ -11,6 +12,24 @@
 
 .footercontent {
   width: 75%;
+}
+
+.footerlogoimg {
+  height: 55px;
+  width: 55px;
+}
+
+.shape {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  background: white;
+  border: 1px solid white;
+  transform: rotate(45deg);
+  top: -25px;
+  left: 50%;
+  border-right: none;
+  border-bottom: none;
 }
 
 
@@ -26,6 +45,10 @@
 
   .footercontent {
     width: 100%;
+  }
+
+  .shape {
+    left: 45%;
   }
 }
 

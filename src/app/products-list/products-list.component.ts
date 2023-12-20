@@ -103,6 +103,8 @@ export class ProductsListComponent implements OnInit {
     this.router.navigate(['product/details', productId]);
   }
 
-
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
 }

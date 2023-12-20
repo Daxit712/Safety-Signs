@@ -89,4 +89,8 @@ export class ChangePasswordComponent implements OnInit {
       this.confirmMessage = 'New and confirm passwords do not match.*';
     }
   }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

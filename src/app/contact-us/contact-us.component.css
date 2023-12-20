@@ -9,8 +9,8 @@
   padding-bottom: 4%;
 }
 
-.leftdivin, .rightdiv{
-  border-radius: 7px;
+.leftdivout, .rightdiv{
+  border-radius: 10px !important;
 }
 
 .leftdivin{
@@ -34,13 +34,13 @@
   font-weight: 600;
   overflow: hidden;
   letter-spacing: 0.02em;
-  border: 2px solid #001e57;
+  border: 2px solid #0077b6;
   background-color: white;
   transition: 0.3s;
 }
 
 .btn-style-one:hover{
-  background-color: #001e57;
+  background-color: #0077b6;
   color: #ffffff;
   transition: 0.3s;
 }
@@ -63,8 +63,8 @@
 /* Responsiveness:Start */
 @media screen and (max-width: 430px) {
   .container1 {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 10% !important;
+    margin-right: 10% !important;
     padding-top: 10%;
     padding-bottom: 15%;
   }

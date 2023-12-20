@@ -145,4 +145,8 @@ export class CartComponent implements OnInit{
     this.router.navigate(['checkout']);
   }
 
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
 }

@@ -1,6 +1,17 @@
 .navbg {
-  background-color: #00005a;
+  background-color: #0077b6;
+  /* background-color: #0160C9; */
+  /* background-color: #00005a; */
   /* background-color: #32327A; */
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  transition: border-radius 0.1s ease-in-out;
+}
+
+.rounded {
+  border-bottom-left-radius: 40px !important;
+  border-bottom-right-radius: 40px !important;
 }
 
 .fa-shopping-cart {
@@ -17,7 +28,6 @@
   background: white;
   color: #00005a;
 }
-
 
 .dropdown {
   position: relative;
@@ -36,17 +46,20 @@
   display: block;
 }
 
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 99;
+.navbar-toggler-icon {
+  height: 22px;
+  width: 22px;
 }
 
 
   /* Responsiveness:Start */
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 430px) {
     .loginbtn {
       margin-top: 5%;
+    }
+
+    .rounded {
+      border-radius: 0px !important;
     }
   }
   /* Responsiveness:End */

@@ -69,7 +69,7 @@ img {
   display: block;
   font-size: 18px;
   line-height: 24px;
-  color: #001e57;
+  color: #0077b6;
   font-weight: 500;
   margin-bottom: 15px;
 }
@@ -134,7 +134,7 @@ img {
   display: block;
   font-size: 18px;
   padding: 0px;
-  color: #001e57;
+  color: #0077b6;
   font-weight: 600;
   -moz-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -153,16 +153,15 @@ img {
   position: relative;
   display: inline-block;
   font-size: 17px;
-  line-height: 30px;
-  padding: 10px 30px;
+  line-height: 25px;
   font-weight: 600;
   overflow: hidden;
   letter-spacing: 0.02em;
-  border: 2px solid #001e57;
+  border: 2px solid #0077b6;
 }
 
 .btn-style-one:hover {
-  background-color: #001e57;
+  background-color: #0077b6;
   color: #ffffff;
 }
 
