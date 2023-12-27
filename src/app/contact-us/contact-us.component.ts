@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../services/contact.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contact-us',
@@ -9,7 +10,7 @@ import { ContactService } from '../services/contact.service';
 })
 export class ContactUsComponent implements OnInit {
 
-  constructor(private contactService: ContactService) {}
+  constructor(private contactService: ContactService, private toastr: ToastrService) {}
 
   myContactForm!: FormGroup;
 
@@ -26,7 +27,7 @@ export class ContactUsComponent implements OnInit {
   onContactSubmit() {
 
     if (this.myContactForm.invalid) {
-      alert('Please Enter Valid fields.');
+      this.toastr.warning('Please Enter Valid fields.');
       return;
     }
     else {
@@ -38,7 +39,7 @@ export class ContactUsComponent implements OnInit {
 
       this.contactService.contactUs(name, email, subject, phone, message).subscribe((response: any) => {
         console.log('Upload success:', response);
-        alert('Email sent successfully');
+        this.toastr.success('Email sent successfully');
 
         this.myContactForm.reset();
       });

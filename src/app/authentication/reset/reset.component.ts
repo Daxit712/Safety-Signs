@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reset',
@@ -20,7 +21,7 @@ export class ResetComponent implements OnInit {
   uidb64;
   token;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router) {
+  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService) {
     this.uidb64 = this.route.snapshot.queryParams['uidb64'];
     this.token = this.route.snapshot.queryParams['token'];
 
@@ -52,21 +53,21 @@ export class ResetComponent implements OnInit {
         this.authService.resetPassword(this.uidb64, this.token, password, confirmPassword).subscribe(
           (response) => {
             this.confirmMessage = response.message;
-            alert('Password reset successfully')
+            this.toastr.success('Password reset successfully');
             this.router.navigate(['login']);
           },
           (error) => {
             this.confirmMessage = 'Something went wrong';
-            alert('Something went wrong');
+            this.toastr.error('Something went wrong!');
           }
         );
       } else {
         this.confirmMessage = 'Passwords do not match';
-        alert('Passwords do not match');
+        this.toastr.error('Passwords do not match');
       }
     } else {
       this.confirmMessage = 'Please enter proper credentials';
-      alert('Please enter proper credentials');
+      this.toastr.warning('Please enter proper credentials');
     }
   }
 

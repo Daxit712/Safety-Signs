@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DocService } from '../services/doc.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-upload-file',
@@ -14,7 +15,7 @@ export class UploadFileComponent  implements OnInit {
 
   myUploadForm!: FormGroup;
 
-  constructor(private docService: DocService) {}
+  constructor(private docService: DocService, private toastr: ToastrService) {}
 
   upload($event: any) {
     this.path = $event.target.files[0];
@@ -37,7 +38,7 @@ export class UploadFileComponent  implements OnInit {
 
     this.docService.uploadDoc(title, this.path).subscribe((response: any) => {
       console.log('Upload success:', response);
-      alert('Upload successfully');
+      this.toastr.success('Upload successfully');
 
       const fileInput = document.getElementById('fileInput') as HTMLInputElement;
       if (fileInput) {
@@ -60,7 +61,7 @@ export class UploadFileComponent  implements OnInit {
       })
     },
     (error) => {
-      alert('Somethig went wrong!');
+      this.toastr.error('Somethig went wrong!');
     }
     );
   }

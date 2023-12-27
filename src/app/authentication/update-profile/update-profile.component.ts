@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-profile',
@@ -17,7 +18,7 @@ export class UpdateProfileComponent implements OnInit {
     office_address: ''
   };
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
@@ -56,27 +57,27 @@ export class UpdateProfileComponent implements OnInit {
     const address = this.myUpdateForm.get('office_address')?.value;
 
     if (!firstname) {
-      alert('Please enter first name.');
+      this.toastr.warning('Please enter first name.');
       return;
     }
 
     if (!lastname) {
-      alert('Please enter last name.');
+      this.toastr.warning('Please enter last name.');
       return;
     }
 
     if (!email) {
-      alert('Please enter email.');
+      this.toastr.warning('Please enter email.');
       return;
     }
 
     if (!phone) {
-      alert('Please enter phone number.');
+      this.toastr.warning('Please enter phone number.');
       return;
     }
 
     if (!address) {
-      alert('Please enter office address.');
+      this.toastr.warning('Please enter office address.');
       return;
     }
 
@@ -86,11 +87,11 @@ export class UpdateProfileComponent implements OnInit {
         (response) => {
           console.log('User updated successfully:', response);
           this.authService.userDataSubject.next(response);
-          alert('User Details Updated Successful');
+          this.toastr.success('User Details Updated Successful');
         },
         (error) => {
           console.error('User update error:', error);
-          alert('Please enter proper details!');
+          this.toastr.error('Please enter proper details!');
         }
       );
     }

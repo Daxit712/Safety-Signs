@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { OrderService } from '../services/order.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,7 @@ import { OrderService } from '../services/order.service';
 })
 export class CartComponent implements OnInit{
 
-  constructor(private productService: ProductService, private orderService: OrderService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private productService: ProductService, private orderService: OrderService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService) {}
 
   cartList: any[] = [];
   cartList1: any;
@@ -70,7 +71,7 @@ export class CartComponent implements OnInit{
       const action = 'quantity';
       const updatedQuantity = this.quantity[item.id];
       this.productService.removeProduct(item.id, action, updatedQuantity).subscribe((response: any) => {
-        alert('Quantity updated successfully!');
+        this.toastr.success('Quantity updated successfully!');
         this.ProdcutFunction();
       });
     }
@@ -83,7 +84,7 @@ export class CartComponent implements OnInit{
       const action = 'quantity';
       const updatedQuantity = this.quantity[item.id];
       this.productService.removeProduct(item.id, action, updatedQuantity).subscribe((response: any) => {
-        alert('Quantity updated successfully!');
+        this.toastr.success('Quantity updated successfully!');
         this.ProdcutFunction();
       });
     }
@@ -92,9 +93,9 @@ export class CartComponent implements OnInit{
 
       this.productService.removeProduct(item.id, action).subscribe((a: any) => {
         if (action === 'removed') {
-          alert('Your item has been removed successfully!');
+          this.toastr.success('Your item has been removed successfully!');
         } else if (action === 'quantity') {
-          alert('Quantity updated successfully!');
+          this.toastr.success('Quantity updated successfully!');
         }
 
         this.ProdcutFunction();
@@ -114,9 +115,9 @@ export class CartComponent implements OnInit{
 
     this.productService.removeProduct(productId, action).subscribe((a: any) => {
       if (action === 'removed') {
-        alert('Your item has been removed successfully!');
+        this.toastr.success('Your item has been removed successfully!');
       } else if (action === 'quantity') {
-        alert('Quantity updated successfully!');
+        this.toastr.success('Quantity updated successfully!');
       }
 
       this.ProdcutFunction();

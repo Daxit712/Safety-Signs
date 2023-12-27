@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   myLoginForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
   pass() {
     this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
@@ -35,12 +36,12 @@ export class LoginComponent implements OnInit {
   onLogin() {
 
     if(this.email == '') {
-      alert('Please enter email');
+      this.toastr.warning('Please enter email');
       return;
     }
 
     if(this.password == '') {
-      alert('Please enter password');
+      this.toastr.warning('Please enter password');
       return;
     }
 
@@ -51,14 +52,14 @@ export class LoginComponent implements OnInit {
         this.authService.login(email, password).subscribe(
           (response: any) => {
             if (response) {
-              alert('Login Successful');
+              this.toastr.info('Login Successfully');
 
               this.router.navigate(['/products']);
             }
           },
           (error: any) => {
             console.log('Login error:', error);
-            alert('Please enter proper email or password!')
+            this.toastr.error('Please enter proper email or password!');
           }
 
         );
@@ -66,7 +67,7 @@ export class LoginComponent implements OnInit {
         this.authService.login
     }
     else {
-      alert('Please enter proper email and password!')
+      this.toastr.error('Please enter proper email or password!');
     }
   }
 

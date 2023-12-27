@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ProductService } from '../services/product.service';
 import { OrderService } from '../services/order.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -34,7 +35,7 @@ export class ProductDetailsComponent implements OnInit {
 
   allReviews: any
 
-  constructor(private authService: AuthService, private productService: ProductService, private orderService: OrderService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
+  constructor(private authService: AuthService, private productService: ProductService, private orderService: OrderService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private toastr: ToastrService) {
   }
 
   bindingsForm!: FormGroup;
@@ -154,7 +155,7 @@ export class ProductDetailsComponent implements OnInit {
       this.orderService.addToCart(selectedVariantId, this.data).subscribe(
         (response) => {
           console.log(response.message);
-          alert('Add to cart Successfully');
+          this.createToast('success', 'Add to cart Successfully');
           this.addedToCart = true;
           setTimeout(() => {
             this.addedToCart = false;
@@ -181,7 +182,7 @@ export class ProductDetailsComponent implements OnInit {
     this.orderService.addToCart(productId, this.data).subscribe(
       (response) => {
         console.log('response.message', response.message);
-        alert('Add to cart Successfully');
+        this.createToast('success', 'Add to cart Successfully');
         this.addedToCart = true;
         const bookNow: any = {
           quantity: this.data,
@@ -205,7 +206,7 @@ export class ProductDetailsComponent implements OnInit {
 
     this.productService.offer(this.selectedVariant.id, amount).subscribe((response: any) => {
       console.log('Offer:', response);
-      alert('Offer Send Successful!');
+      this.createToast('success', 'Offer Send Successful!');
 
       this.myOfferForm.reset();
 
@@ -237,7 +238,7 @@ export class ProductDetailsComponent implements OnInit {
 
       this.productService.reviewRating(orderItemId, review, rating).subscribe((response: any) => {
         console.log('Add ratings:', response);
-        alert('Add ratings Successful!');
+        this.createToast('success', 'Add ratings Successful!');
 
         this.productService.getProductDetail(this.id).subscribe(detail => {
           this.productDetail = detail.data;
@@ -257,7 +258,7 @@ export class ProductDetailsComponent implements OnInit {
         }
       },
       (error) => {
-        alert('User can not add multiple reviews');
+        this.createToast('warning', 'User can not add multiple reviews');
         this.ratingForm.reset();
 
         const modal = document.getElementById('ratingModal');
@@ -272,7 +273,7 @@ export class ProductDetailsComponent implements OnInit {
       );
     } else {
       console.error('Order Item ID not available');
-      alert('User have to login first!');
+      this.createToast('warning', 'User have to login first!');
       this.ratingForm.reset();
 
       const modal = document.getElementById('ratingModal');
@@ -282,6 +283,23 @@ export class ProductDetailsComponent implements OnInit {
           (modalClosebtn as any).click();
         }
       }
+    }
+  }
+
+  createToast(key: string, message: string) {
+    switch (key) {
+      case 'success':
+        this.toastr.success(message);
+        break;
+      case 'warning':
+        this.toastr.warning(message);
+        break;
+      case 'error':
+        this.toastr.error(message);
+        break;
+
+      default:
+        break;
     }
   }
 

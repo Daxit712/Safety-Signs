@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-checkout',
@@ -10,7 +11,7 @@ import { OrderService } from '../services/order.service';
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
 
-  constructor(private authService: AuthService, private orderService: OrderService, private route: ActivatedRoute, private router: Router) {
+  constructor(private authService: AuthService, private orderService: OrderService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService) {
   }
 
   id: any;
@@ -92,7 +93,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       },
         (error: any) => {
           console.log('order error:', error);
-          alert(error.error.data.product_name + ' product is out of stock!');
+          this.toastr.error(error.error.data.product_name + ' product is out of stock!');
         }
       );
 
@@ -116,7 +117,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         console.log('this.cartList', this.cartList);
         console.log('this.cartProductIds1', this.cartProductIds1);
 
-
       })
     }
   }
@@ -129,7 +129,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     },
       (error: any) => {
         console.log('order error:', error);
-        alert(error.error.data.product_name + ' product is out of stock!');
+        this.toastr.error(error.error.data.product_name + ' product is out of stock!');
         this.paynow = true
       }
     );
@@ -158,7 +158,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
         this.orderService.createOrder(this.orderItemIds, this.totalAmount).subscribe((data: any) => {
           console.log(data);
-          alert('Order created Successfully');
+          this.toastr.success('Order created Successfully!');
           this.router.navigate(['/ordereds'])
         })
       }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-change-password',
@@ -19,7 +20,7 @@ export class ChangePasswordComponent implements OnInit {
   newpassword: any = '';
   confirmpassword: any = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private toastr: ToastrService) {}
 
   oldpass() {
     this.oldpasswordFieldType = this.oldpasswordFieldType === 'password' ? 'text' : 'password';
@@ -46,17 +47,17 @@ export class ChangePasswordComponent implements OnInit {
   onChangeSubmit() {
 
     if(this.newpassword == '') {
-      alert('Please enter password');
+      this.toastr.warning('Please enter password');
       return;
     }
 
     if(this.oldpassword == '') {
-      alert('Please enter old password');
+      this.toastr.warning('Please enter old password');
       return;
     }
 
     if(this.confirmpassword == '') {
-      alert('Please enter confirm password');
+      this.toastr.warning('Please enter confirm password');
       return;
     }
 
@@ -70,7 +71,7 @@ export class ChangePasswordComponent implements OnInit {
         this.authService.changePassword(oldPassword, newPassword, confirmPassword).subscribe(
           (response) => {
             console.log(response.message);
-            alert('Password Change Successfully');
+            this.toastr.success('Password Change Successfully');
 
             this.confirmMessage = '';
             this.myChangeForm.reset();
@@ -78,7 +79,7 @@ export class ChangePasswordComponent implements OnInit {
           },
           (error) => {
             console.log(error);
-            alert('Something went wrong');
+            this.toastr.error('Something went wrong!');
 
           }
         );

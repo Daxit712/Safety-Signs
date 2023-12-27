@@ -38,6 +38,9 @@ import { StarRatingModule } from 'angular-star-rating';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderedListComponent } from './ordered-list/ordered-list.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +78,9 @@ import { OrderedListComponent } from './ordered-list/ordered-list.component';
     FormsModule,
     ReactiveFormsModule,
     SlickCarouselModule,
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

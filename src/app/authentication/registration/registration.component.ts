@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -15,7 +16,7 @@ export class RegistrationComponent implements OnInit {
 
   myForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
   pass() {
     this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
@@ -35,7 +36,7 @@ export class RegistrationComponent implements OnInit {
   onSubmit() {
 
     if (this.myForm.invalid) {
-      alert('Please Enter Required fields.');
+      this.toastr.warning('Please Enter Required fields.');
       return;
     }
 
@@ -45,7 +46,7 @@ export class RegistrationComponent implements OnInit {
       (response: any) => {
         if(response) {
           console.log('Registration success:', response);
-          alert('Registration Successfully');
+          this.toastr.success('Registration Successfully');
 
           const email = this.myForm.get('email')?.value;
           const password = this.myForm.get('password')?.value;
@@ -58,7 +59,7 @@ export class RegistrationComponent implements OnInit {
             },
             (error: any) => {
               console.log('Login error:', error);
-              alert(error)
+              this.toastr.error(error);
             }
 
           );
@@ -66,7 +67,7 @@ export class RegistrationComponent implements OnInit {
       },
       (error: any) => {
         console.log('registration error:', error);
-        alert(error.error.message)
+        this.toastr.error(error.error.message);
       }
     );
   }
