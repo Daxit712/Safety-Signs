@@ -23,7 +23,7 @@
 }
 
 .btn-style-one {
-  padding: 10px 0px;
+  padding: 10px 10px;
   font-weight: 600;
   overflow: hidden;
   letter-spacing: 0.02em;
@@ -31,6 +31,7 @@
   background-color: white;
   transition: 0.3s;
   border-radius: 100px;
+  width: 15%;
 }
 
 .btn-style-one:hover {
@@ -119,6 +120,7 @@
 
     .btn-style-one {
       padding: 8px 0px;
+      width: 20%;
     }
   }
 
@@ -140,6 +142,7 @@
 
     .btn-style-one {
       padding: 8px 0px;
+      width: 20%;
     }
   }
   /* Responsiveness:End */

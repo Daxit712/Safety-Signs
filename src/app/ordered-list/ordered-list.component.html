@@ -22,6 +22,7 @@
 
             <div class="col-lg-8 col-md-8 col-12 mt-3 mt-md-0 mt-lg-4 ps-lg-5">
               <h4>{{ item.variant_label.product.product_name }}</h4>
+              <!-- <p>{{order.created_at}}</p> -->
               <p class="mt-3">Quantity: {{ item.quantity }}</p>
               <p>Price: <span class="sellprice"><b>₹{{ item.variant_label.sell_price }}</b></span> <span class="text-decoration-line-through ms-3">₹{{ item.variant_label.MRP }}</span></p>
               <hr>
@@ -35,8 +36,6 @@
       <div class="col-lg-4 col-12 order-1 order-lg-2 mt-2 mt-lg-5 ms-auto userdetail" *ngIf="orderedList && !orderEmpty">
         <p>Name: <b>{{ orderedList[0]?.user?.first_name }} {{ orderedList[0]?.user?.last_name }}</b></p>
         <p class="card-text">Email: <b>{{ orderedList[0]?.user?.email }}</b></p>
-        <hr class="mt-4">
-        <h4 class="mt-4">Total Order Price: <span>₹{{ orderedList[0]?.total }}</span></h4>
       </div>
     </div>
   </div>

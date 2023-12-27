@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
 }

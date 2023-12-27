@@ -21,8 +21,8 @@ export class OrderedListComponent implements OnInit {
       this.orderEmpty = this.orderedList.length === 0;
 
       this.orderedList.sort((a: any, b: any) => {
-        const dateA = new Date(a.order_item[0]?.variant_label.created_at);
-        const dateB = new Date(b.order_item[0]?.variant_label.created_at);
+        const dateA = new Date(a.created_at);
+        const dateB = new Date(b.created_at);
 
         const isValidDateA = !isNaN(dateA.getTime());
         const isValidDateB = !isNaN(dateB.getTime());
@@ -38,10 +38,6 @@ export class OrderedListComponent implements OnInit {
         return dateB.getTime() - dateA.getTime();
       });
     });
-  }
-
-  scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
 }

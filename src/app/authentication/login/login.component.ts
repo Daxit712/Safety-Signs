@@ -70,8 +70,4 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
 }

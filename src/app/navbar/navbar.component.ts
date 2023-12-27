@@ -92,8 +92,4 @@ export class NavbarComponent implements OnInit {
     this.authService.clearTokens();
   }
 
-  scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
 }
