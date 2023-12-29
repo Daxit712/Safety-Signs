@@ -36,12 +36,12 @@ export class LoginComponent implements OnInit {
   onLogin() {
 
     if(this.email == '') {
-      this.toastr.warning('Please enter email');
+      this.toastr.warning('Please enter your email address.');
       return;
     }
 
     if(this.password == '') {
-      this.toastr.warning('Please enter password');
+      this.toastr.warning('Please enter your password.');
       return;
     }
 
@@ -52,14 +52,14 @@ export class LoginComponent implements OnInit {
         this.authService.login(email, password).subscribe(
           (response: any) => {
             if (response) {
-              this.toastr.info('Login Successfully');
+              this.toastr.success('Login successful! Welcome back!');
 
               this.router.navigate(['/products']);
             }
           },
           (error: any) => {
             console.log('Login error:', error);
-            this.toastr.error('Please enter proper email or password!');
+            this.toastr.error('Please enter a valid email address and password.');
           }
 
         );
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
         this.authService.login
     }
     else {
-      this.toastr.error('Please enter proper email or password!');
+      this.toastr.error('Please enter a valid email address and password.');
     }
   }
 

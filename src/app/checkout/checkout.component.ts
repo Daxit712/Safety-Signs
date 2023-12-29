@@ -93,7 +93,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       },
         (error: any) => {
           console.log('order error:', error);
-          this.toastr.error(error.error.data.product_name + ' product is out of stock!');
+          this.toastr.error('Sorry, the' + error.error.data.product_name + ' product is currently out of stock.');
         }
       );
 
@@ -129,7 +129,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     },
       (error: any) => {
         console.log('order error:', error);
-        this.toastr.error(error.error.data.product_name + ' product is out of stock!');
+        this.toastr.error('Sorry, the' + error.error.data.product_name + ' product is currently out of stock.');
         this.paynow = true
       }
     );
@@ -158,7 +158,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
         this.orderService.createOrder(this.orderItemIds, this.totalAmount).subscribe((data: any) => {
           console.log(data);
-          this.toastr.success('Order created Successfully!');
+          this.toastr.success('Order created successfully!');
           this.router.navigate(['/ordereds'])
         })
       }

@@ -53,21 +53,21 @@ export class ResetComponent implements OnInit {
         this.authService.resetPassword(this.uidb64, this.token, password, confirmPassword).subscribe(
           (response) => {
             this.confirmMessage = response.message;
-            this.toastr.success('Password reset successfully');
+            this.toastr.success('Password reset successfully!');
             this.router.navigate(['login']);
           },
           (error) => {
             this.confirmMessage = 'Something went wrong';
-            this.toastr.error('Something went wrong!');
+            this.toastr.error('Oops! Something went wrong.');
           }
         );
       } else {
         this.confirmMessage = 'Passwords do not match';
-        this.toastr.error('Passwords do not match');
+        this.toastr.error('Password does not match. Please make sure the entered passwords are identical.');
       }
     } else {
       this.confirmMessage = 'Please enter proper credentials';
-      this.toastr.warning('Please enter proper credentials');
+      this.toastr.warning('Please enter proper details.');
     }
   }
 

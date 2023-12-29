@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, HostBinding, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ export class NavbarComponent implements OnInit {
 
   user: any;
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private toastr: ToastrService){
   }
 
   ngOnInit(): void {
@@ -90,6 +91,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.clearTokens();
+    this.toastr.success('Logout successfully!');
   }
 
 }

@@ -25,13 +25,13 @@ export class ForgetPasswordComponent implements OnInit {
     const email = this.myForgotForm.get('email')?.value;
 
     if(!email) {
-      this.toastr.warning('Please enter email!');
+      this.toastr.warning('Please enter your email address!');
     }
 
     this.authService.forgotPassword(email).subscribe(
       (response) => {
         this.emailSentMessage = response.message;
-        this.toastr.success('Email has been sent!');
+        this.toastr.success('Email has been sent successfully!');
 
         this.myForgotForm.reset();
 

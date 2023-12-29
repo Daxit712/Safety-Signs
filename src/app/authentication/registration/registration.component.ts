@@ -36,7 +36,7 @@ export class RegistrationComponent implements OnInit {
   onSubmit() {
 
     if (this.myForm.invalid) {
-      this.toastr.warning('Please Enter Required fields.');
+      this.toastr.warning('Please enter all required fields.');
       return;
     }
 
@@ -46,7 +46,7 @@ export class RegistrationComponent implements OnInit {
       (response: any) => {
         if(response) {
           console.log('Registration success:', response);
-          this.toastr.success('Registration Successfully');
+          this.toastr.success('Registration successful! Welcome to Safety Signs!');
 
           const email = this.myForm.get('email')?.value;
           const password = this.myForm.get('password')?.value;

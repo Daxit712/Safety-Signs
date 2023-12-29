@@ -47,17 +47,17 @@ export class ChangePasswordComponent implements OnInit {
   onChangeSubmit() {
 
     if(this.newpassword == '') {
-      this.toastr.warning('Please enter password');
+      this.toastr.warning('Please enter your password to proceed.');
       return;
     }
 
     if(this.oldpassword == '') {
-      this.toastr.warning('Please enter old password');
+      this.toastr.warning('To proceed, enter your old password.');
       return;
     }
 
     if(this.confirmpassword == '') {
-      this.toastr.warning('Please enter confirm password');
+      this.toastr.warning('To proceed, please provide the confirm password.');
       return;
     }
 
@@ -71,7 +71,7 @@ export class ChangePasswordComponent implements OnInit {
         this.authService.changePassword(oldPassword, newPassword, confirmPassword).subscribe(
           (response) => {
             console.log(response.message);
-            this.toastr.success('Password Change Successfully');
+            this.toastr.success('Password changed successfully!');
 
             this.confirmMessage = '';
             this.myChangeForm.reset();
@@ -79,7 +79,7 @@ export class ChangePasswordComponent implements OnInit {
           },
           (error) => {
             console.log(error);
-            this.toastr.error('Something went wrong!');
+            this.toastr.error('Oops! Something went wrong.');
 
           }
         );

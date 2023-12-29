@@ -38,7 +38,7 @@ export class UploadFileComponent  implements OnInit {
 
     this.docService.uploadDoc(title, this.path).subscribe((response: any) => {
       console.log('Upload success:', response);
-      this.toastr.success('Upload successfully');
+      this.toastr.success('File Uploaded successfully!');
 
       const fileInput = document.getElementById('fileInput') as HTMLInputElement;
       if (fileInput) {
@@ -61,7 +61,7 @@ export class UploadFileComponent  implements OnInit {
       })
     },
     (error) => {
-      this.toastr.error('Somethig went wrong!');
+      this.toastr.error('Oops! Something went wrong.');
     }
     );
   }

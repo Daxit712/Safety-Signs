@@ -71,7 +71,7 @@ export class CartComponent implements OnInit{
       const action = 'quantity';
       const updatedQuantity = this.quantity[item.id];
       this.productService.removeProduct(item.id, action, updatedQuantity).subscribe((response: any) => {
-        this.toastr.success('Quantity updated successfully!');
+        this.toastr.success('Your item has been added successfully!');
         this.ProdcutFunction();
       });
     }

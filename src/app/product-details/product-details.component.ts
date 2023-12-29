@@ -155,7 +155,7 @@ export class ProductDetailsComponent implements OnInit {
       this.orderService.addToCart(selectedVariantId, this.data).subscribe(
         (response) => {
           console.log(response.message);
-          this.createToast('success', 'Add to cart Successfully');
+          this.createToast('success', 'Item added to cart successfully!');
           this.addedToCart = true;
           setTimeout(() => {
             this.addedToCart = false;
@@ -182,7 +182,7 @@ export class ProductDetailsComponent implements OnInit {
     this.orderService.addToCart(productId, this.data).subscribe(
       (response) => {
         console.log('response.message', response.message);
-        this.createToast('success', 'Add to cart Successfully');
+        this.createToast('success', 'Item added to cart successfully!');
         this.addedToCart = true;
         const bookNow: any = {
           quantity: this.data,
@@ -206,7 +206,7 @@ export class ProductDetailsComponent implements OnInit {
 
     this.productService.offer(this.selectedVariant.id, amount).subscribe((response: any) => {
       console.log('Offer:', response);
-      this.createToast('success', 'Offer Send Successful!');
+      this.createToast('success', 'Offer sent successfully!');
 
       this.myOfferForm.reset();
 
@@ -238,7 +238,7 @@ export class ProductDetailsComponent implements OnInit {
 
       this.productService.reviewRating(orderItemId, review, rating).subscribe((response: any) => {
         console.log('Add ratings:', response);
-        this.createToast('success', 'Add ratings Successful!');
+        this.createToast('success', 'Ratings added successfully!');
 
         this.productService.getProductDetail(this.id).subscribe(detail => {
           this.productDetail = detail.data;
@@ -258,7 +258,7 @@ export class ProductDetailsComponent implements OnInit {
         }
       },
       (error) => {
-        this.createToast('warning', 'User can not add multiple reviews');
+        this.createToast('warning', 'Sorry, you cannot add multiple reviews for the same item.');
         this.ratingForm.reset();
 
         const modal = document.getElementById('ratingModal');
@@ -273,7 +273,7 @@ export class ProductDetailsComponent implements OnInit {
       );
     } else {
       console.error('Order Item ID not available');
-      this.createToast('warning', 'User have to login first!');
+      this.createToast('warning', 'Please log in to perform this action!');
       this.ratingForm.reset();
 
       const modal = document.getElementById('ratingModal');
