@@ -2,6 +2,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,12 @@ export class OrderService {
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: object) {
   }
 
-  mainUrl = 'https://safetyforyou.in/api/';
-
-  addToCartUrl = this.mainUrl + 'orders/order_item/create/';
-  cartListUrl = this.mainUrl + 'orders/order_item/';
-  orderedListUrl = this.mainUrl + 'orders/'
-  orderCreateUrl = this.mainUrl + 'orders/create/';
-  razorpayUrl = this.mainUrl + 'orders/razorpay/';
-  successRazorpayUrl = this.mainUrl + 'orders/success_and_failed/';
+  addToCartUrl = environment.firebase.apiUrl + 'orders/order_item/create/';
+  cartListUrl = environment.firebase.apiUrl + 'orders/order_item/';
+  orderedListUrl = environment.firebase.apiUrl + 'orders/'
+  orderCreateUrl = environment.firebase.apiUrl + 'orders/create/';
+  razorpayUrl = environment.firebase.apiUrl + 'orders/razorpay/';
+  successRazorpayUrl = environment.firebase.apiUrl + 'orders/success_and_failed/';
 
 
   storeTokens(accessToken: any, refreshToken: any): void {

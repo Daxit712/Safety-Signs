@@ -2,6 +2,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,8 @@ export class DocService {
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: object) {
   }
 
-  mainUrl = 'https://safetyforyou.in/api/';
-
-  uploadDocUrl = this.mainUrl + 'products/upload_documents/';
-  uploadDocListUrl = this.mainUrl + 'products/upload_documents/';
+  uploadDocUrl = environment.firebase.apiUrl + 'products/upload_documents/';
+  uploadDocListUrl = environment.firebase.apiUrl + 'products/upload_documents/';
 
 
   storeTokens(accessToken: any, refreshToken: any): void {

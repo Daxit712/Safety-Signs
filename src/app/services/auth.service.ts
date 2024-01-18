@@ -2,6 +2,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +17,12 @@ export class AuthService {
     }
   }
 
-  mainUrl = 'https://safetyforyou.in/api/';
-
-  loginUrl = this.mainUrl + 'token/';
-  registerUrl = this.mainUrl + 'users/registration/';
-  updateUrl = this.mainUrl + 'users/user/detail/';
-  forgotUrl = this.mainUrl + 'users/forgot/password/';
-  resetPasswordUrl = this.mainUrl + 'users/forgot/password/';
-  changePasswordUrl = this.mainUrl + 'users/change/password/';
+  loginUrl = environment.firebase.apiUrl + 'token/';
+  registerUrl = environment.firebase.apiUrl + 'users/registration/';
+  updateUrl = environment.firebase.apiUrl + 'users/user/detail/';
+  forgotUrl = environment.firebase.apiUrl + 'users/forgot/password/';
+  resetPasswordUrl = environment.firebase.apiUrl + 'users/forgot/password/';
+  changePasswordUrl = environment.firebase.apiUrl + 'users/change/password/';
 
   userDataSubject = new BehaviorSubject<any>(null);
   userData$ = this.userDataSubject.asObservable();

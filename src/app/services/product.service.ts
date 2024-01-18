@@ -2,6 +2,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,11 @@ export class ProductService {
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: object) {
   }
 
-  mainUrl = 'https://safetyforyou.in/api/';
-
-  productListUrl = this.mainUrl + 'products/';
-  productDetailUrl = this.mainUrl + 'products/';
-  removeProductUrl = this.mainUrl + 'orders/modify/order_item/';
-  offerUrl = this.mainUrl + 'orders/offer/';
-  reviewUrl = this.mainUrl + 'orders/review_and_ratting/';
+  productListUrl = environment.firebase.apiUrl + 'products/';
+  productDetailUrl = environment.firebase.apiUrl + 'products/';
+  removeProductUrl = environment.firebase.apiUrl + 'orders/modify/order_item/';
+  offerUrl = environment.firebase.apiUrl + 'orders/offer/';
+  reviewUrl = environment.firebase.apiUrl + 'orders/review_and_ratting/';
 
 
   storeTokens(accessToken: any, refreshToken: any): void {
