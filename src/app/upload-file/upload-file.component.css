@@ -81,14 +81,14 @@
   font-weight: 600;
   overflow: hidden;
   letter-spacing: 0.02em;
-  border: 2px solid #0077b6;
+  border: 2px solid #001e57;
   background-color: white;
   transition: 0.3s;
   border-radius: 5px;
 }
 
 .btn-style-one:hover {
-  background-color: #0077b6;
+  background-color: #001e57;
   color: #ffffff;
   transition: 0.3s;
 }
@@ -98,7 +98,7 @@
   font-weight: 600;
   overflow: hidden;
   letter-spacing: 0.02em;
-  border: 2px solid #0077b6;
+  border: 2px solid #001e57;
   background-color: white;
   transition: 0.3s;
   border-radius: 5px;
@@ -106,7 +106,7 @@
 }
 
 .submitbtn:hover {
-  background-color: #0077b6;
+  background-color: #001e57;
   color: #ffffff !important;
   transition: 0.3s;
 }

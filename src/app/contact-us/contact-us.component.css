@@ -34,13 +34,13 @@
   font-weight: 600;
   overflow: hidden;
   letter-spacing: 0.02em;
-  border: 2px solid #0077b6;
+  border: 2px solid #001e57;
   background-color: white;
   transition: 0.3s;
 }
 
 .btn-style-one:hover{
-  background-color: #0077b6;
+  background-color: #001e57;
   color: #ffffff;
   transition: 0.3s;
 }

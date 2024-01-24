@@ -31,7 +31,7 @@ section {
 }
 
 .paybtn {
-  border: 2px solid #0077b6;
+  border: 2px solid #001e57;
   background-color: white;
   transition: 0.3s;
   padding: 2.5% 5% !important;
@@ -39,7 +39,7 @@ section {
 }
 
 .paybtn:not(:disabled):hover {
-  background-color: #0077b6;
+  background-color: #001e57;
   color: white;
 }
 
@@ -49,12 +49,12 @@ section {
 }
 
 .htagcolor {
-  color: #0077b6;
+  color: #001e57;
 }
 
 .hr {
   height: 2px;
-  background-color: #0077b6;
+  background-color: #001e57;
   width: 18%;
   margin-left: auto;
   margin-right: auto;
